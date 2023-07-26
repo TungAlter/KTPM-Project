@@ -1,11 +1,49 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {}
+    "net7.0": {
+      "DALCallCenter/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "DTOCallCenter": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DALCallCenter.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DALCallCenter.dll": {}
+        }
+      },
+      "DTOCallCenter/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/DTOCallCenter.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DTOCallCenter.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "DALCallCenter/1.0.0": {
+      "type": "project",
+      "path": "../DALCallCenter/DALCallCenter.csproj",
+      "msbuildProject": "../DALCallCenter/DALCallCenter.csproj"
+    },
+    "DTOCallCenter/1.0.0": {
+      "type": "project",
+      "path": "../DTOCallCenter/DTOCallCenter.csproj",
+      "msbuildProject": "../DTOCallCenter/DTOCallCenter.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net7.0": []
+    "net7.0": [
+      "DALCallCenter >= 1.0.0",
+      "DTOCallCenter >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\DELL\\.nuget\\packages\\": {},
@@ -39,7 +77,14 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\DALCallCenter\\DALCallCenter.csproj": {
+              "projectPath": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\DALCallCenter\\DALCallCenter.csproj"
+            },
+            "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\DTOCallCenter\\DTOCallCenter.csproj": {
+              "projectPath": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\DTOCallCenter\\DTOCallCenter.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

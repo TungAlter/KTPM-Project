@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "DALCallCenter/1.0.0": {
+        "dependencies": {
+          "DTOCallCenter": "1.0.0"
+        },
+        "runtime": {
+          "DALCallCenter.dll": {}
+        }
+      },
+      "DTOCallCenter/1.0.0": {
+        "runtime": {
+          "DTOCallCenter.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DALCallCenter/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DTOCallCenter/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
