@@ -1,0 +1,15 @@
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\bin\Debug\net7.0\CallCenter.exe
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\bin\Debug\net7.0\CallCenter.deps.json
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\bin\Debug\net7.0\CallCenter.runtimeconfig.json
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\bin\Debug\net7.0\CallCenter.dll
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\bin\Debug\net7.0\CallCenter.pdb
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\obj\Debug\net7.0\CallCenter.csproj.AssemblyReference.cache
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\obj\Debug\net7.0\CallCenter.GeneratedMSBuildEditorConfig.editorconfig
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\obj\Debug\net7.0\CallCenter.AssemblyInfoInputs.cache
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\obj\Debug\net7.0\CallCenter.AssemblyInfo.cs
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\obj\Debug\net7.0\CallCenter.csproj.CoreCompileInputs.cache
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\obj\Debug\net7.0\CallCenter.dll
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\obj\Debug\net7.0\refint\CallCenter.dll
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\obj\Debug\net7.0\CallCenter.pdb
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\obj\Debug\net7.0\CallCenter.genruntimeconfig.cache
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\obj\Debug\net7.0\ref\CallCenter.dll
