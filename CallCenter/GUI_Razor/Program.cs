@@ -13,13 +13,20 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseEndpoints(endpoints =>{
+    endpoints.MapRazorPages();
+});
+
 app.UseAuthorization();
 
-app.MapRazorPages();
+// app.MapRazorPages();
+
+
 
 app.Run();
+
