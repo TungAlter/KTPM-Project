@@ -25,11 +25,11 @@ body {
 }
 
 .navbar {
-  height: 55px;
+  height: 50px;
 }
 
 .container {
-  margin-left: 4rem;
-  margin-right: 4rem;
+  margin-left: 2.5rem;
+  width: 100%;
   padding: 0%;
 }
