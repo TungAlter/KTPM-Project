@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6sT0mhFnuIpSc0PUrU/5NT5dfpaxQRbnRtPewSf8pT8=",
+  "Hash": "yF6yZohEARtjbd9ysxgj9pSOW8PEr5b9ZUInYpLvV8Q=",
   "Source": "GUI_Razor",
   "BasePath": "_content/GUI_Razor",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\GUI_Razor.bundle.scp.css"
+    },
+    {
+      "Identity": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\css\\homes2.css",
+      "SourceId": "GUI_Razor",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\",
+      "BasePath": "_content/GUI_Razor",
+      "RelativePath": "css/homes2.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\homes2.css"
     },
     {
       "Identity": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\css\\site.css",

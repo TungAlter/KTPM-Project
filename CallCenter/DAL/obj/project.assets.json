@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\AppDriver-KTPM\\call_center\\KTPM-Project\\KTPM-Project\\KTPM-Project\\CallCenter\\DAL\\DAL.csproj",
+      "projectUniqueName": "d:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\DAL\\DAL.csproj",
       "projectName": "DAL",
-      "projectPath": "d:\\AppDriver-KTPM\\call_center\\KTPM-Project\\KTPM-Project\\KTPM-Project\\CallCenter\\DAL\\DAL.csproj",
-      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "d:\\AppDriver-KTPM\\call_center\\KTPM-Project\\KTPM-Project\\KTPM-Project\\CallCenter\\DAL\\obj\\",
+      "projectPath": "d:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\DAL\\DAL.csproj",
+      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+      "outputPath": "d:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\DAL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
