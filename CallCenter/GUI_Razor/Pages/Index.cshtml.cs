@@ -16,4 +16,9 @@ public class IndexModel : PageModel
     {
 
     }
+
+    public void OnPost()
+    {
+
+    }
 }

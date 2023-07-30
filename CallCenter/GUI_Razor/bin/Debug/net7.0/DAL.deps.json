@@ -6,24 +6,6 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v7.0": {
-      "GUI_Razor/1.0.0": {
-        "dependencies": {
-          "BUS": "1.0.0",
-          "DTO": "1.0.0"
-        },
-        "runtime": {
-          "GUI_Razor.dll": {}
-        }
-      },
-      "BUS/1.0.0": {
-        "dependencies": {
-          "DAL": "1.0.0",
-          "DTO": "1.0.0"
-        },
-        "runtime": {
-          "BUS.dll": {}
-        }
-      },
       "DAL/1.0.0": {
         "dependencies": {
           "DTO": "1.0.0"
@@ -40,16 +22,6 @@
     }
   },
   "libraries": {
-    "GUI_Razor/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "BUS/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "DAL/1.0.0": {
       "type": "project",
       "serviceable": false,
