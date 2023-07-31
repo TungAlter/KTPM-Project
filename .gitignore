@@ -6,3 +6,7 @@
 *.exe
 *.sln
 *.targets
+
+
+# file
+CallCenter/BUS/bin/Debug/net7.0
