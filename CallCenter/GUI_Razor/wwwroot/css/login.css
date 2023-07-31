@@ -26,6 +26,7 @@
   }
   
   #mainLogin {
+    margin: 0;
     background: rgba(0, 33, 71, 0.815);
     display: grid;
     height: 100vh;
