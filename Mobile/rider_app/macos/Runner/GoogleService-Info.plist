@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>95208587543-gpvdv9krt7u01hp4o10pmhj0ssbtospa.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.95208587543-gpvdv9krt7u01hp4o10pmhj0ssbtospa</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAG8juaFlK5QPE-BeNjgeW2gVap-GFOY3E</string>
+	<key>GCM_SENDER_ID</key>
+	<string>95208587543</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.riderApp.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>ktpm-2023</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ktpm-2023.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:95208587543:ios:6bec875a4cde8897f6b752</string>
+	<key>DATABASE_URL</key>
+	<string>https://ktpm-2023-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
