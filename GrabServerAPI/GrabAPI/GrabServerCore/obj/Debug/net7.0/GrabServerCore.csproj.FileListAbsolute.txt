@@ -10,15 +10,3 @@ D:\New folder\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\GrabServerCo
 D:\New folder\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\refint\GrabServerCore.dll
 D:\New folder\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\GrabServerCore.pdb
 D:\New folder\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\ref\GrabServerCore.dll
-E:\Git code\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\bin\Debug\net7.0\GrabServerCore.deps.json
-E:\Git code\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\bin\Debug\net7.0\GrabServerCore.dll
-E:\Git code\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\bin\Debug\net7.0\GrabServerCore.pdb
-E:\Git code\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\GrabServerCore.csproj.AssemblyReference.cache
-E:\Git code\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\GrabServerCore.GeneratedMSBuildEditorConfig.editorconfig
-E:\Git code\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\GrabServerCore.AssemblyInfoInputs.cache
-E:\Git code\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\GrabServerCore.AssemblyInfo.cs
-E:\Git code\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\GrabServerCore.csproj.CoreCompileInputs.cache
-E:\Git code\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\GrabServerCore.dll
-E:\Git code\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\refint\GrabServerCore.dll
-E:\Git code\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\GrabServerCore.pdb
-E:\Git code\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\ref\GrabServerCore.dll
