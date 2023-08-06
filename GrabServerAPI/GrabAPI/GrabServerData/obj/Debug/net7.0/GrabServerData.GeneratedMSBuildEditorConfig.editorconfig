@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = GrabServerData
-build_property.ProjectDir = D:\New folder\GrabServerAPI\GrabAPI\GrabServerData\
+build_property.ProjectDir = E:\Git code\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerData\

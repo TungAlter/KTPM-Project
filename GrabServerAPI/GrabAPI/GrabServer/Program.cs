@@ -7,7 +7,7 @@ using Swashbuckle.AspNetCore.Filters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using GrabServer.Services.AccountService;
-
+using GrabServer.Services.BookingService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +20,8 @@ builder.Services.AddSwaggerGen();
 
 // Thêm service
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
+
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddServicesData();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(option =>

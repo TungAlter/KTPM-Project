@@ -25,5 +25,6 @@ namespace GrabServerData
         }
 
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<Booking> Bookings { get; set; }    
     }
 }

@@ -3446,11 +3446,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\New folder\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj",
+      "projectUniqueName": "E:\\Git code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj",
       "projectName": "GrabServerData",
-      "projectPath": "D:\\New folder\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj",
+      "projectPath": "E:\\Git code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj",
       "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "D:\\New folder\\GrabServerAPI\\GrabAPI\\GrabServerData\\obj\\",
+      "outputPath": "E:\\Git code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3467,8 +3467,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\New folder\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj": {
-              "projectPath": "D:\\New folder\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj"
+            "E:\\Git code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj": {
+              "projectPath": "E:\\Git code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj"
             }
           }
         }

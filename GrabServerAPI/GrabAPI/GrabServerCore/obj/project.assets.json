@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\New folder\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj",
+      "projectUniqueName": "E:\\Git code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj",
       "projectName": "GrabServerCore",
-      "projectPath": "D:\\New folder\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj",
+      "projectPath": "E:\\Git code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj",
       "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "D:\\New folder\\GrabServerAPI\\GrabAPI\\GrabServerCore\\obj\\",
+      "outputPath": "E:\\Git code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
