@@ -32,7 +32,7 @@ header {
   align-items: center;
   align-content: center;
   justify-content: space-between;
-  padding: 6px 6%;
+  padding: 0px 6%;
   transition: all .55s ease;
   background: var(--nav-background);
 }
@@ -59,14 +59,30 @@ header {
 }
 .nav-opts a {
   color: white;
+  display: inline-block;
   font-size: 15px;
   font-weight: 600;
-  padding: 15px 30px;
-  margin: 0px 5px;
+  padding: 13px 5px;
+  margin: 0px 0px;
   text-decoration: none;
-  transition: all .55s ease;
-  
+  transition: all .3s ease;
+  text-align: center;
 }
+
+.nav-opts a:nth-child(1) {
+  width: 100px;
+}
+.nav-opts a:nth-child(2) {
+  width: 100px;
+}
+.nav-opts a:nth-child(3) {
+  width: 100px;
+}
+.nav-opts a:nth-child(3) {
+  width: 100px;
+}
+
+
 .nav-opts a:hover {
   color: var(--blue);
   background: #3a3a3a;
@@ -88,13 +104,13 @@ header {
   color: var(--white);
   background: var(--lightblue);
   display: inline-block;
-  padding: 5px 16px;
+  padding: 6px 19px;
   font-size: 16px;
   font-weight: 600;
   border: 2px solid var(--white);
   border-radius: 5px;
   margin-right: 10px;
-  transition: all ease .55;
+  transition: all ease .5;
 }
 
 .loginbtn:hover {
@@ -102,7 +118,11 @@ header {
   color: #000;
 }
 
-.container {
-  background-color: #333;
+.navbar-toggler {
+  color: white;
+}
+
+.menu-btn {
+  display: none;
 }
 

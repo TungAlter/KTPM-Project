@@ -18,10 +18,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseEndpoints(endpoints =>{
-    endpoints.MapRazorPages();
-});
-
+app.MapRazorPages();
 app.UseAuthorization();
 
 // app.MapRazorPages();
