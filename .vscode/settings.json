@@ -15,5 +15,6 @@
             "name": "GrabSystem",
             "database": "GrabSystemDB"
         }
-    ]
+    ],
+    "cmake.configureOnOpen": true
 }
