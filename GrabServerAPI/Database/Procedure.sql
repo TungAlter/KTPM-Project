@@ -1,6 +1,4 @@
-GO
 USE GrabSystemDB
-
 CREATE OR ALTER PROCEDURE USP_GetNextColumnId(
 	@tablename SYSNAME,
 	@columnname SYSNAME
