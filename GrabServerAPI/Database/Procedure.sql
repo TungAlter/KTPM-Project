@@ -1,12 +1,4 @@
-﻿INSERT INTO CUSTOMER VALUES (1,'Bronze',N'Nguyễn Lê Duy','duy@gmail.com','035444777','2002-12-04',N'Nam','https://img')
-INSERT INTO DRIVER VALUES (2,2,N'Nguyễn Thanh','thanh@gmail.com','035444777','2002-12-04',N'Nam','https://img',9.9,'WAITING')
-INSERT INTO DRIVER VALUES (3,2,N'Nguyễn Thanh 3','thanh@gmail.com','035444777','2002-12-04',N'Nam','https://img',9.9,'WAITING')
-INSERT INTO DRIVER VALUES (4,2,N'Nguyễn Thanh 4','thanh@gmail.com','035444777','2002-12-04',N'Nam','https://img',9.9,'WAITING')
-INSERT INTO DRIVER VALUES (5,2,N'Nguyễn Thanh 5','thanh@gmail.com','035444777','2002-12-04',N'Nam','https://img',9.9,'WAITING')
-GO
-
 USE GrabSystemDB
-
 CREATE OR ALTER PROCEDURE USP_GetNextColumnId(
 	@tablename SYSNAME,
 	@columnname SYSNAME
