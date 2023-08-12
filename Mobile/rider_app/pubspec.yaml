@@ -40,6 +40,10 @@ dependencies:
   firebase_database: ^10.2.4
   fluttertoast: ^8.2.2
   google_maps_flutter: ^2.4.0
+  geolocator: ^9.0.2
+  permission_handler: ^10.4.3
+  http: ^1.1.0
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:
@@ -101,6 +105,10 @@ flutter:
      - family: Brand Bold
        fonts:
         - asset: fonts/bolt-semibold.ttf
+     - family: iA Writter Mono S
+       fonts:
+        - asset: fonts/iAWriterMonoS-Regular.ttf
+     
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
