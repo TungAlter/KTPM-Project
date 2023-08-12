@@ -1,6 +1,6 @@
 .box {
     padding: 0;
-    height:auto;
+    height:100%;
     background-color: lightgray;
     display: flex;
     position: fixed;
@@ -11,29 +11,63 @@
 }
 
 .map-col {
+    width: 80%;
     margin: 0;
     padding: 0;
-    width: 80%;
     height: 100%;
-    display: flex; 
 }
 
 .list-col {
-    border-radius: 10px 0px 0px 10px;
-    border-color: black;
-    border-width: 2px;
-    padding: 0;
     width: 20%;
+    padding: 0;
+    margin: 0;
+    border-radius: 6px 0px 0px 6px;
+    padding: 0;
     background-color: aqua;
+    overflow-y: auto;
+    max-height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.list-col::-webkit-scrollbar {
+    width: 6px;
+}
+.list-col::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.list-col::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 33, 71, 0.815);
+    outline: 0px solid slategrey;
 }
 
 .unapproved-card {
-    margin: 3px 3px 3px 3px;
-    border-radius: 13px;
-    width: 98%;
-    height: 90px;
-    background-color: red;
+    margin: 3px 1px 3px 1px;
+    padding: 2px;
+    display: inline-block;
+    border-radius: 10px;
+    display: block;
+    width: 260px;
+    height: 100px;
+    background: #008997;
     font-size: 13px;
+    color: white;
+}
+
+.card-content {
+    display: flex;
+    margin: 3px;
+    align-items: flex-start center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 10px;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 11px;
+    margin-right: 5px;
+    color: rgb(23, 23, 124);
 }
