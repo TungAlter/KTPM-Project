@@ -43,7 +43,7 @@
             }); *@
 
             // Tạo bản đồ Leaflet
-            var map = L.map('map').setView([10.769444, 106.681944], 13);
+            var map = L.map('map').setView([0, 0], 10);
 
             // Sử dụng OpenStreetMap làm nền bản đồ
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -77,12 +77,15 @@
                         console.error("Lỗi:", error);
                     });
             }
-            getCoordinates("216/9 Dương Bá Trạc, phường 2, quận 8, TP.HCM")
+            getCoordinates("216/9 Dương Bá Trạc, phường 2, quận 8, TP.HCM");
+            getCoordinates("Trường Đại học Khoa học Tự nhiên, TP.HCM");
+
         </script>
     <div class="list-col">
         @for (int i=1; i<15; i++) {
             <div class="unapproved-card">
                 <div class="card-content" id="card-content">
+                    <div><span class="card-title">STT: </span>@i</div>
                     <div><span class="card-title">Khách: </span>Lưu Minh Phát</div>
                     <div><span class="card-title">Địa điểm đi: </span>Trường đại học Khoa học Tự Nhiên TP HCM</div>
                     <div><span class="card-title">Địa điểm đến: </span>216/9, Dương Bá Trạc, phường 2, quận 8, TP.HCM</div>
