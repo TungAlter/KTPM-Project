@@ -17,13 +17,17 @@ class RegisterationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //!khung chứa giao diện đăng ký
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
+          //!khoảng cách (padding) xung quanh nội dung bên trong của nó.
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            //!tổ chức các thành phần giao diện dưới dạng từng dòng
             children: [
               const SizedBox(
+                //!spacing
                 height: 20.0,
               ),
               const Image(
@@ -41,14 +45,16 @@ class RegisterationScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               Padding(
+                //!(padding) xung quanh nội dung bên trong của nó.
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
+                  //!tổ chức theo dòng
                   children: [
-                    //!name
                     const SizedBox(
                       height: 1.0,
                     ),
                     TextField(
+                      //!điền name
                       controller: nameTextEditingController,
                       keyboardType: TextInputType.text,
                       decoration: const InputDecoration(
@@ -68,6 +74,7 @@ class RegisterationScreen extends StatelessWidget {
                       height: 1.0,
                     ),
                     TextField(
+                      //!điền email
                       controller: emailTextEditingController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
@@ -84,9 +91,11 @@ class RegisterationScreen extends StatelessWidget {
                     ),
                     //!Phone
                     const SizedBox(
+                      //!spacing
                       height: 1.0,
                     ),
                     TextField(
+                      //!điền phone
                       controller: phoneTextEditingController,
                       keyboardType: TextInputType.phone,
                       decoration: const InputDecoration(
@@ -106,6 +115,7 @@ class RegisterationScreen extends StatelessWidget {
                     ),
                     //!Pass
                     TextField(
+                      //!điên pass
                       controller: passwordTextEditingController,
                       obscureText: true,
                       decoration: const InputDecoration(
@@ -121,7 +131,7 @@ class RegisterationScreen extends StatelessWidget {
                       style: const TextStyle(fontSize: 14.0),
                     ),
                     const SizedBox(
-                      height: 1.0,
+                      height: 10.0,
                     ),
                     //!button
                     ElevatedButton(
@@ -202,7 +212,7 @@ class RegisterationScreen extends StatelessWidget {
       final User? firebaseUser = authResult.user; // Xóa "!" ở đây
 
       if (firebaseUser != null) {
-        // Đăng ký thành công, bạn có thể thực hiện các tác vụ tiếp theo ở đây.
+        //! Đăng ký thành công, bạn có thể thực hiện các tác vụ tiếp theo ở đây.
         // Ví dụ: chuyển hướng đến trang chính của ứng dụng
         Map<String, dynamic> userDataMap = {
           // Thêm kiểu dữ liệu cho userDataMap
@@ -215,12 +225,12 @@ class RegisterationScreen extends StatelessWidget {
         Navigator.pushNamedAndRemoveUntil(
             context, MainScreen.idScreen, (route) => false);
       } else {
-        // Nếu firebaseUser là null, có thể xảy ra lỗi trong quá trình đăng ký.
-        // Hãy xử lý lỗi ở đây (hiển thị thông báo lỗi, đăng nhập lại, vv.).
+        //! Nếu firebaseUser là null, có thể xảy ra lỗi trong quá trình đăng ký.
+        //! Hãy xử lý lỗi ở đây (hiển thị thông báo lỗi, đăng nhập lại, vv.).
         displayToastMessage("Error when create,please try again.", context);
       }
     } catch (e) {
-      // Nếu có lỗi xảy ra trong quá trình đăng ký, sẽ nằm trong biến e.
+      //! Nếu có lỗi xảy ra trong quá trình đăng ký, sẽ nằm trong biến e.
       // Xử lý lỗi ở đây (hiển thị thông báo lỗi, đăng nhập lại, vv.).
       Navigator.pop(context);
       displayToastMessage("ERROR: $e", context);

@@ -15,13 +15,18 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //!khung chứa giao diện mainscreen
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
+        //!cho phép cuộn trên giao diện
         child: Padding(
+          //!khoảng cách (padding) xung quanh nội dung bên trong của nó.
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            //! Các thành phần như logo,phần nhập nội dung sẽ được tổ chức theo từng dòng
             children: [
               const SizedBox(
+                //!khoản cách giữa các thành phần giao diện
                 height: 35.0,
               ),
               const Image(
@@ -31,6 +36,7 @@ class LoginScreen extends StatelessWidget {
                 alignment: Alignment.center,
               ),
               const SizedBox(
+                //!khoản cách giữa các thành phần giao diện
                 height: 1.0,
               ),
               const Text(
@@ -39,15 +45,20 @@ class LoginScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               Padding(
+                //!khoảng cách (padding) xung quanh nội dung bên trong của nó.
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
+                  //! Các thành phần như logo,phần nhập nội dung sẽ được tổ chức theo từng dòng
                   children: [
                     //!Email
                     const SizedBox(
+                      //!khoản cách giữa các thành phần giao diện
                       height: 1.0,
                     ),
                     TextField(
-                      controller: emailTextEditingController,
+                      //! phần điền input
+                      controller:
+                          emailTextEditingController, //!lắng nghe và xử lý giá trị
                       keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
                         labelText: "Email",
@@ -63,10 +74,13 @@ class LoginScreen extends StatelessWidget {
                     ),
                     //!pass
                     const SizedBox(
+                      //!khoản cách giữa các thành phần giao diện
                       height: 1.0,
                     ),
                     TextField(
-                      controller: passwordTextEditingController,
+                      //! phần điền input
+                      controller:
+                          passwordTextEditingController, //!lắng nghe và xử lý giá trị
                       obscureText: true,
                       decoration: const InputDecoration(
                         labelText: "Password",
@@ -81,14 +95,18 @@ class LoginScreen extends StatelessWidget {
                       style: const TextStyle(fontSize: 14.0),
                     ),
                     const SizedBox(
-                      height: 1.0,
+                      //!khoản cách giữa các thành phần giao diện
+                      height: 10.0,
                     ),
                     ElevatedButton(
+                      //!nút đăng nhập
                       onPressed: () {
                         if (!emailTextEditingController.text.contains("@")) {
+                          //!email không hợp lệ
                           displayToastMessage(
                               "Email address is invalid", context);
                         } else if (passwordTextEditingController.text.isEmpty) {
+                          //!để trống
                           displayToastMessage("Password is mandatory", context);
                         } else {
                           loginAndAuthenticateUser(context);
@@ -98,7 +116,7 @@ class LoginScreen extends StatelessWidget {
                         foregroundColor: Colors.white,
                         backgroundColor: Colors.yellow,
                         textStyle: const TextStyle(
-                            fontSize: 18.0, fontFamily: "Brand Bold"),
+                            fontSize: 18.0, fontFamily: "iA Writter Mono S"),
                         minimumSize: const Size(double.infinity, 50.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24.0),
@@ -110,6 +128,7 @@ class LoginScreen extends StatelessWidget {
                       height: 10.0,
                     ),
                     TextButton(
+                      //! nút route sang trang đăng ký
                       onPressed: () {
                         Navigator.pushNamedAndRemoveUntil(context,
                             RegisterationScreen.idScreen, (route) => false);
