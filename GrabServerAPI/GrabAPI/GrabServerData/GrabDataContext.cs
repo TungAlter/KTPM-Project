@@ -21,7 +21,8 @@ namespace GrabServerData
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Booking>().HasKey(x => new { x.IdCustomer, x.IdDriver, x.DateBooking });
         }
 
         public DbSet<Account> Accounts { get; set; }
