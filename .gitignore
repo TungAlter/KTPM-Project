@@ -7,4 +7,5 @@
 
 
 # file
-CallCenter/BUS/bin/Debug/net7.0
+CallCenter\GUI_Razor\bin\Debug\net7.0\
+CallCenter\GUI_Razor\obj\Debug\net7.0\
