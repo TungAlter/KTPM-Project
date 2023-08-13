@@ -9,3 +9,8 @@
 # file
 CallCenter\GUI_Razor\bin\Debug\net7.0\
 CallCenter\GUI_Razor\obj\Debug\net7.0\
+CallCenter\GUI_Razor\obj\GUI_Razor.csproj.nuget.dgspec.json
+CallCenter\GUI_Razor\obj\GUI_Razor.csproj.nuget.g.props
+CallCenter\GUI_Razor\obj\GUI_Razor.csproj.nuget.g.targets
+CallCenter\GUI_Razor\obj\project.assets.json
+CallCenter\GUI_Razor\obj\project.nuget.cache
