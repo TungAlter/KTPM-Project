@@ -15,36 +15,13 @@
 <link rel="stylesheet" href="~/GUI_Razor.styles.css" asp-append-version="true" />
 
 <div class="box">
-        <div class="map-col" id="map"></div>
-        @* <script>
-            let map;
-            async function initMap() {
-                const { Map } = await google.maps.importLibrary("maps");
-                google.maps.a
-                map = new Map(document.getElementById("map"), {
-                    center: { lat: 10.769444, lng: 106.681944 },
-                    zoom: 8,
-                });
-            }
-
-            window.addEventListener("load", () => {
-                initMap();
-            });
-        </script> *@
+    <div class="map-col" id="map"></div>
         
-        @* <script src="https://maps.googleapis.com/maps/api/geocode/json?place_id=ChIJd8BlQ2BZwokRAFUEcm_qrcA
-&key=AIzaSyBtY8Fz0fVTm3MkGCtIass5HNDvL05enAA" async defer></script> *@
         <script>
-            @* (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
-                key: "AIzaSyC_qbTXNshytiMbSGkaaHe9WGvOmO_6Hg8",
-                v: "weekly",
-                // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
-                // Add other bootstrap parameters as needed, using camel case.
-            }); *@
-
             // Tạo bản đồ Leaflet
             var map = L.map('map').setView([0, 0], 10);
-
+            var startAt = "216/9 Dương Bá Trạc, phường 2, quận 8, TP.HCM";
+            var endAt = "Trường Đại học Khoa học Tự nhiên TP.HCM";
             // Sử dụng OpenStreetMap làm nền bản đồ
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -57,29 +34,91 @@
 
             function getCoordinates(address) {
                 var nominatimUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
-                fetch(nominatimUrl)
+                return fetch(nominatimUrl)
                     .then(response => response.json())
                     .then(data => {
                         if (data.length > 0) {
                             var lat = parseFloat(data[0].lat);
                             var lon = parseFloat(data[0].lon);
+                            console.log("Address:", address)
                             console.log("Latitude:", lat);
                             console.log("Longitude:", lon);
 
                             L.marker([lat, lon]).addTo(map)
                                 .bindPopup(address)
                                 .openPopup();
+                                
+                            return { lat, lon };
                         } else {
                             console.log("Không thể lấy tọa độ từ địa chỉ.");
+                            return null;
                         }
                     })
                     .catch(error => {
-                        console.error("Lỗi:", error);
+                        console.log("Lỗi:", error);
                     });
             }
-            getCoordinates("216/9 Dương Bá Trạc, phường 2, quận 8, TP.HCM");
-            getCoordinates("Trường Đại học Khoa học Tự nhiên, TP.HCM");
+            @* getCoordinates("216/9 Dương Bá Trạc, phường 2, quận 8, TP.HCM");
+            getCoordinates("Trường Đại học Khoa học Tự nhiên, TP.HCM"); *@
 
+            function getRoute(startAddress, endAddress) {
+                Promise.all([getCoordinates(startAddress), getCoordinates(endAddress)])
+                    .then(coords => {
+                        var startCoords = coords[0];
+                        var endCoords = coords[1];
+                        
+                        if (startCoords && endCoords) {
+                            var routingUrl = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=5b3ce3597851110001cf6248c8856e6ba83c4419ae276867db72f594&start=${startCoords.lon},${startCoords.lat}&end=${endCoords.lon},${endCoords.lat}`;
+                            
+                            return fetch(routingUrl)
+                                .then(response => response.json())
+                                .then(data => {
+                                    var routeCoordinates = data.features[0].geometry.coordinates;
+                                    
+                                    var routeLatLngs = routeCoordinates.map(coord => [coord[1], coord[0]]);
+                                    var route = L.polyline(routeLatLngs, { color: 'blue' }).addTo(map);
+                                    map.fitBounds(route.getBounds());
+                                })
+                                .catch(error => {
+                                    console.log("Lỗi khi lấy tuyến đường:", error);
+                                });
+                        }
+                    })
+                    .catch(error => {
+                        console.log("Lỗi khi lấy tọa độ:", error);
+                    });
+            }
+
+            // Gọi hàm để lấy tuyến đường
+            getRoute(startAt, endAt);
+
+            @* getRoute(startAt, endAt)
+                .then(routeData => {
+                    if(routeData) {
+                        L.marker([routeData.start.lat, routeData.start.lon]).addTo(map)
+                                .bindPopup(address)
+                                .openPopup();
+                            
+                        L.marker([routeData.end.lat, routeData.end.lon]).addTo(map)
+                                .bindPopup(address)
+                                .openPopup();
+                                        var routeCoordinates = routeData.route.geometry.coordinates;
+                        var polyline = L.polyline(routeCoordinates, { color: 'blue' }).addTo(map);
+
+                        var routeBounds = polyline.getBounds();
+                        map.fitBounds(routeBounds);
+
+                        var routeDistance = routeData.route.segments[0].distance;
+                        var routeDuration = routeData.route.segments[0].duration;
+
+                        var popupContent = `Distance: ${routeDistance.toFixed(2)} meters<br>Duration: ${routeDuration.toFixed(2)} seconds`;
+
+                        L.popup()
+                            .setLatLng(routeBounds.getCenter())
+                            .setContent(popupContent)
+                            .openOn(map);
+                    }
+                }) *@
         </script>
     <div class="list-col">
         @for (int i=1; i<15; i++) {
