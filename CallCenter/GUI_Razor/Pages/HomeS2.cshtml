@@ -27,10 +27,10 @@
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
 
-            // Thêm marker và popup
+            @* // Thêm marker và popup
             L.marker([10.769444, 106.681944]).addTo(map)
                 .bindPopup('Thanh pho Ho Chi Minh')
-                .openPopup();
+                .openPopup(); *@
 
             function getCoordinates(address) {
                 var nominatimUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
@@ -44,9 +44,12 @@
                             console.log("Latitude:", lat);
                             console.log("Longitude:", lon);
 
-                            L.marker([lat, lon]).addTo(map)
+                            var marker = L.marker([lat, lon]).addTo(map)
                                 .bindPopup(address)
                                 .openPopup();
+
+                            marker._icon.style.width = '20px';  // Điều chỉnh kích thước chiều rộng
+                            marker._icon.style.height = '25px';
                                 
                             return { lat, lon };
                         } else {
@@ -68,16 +71,19 @@
                         var endCoords = coords[1];
                         
                         if (startCoords && endCoords) {
-                            var routingUrl = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=5b3ce3597851110001cf6248c8856e6ba83c4419ae276867db72f594&start=${startCoords.lon},${startCoords.lat}&end=${endCoords.lon},${endCoords.lat}`;
+                            var routingUrl = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=5b3ce3597851110001cf62482b5d590182b843fdbc48437f5db43cf9&start=${startCoords.lon},${startCoords.lat}&end=${endCoords.lon},${endCoords.lat}`;
                             
                             return fetch(routingUrl)
                                 .then(response => response.json())
                                 .then(data => {
                                     var routeCoordinates = data.features[0].geometry.coordinates;
+                                    var routeDistance = data.features[0].properties.segments[0].distance;
                                     
                                     var routeLatLngs = routeCoordinates.map(coord => [coord[1], coord[0]]);
                                     var route = L.polyline(routeLatLngs, { color: 'blue' }).addTo(map);
                                     map.fitBounds(route.getBounds());
+
+                                    console.log("Khoảng cách tuyến đường:", routeDistance, "mét");
                                 })
                                 .catch(error => {
                                     console.log("Lỗi khi lấy tuyến đường:", error);
@@ -91,34 +97,6 @@
 
             // Gọi hàm để lấy tuyến đường
             getRoute(startAt, endAt);
-
-            @* getRoute(startAt, endAt)
-                .then(routeData => {
-                    if(routeData) {
-                        L.marker([routeData.start.lat, routeData.start.lon]).addTo(map)
-                                .bindPopup(address)
-                                .openPopup();
-                            
-                        L.marker([routeData.end.lat, routeData.end.lon]).addTo(map)
-                                .bindPopup(address)
-                                .openPopup();
-                                        var routeCoordinates = routeData.route.geometry.coordinates;
-                        var polyline = L.polyline(routeCoordinates, { color: 'blue' }).addTo(map);
-
-                        var routeBounds = polyline.getBounds();
-                        map.fitBounds(routeBounds);
-
-                        var routeDistance = routeData.route.segments[0].distance;
-                        var routeDuration = routeData.route.segments[0].duration;
-
-                        var popupContent = `Distance: ${routeDistance.toFixed(2)} meters<br>Duration: ${routeDuration.toFixed(2)} seconds`;
-
-                        L.popup()
-                            .setLatLng(routeBounds.getCenter())
-                            .setContent(popupContent)
-                            .openOn(map);
-                    }
-                }) *@
         </script>
     <div class="list-col">
         @for (int i=1; i<15; i++) {
