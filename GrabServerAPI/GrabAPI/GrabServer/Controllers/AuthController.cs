@@ -11,9 +11,11 @@ using GrabServerCore.Common.Enum;
 using GrabServer.Services.AccountService;
 using GrabServerCore.Models;
 using GrabServerCore.DTOs;
+using Microsoft.AspNetCore.Cors;
 
 namespace GrabServer.Controllers
 {
+    [EnableCors("AllowSpecificOrigin")]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase

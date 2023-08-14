@@ -1,4 +1,10 @@
+﻿INSERT INTO CUSTOMER VALUES (1,'Bronze',N'Nguyễn Lê Duy','duy@gmail.com','035444777','2002-12-04',N'Nam','https://img')
+INSERT INTO DRIVER VALUES (2,2,N'Nguyễn Thanh','thanh@gmail.com','035444777','2002-12-04',N'Nam','https://img',9.9,'WAITING')
+INSERT INTO DRIVER VALUES (3,2,N'Nguyễn Thanh 3','thanh@gmail.com','035444777','2002-12-04',N'Nam','https://img',9.9,'WAITING')
+INSERT INTO DRIVER VALUES (4,2,N'Nguyễn Thanh 4','thanh@gmail.com','035444777','2002-12-04',N'Nam','https://img',9.9,'WAITING')
+INSERT INTO DRIVER VALUES (5,2,N'Nguyễn Thanh 5','thanh@gmail.com','035444777','2002-12-04',N'Nam','https://img',9.9,'WAITING')
 GO
+
 USE GrabSystemDB
 
 CREATE OR ALTER PROCEDURE USP_GetNextColumnId(
@@ -161,4 +167,63 @@ AS
 		RETURN 1
 	END CATCH
 GO
+---------------------------- CRUD BOOKING ----------------------------
+select* from sys.procedures
+CREATE OR ALTER PROC USP_GetAllBooking
+	@Id INT
+AS
+	SELECT * FROM BOOKING WHERE IdCustomer = @Id
+GO
 
+EXEC USP_FindDriverBooking 6,6
+CREATE OR ALTER PROCEDURE USP_FindDriverBooking
+	@startLongi FLOAT,
+	@startLati FLOAT
+AS
+BEGIN
+	select TOP 1 d.AccountId, dbo.USF_CaculateDistance(@startLongi,@startLati,
+	(select a.Long from ACCOUNT a where a.Id = d.AccountId),
+	(select a.Lat from ACCOUNT a where a.Id = d.AccountId)) as Distance
+	from DRIVER d 
+	where d.WorkStatus = 'WAITING' 
+	order by Distance ASC
+END;
+GO
+
+CREATE OR ALTER FUNCTION USF_CaculateDistance(@x_start FLOAT,@y_start FLOAT,@x_end FLOAT,@y_end FLOAT)
+RETURNS FLOAT
+BEGIN
+	declare @Delta FLOAT
+	SET @Delta = sqrt((@x_start-@x_end)*(@x_start-@x_end) + (@y_start-@y_end)*(@y_start-@y_end))
+    RETURN @Delta
+END;
+GO
+
+
+CREATE OR ALTER PROCEDURE USP_AddBooking
+    @IdCustomer INTEGER,
+    @srclongi FLOAT,
+    @srcLati FLOAT,
+    @srcAddress NVARCHAR(200),
+    @desLongi FLOAT,
+    @desLati FLOAT,
+	@desAddress NVARCHAR(200),
+	@distance FLOAT,
+	@note NVARCHAR(200)
+AS
+	BEGIN TRY
+		DECLARE @Id INT
+		EXEC @Id = dbo.USP_GetNextColumnId 'BOOKING', 'IdBooking'
+		DECLARE @Total INT
+		SET @Total = 15000 * @distance;
+		DECLARE @DateBooking Datetime
+		SET @DateBooking = GETDATE();
+		INSERT INTO BOOKING VALUES (@Id, @IdCustomer, 0, @DateBooking, 'WAITING', @srclongi, @srcLati, @desLongi, @desLati, @distance,@srcAddress,@desAddress,@note,@Total)
+		RETURN @Id
+	END TRY
+
+	BEGIN CATCH
+		PRINT N'Booking insertion error'
+		RETURN -1
+	END CATCH
+GO
