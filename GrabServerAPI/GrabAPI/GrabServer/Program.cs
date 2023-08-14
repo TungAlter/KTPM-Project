@@ -7,7 +7,8 @@ using Swashbuckle.AspNetCore.Filters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using GrabServer.Services.AccountService;
-
+using Microsoft.AspNetCore.Cors;
+using Azure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,7 +53,23 @@ builder.Services.AddSwaggerGen(options =>
     options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 //khởi tạo cc gì ấy
-builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+//builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyPolicy", builder =>
+    {
+        builder.WithOrigins("http://localhost:5249")
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .AllowCredentials()
+               .SetIsOriginAllowed(origin => true)
+               .SetIsOriginAllowedToAllowWildcardSubdomains()
+               .AllowAnyHeader();
+    });
+});
+
+
 
 
 // kết nối DB sử dụng connectionString trong appsetting.json
@@ -75,7 +92,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("MyPolicy");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

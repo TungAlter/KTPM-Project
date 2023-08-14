@@ -3,22 +3,123 @@
 
 <link rel="stylesheet" href="~/css/homes1.css" asp-append-version="true" />
 <div class="main">
-  @* <div class="bc">
-  <div class="con">
-  <p>
-  <a href="index.html">Trang chủ</a> /
-
-  <a class="a2">Thanh toán</a>
-  </p>
-  </div>
-  </div> *@
-  <div class="history" style="font-size: 30px;">
-    <button class="btn-showHistory" style="padding: 0px 6px; position: absolute; right: 0;">
+  @* button show history *@
+  <div class="history" style="font-size: 20px;">
+    <button class="btn-showHistory">
       <i class="bi bi-list-ul"></i>
     </button>
     
   </div>
-  <div class="board-history">
+  @* end button *@
+
+
+
+
+  <div class="frm__flex__spcBtw"">
+    <div class="bc frm_information" style="width: 35%;">
+      <section>
+        <h3>Thông tin</h3>
+        <br>
+        <p>Nhập thông tin khách hàng:</p>
+        <br>
+        <div class="col-1">
+          <input type="text" id="fullnameInput" name="fullname" class="frm__border" size="109" placeholder="Họ và tên" value="">
+        </div>
+        <div class="range_spcBtw frm__flex__spcBtw">
+          <div class="col-2">
+            <input type="text" size="50" id="emailInput" name="gmail" class="frm__border" placeholder="Email">
+          </div>  
+          <div class="col-2"">
+            <input type="text" size="35" id="phonenumberInput" name="phonenumber" class="frm__border" placeholder="Số điện thoại">
+          </div>
+        </div>
+        @*======================================================= form địa chỉ=================================================================*@
+        <p>Nhập địa chỉ đón:</p>
+        <br>
+        <div class="range_spcBtw frm__flex__spcBtw">
+          <div class="col-4">
+            <input type="text" id="addressInfor" size="109" name="address" class="frm__border" placeholder="Địa chỉ" value="">
+          </div>
+        </div>
+        <div class="address-form frm__flex__spcBtw range_spcBtw">
+          <div class="col-5">
+            <div class="form-group ">
+              <select id="province">
+                <option value="">Chọn tỉnh/thành phố*</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-5">
+            <div class="form-group ">
+              <select id="district">
+                <option value="">Quận/Huyện*</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-5">
+            <div class="form-group ">
+              <select id="ward">
+                <option value="">Phường* </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        @* =====================================================end input address=============================================================== *@
+
+
+
+        @*======================================================= form địa chỉ==========================================================*@
+        <p>Nhập địa chỉ muốn đến:</p>
+        <br>
+        <div class="range_spcBtw frm__flex__spcBtw">
+          @* <div class="col-3">
+          <input type="date" id="dobInput" name="birthday" class="frm__border" value="">
+          </div> *@
+          <div class="col-4">
+            <input type="text" id="addressInfor_to" size="109" name="address" class="frm__border" placeholder="Địa chỉ" value="">
+          </div>
+        </div>
+        <div class="address-form frm__flex__spcBtw range_spcBtw">
+          <div class="col-5">
+            <div class="form-group ">
+              <select id="province_to">
+                <option value="">Chọn tỉnh/thành phố*</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-5">
+            <div class="form-group ">
+              <select id="district_to">
+                <option value="">Quận/Huyện*</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-5">
+            <div class="form-group ">
+              <select id="ward_to">
+                <option value="">Phường* </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        @* =====================================================end input address=============================================================== *@
+      </section>
+      <div class="frm__flex__spcBtw">
+        <button type="submit" id="payment-confirm" class="mini-btn-form">
+          <a href="#"> Xác nhận</a>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+
+    @* start board history *@
+  <div class="board-history" style="display: none;">
     <div class="board-header">
       <div class="title-header">History</div>
       <div class="icon-exit"><i class="bi bi-x-lg"></i></div>
@@ -73,127 +174,13 @@
 
     </div>
   </div>
-  <div class="infor frm__flex__spcBtw">
-    <div class="bc frm_information">
-      <section>
-        <h3>Thông tin</h3>
-        <br>
-        <p>Nhập thông tin khách hàng:</p>
-        <br>
-        <div class="col-1">
-          <input type="text" id="fullnameInput" name="fullname" class="frm__border" placeholder="Họ và tên" value="">
-        </div>
-        <div class="range_spcBtw frm__flex__spcBtw">
-          <div class="col-2">
-            <input type="text" id="emailInput" name="gmail" class="frm__border" placeholder="Email">
-          </div>
-          <div class="col-2">
-            <input type="text" id="phonenumberInput" name="phonenumber" class="frm__border" placeholder="Số điện thoại">
-          </div>
-        </div>
-        @*======================================================= form địa chỉ=================================================================*@
-        <p>Nhập địa chỉ đón:</p>
-        <br>
-        <div class="range_spcBtw frm__flex__spcBtw">
-          @* <div class="col-3">
-          <input type="date" id="dobInput" name="birthday" class="frm__border" value="">
-          </div> *@
-          <div class="col-4">
-            <input type="text" id="addressInfor" name="address" class="frm__border" placeholder="Địa chỉ" value="">
-          </div>
-        </div>
-        <div class="address-form frm__flex__spcBtw range_spcBtw">
-          <div class="col-5">
-            <div class="form-group ">
-              <select id="province">
-                <option value="">Chọn tỉnh/thành phố*</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="col-5">
-            <div class="form-group ">
-              <select id="district">
-                <option value="">Quận/Huyện*</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="col-5">
-            <div class="form-group ">
-              <select id="ward">
-                <option value="">Phường* </option>
-              </select>
-            </div>
-          </div>
-        </div>
-        @* =====================================================end input address=============================================================== *@
-
-
-
-        @*======================================================= form địa chỉ==========================================================*@
-        <p>Nhập địa chỉ muốn đến:</p>
-        <br>
-        <div class="range_spcBtw frm__flex__spcBtw">
-          @* <div class="col-3">
-          <input type="date" id="dobInput" name="birthday" class="frm__border" value="">
-          </div> *@
-          <div class="col-4">
-            <input type="text" id="addressInfor_to" name="address" class="frm__border" placeholder="Địa chỉ" value="">
-          </div>
-        </div>
-        <div class="address-form frm__flex__spcBtw range_spcBtw">
-          <div class="col-5">
-            <div class="form-group ">
-              <select id="province_to">
-                <option value="">Chọn tỉnh/thành phố*</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="col-5">
-            <div class="form-group ">
-              <select id="district_to">
-                <option value="">Quận/Huyện*</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="col-5">
-            <div class="form-group ">
-              <select id="ward_to">
-                <option value="">Phường* </option>
-              </select>
-            </div>
-          </div>
-        </div>
-        @* =====================================================end input address=============================================================== *@
-      </section>
-      <div class="payment-confirm frm__flex__spcBtw">
-        <button type="submit" id="payment-confirm" class="mini-btn-form">
-          <a href="#"> Xác nhận</a>
-        </button>
-      </div>
-    </div>
-
-
-    @* <div class="bc frm_product vl right_content">
-
-    </div> *@
-  </div>
-
-
+  @* end board history *@
 </div>
 <!-- End: edit -->
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<script>
-  document.getElementsByClassName
-</script>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script src="~/js/Selector_location.js"></script>
+<script src="~/js/HomeS1.js"></script>
+

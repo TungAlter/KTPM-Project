@@ -57,85 +57,6 @@
 </div>
 
 
-@* 
-<script>
-    const signInBtn = document.getElementById("signIn");
-    const signUpBtn = document.getElementById("signUp");
-    const fistForm = document.getElementById("form1");
-    const secondForm = document.getElementById("form2");
-    const container = document.querySelector(".container-login");
-
-    signInBtn.addEventListener("click", () => {
-        container.classList.remove("right-panel-active");
-    });
-
-    signUpBtn.addEventListener("click", () => {
-        container.classList.add("right-panel-active");
-    });
-
-    // Object to store user information
-    const userInformation = {
-        username: "",
-        password: "",
-    };
-
-    fistForm.addEventListener("submit", async (e) => {
-        e.preventDefault(); // Prevent the form from submitting
-
-        const usernameField = fistForm.querySelector('input[type="text"]');
-        const passwordField = fistForm.querySelector('input[type="password"]');
-        const confirmPasswordField = fistForm.querySelectorAll('input[type="password"]')[1]; // Get the second password field
-
-        // You can perform validation here and show appropriate messages
-        if (usernameField.value === "" || passwordField.value === "" || confirmPasswordField.value === "") {
-            alert("Please fill in all fields");
-        } else if (passwordField.value !== confirmPasswordField.value) {
-            alert("Passwords do not match");
-        } else {
-            // Save user information to the object
-            userInformation.username = usernameField.value;
-            userInformation.password = passwordField.value;
-
-            // Clear the form
-            fistForm.reset();
-
-            // Send user information to the server using an API
-            try {
-                const response = await fetch("your_api_endpoint_here", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(userInformation),
-                });
-
-                if (response.ok) {
-                    alert("Sign up successful");
-                    // Perform other actions as needed
-                } else {
-                    alert("Error signing up. Please try again later.");
-                }
-            } catch (error) {
-                console.error("An error occurred:", error);
-            }
-        }
-    });
-
-    secondForm.addEventListener("submit", (e) => {
-        e.preventDefault(); // Prevent the form from submitting
-
-        const usernameField = secondForm.querySelector('input[type="text"]');
-        const passwordField = secondForm.querySelector('input[type="password"]');
-
-        // You can perform validation here and show appropriate messages
-        if (usernameField.value === "" || passwordField.value === "") {
-            alert("Please fill in all fields");
-        } else {
-            alert("Sign in successful");
-            // Here you can perform further actions like sending data to the server
-        }
-    });
-</script> *@
 
 <script>
     const signInBtn = document.getElementById("signIn");
@@ -158,6 +79,17 @@
         password: "",
     };
 
+    const url = 'http://localhost:5236/api/Auth/register-user';
+
+    const headers = {
+        'accept': 'text/plain',
+        'Content-Type': 'application/json'
+    };
+
+    @* const headers = {'Content-Type':'application/json',
+                    'Access-Control-Allow-Origin':'*',
+                    'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'} *@
+
     fistForm.addEventListener("submit", async (e) => {
         e.preventDefault(); // Prevent the form from submitting
 
@@ -177,17 +109,17 @@
 
             // Clear the form
             fistForm.reset();
+            console.log(userInformation);
 
             // Send user information to the server using an API
             try {
-                const response = await fetch("your_api_signup_endpoint_here", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(userInformation),
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify(userInformation)
                 });
 
+                console.log(response);
                 if (response.ok) {
                     alert("Sign up successful");
                     // Perform other actions as needed
@@ -199,6 +131,8 @@
             }
         }
     });
+
+    
 
     secondForm.addEventListener("submit", async (e) => {
         e.preventDefault(); // Prevent the form from submitting
@@ -217,13 +151,13 @@
 
             // Send user information to the server using an API
             try {
-                const response = await fetch("your_api_login_endpoint_here", {
+                @* const response = await fetch("your_api_login_endpoint_here", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify(userInformation),
-                });
+                }); *@
 
                 if (response.ok) {
                     alert("Sign in successful");

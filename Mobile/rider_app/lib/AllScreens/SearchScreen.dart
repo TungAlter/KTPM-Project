@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rider_app/Allwidgets/Divider.dart';
+import 'package:rider_app/Allwidgets/progressDialog.dart';
 import 'package:rider_app/DataHandler/appData.dart';
 import 'package:http/http.dart' as http;
+import 'package:rider_app/Models/address.dart';
 import 'dart:convert';
 
 import 'package:rider_app/Models/placePredictions.dart';
@@ -184,7 +186,7 @@ class _SearchScreenState extends State<SearchScreen> {
         print("Place Predictions Response::");
         //! Đảm bảo đúng encoding UTF-8
         var utf8Response = utf8.decode(response.bodyBytes);
-        print(utf8Response);
+        //print(utf8Response);
         //!lấy các thông tin cần thiết
         List<dynamic> jsonResponse = json.decode(utf8Response);
         var placeList =
@@ -213,43 +215,70 @@ class PredictionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          const SizedBox(width: 10.0),
-          Row(
-            children: [
-              const Icon(Icons.add_location),
-              const SizedBox(width: 14.0),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 8.0,
-                    ),
-                    Text(
-                      placePredictions.name,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(fontSize: 16.0),
-                    ),
-                    const SizedBox(
-                      height: 2.0,
-                    ),
-                    Text(
-                      placePredictions.display_name,
-                      overflow: TextOverflow.ellipsis,
-                      style:
-                          const TextStyle(fontSize: 14.0, color: Colors.grey),
-                    ),
-                  ],
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.all(0.0), // Tạo padding tùy chỉnh ở đây
+      ),
+      onPressed: () {
+        getPlaceAddressDetail(placePredictions, context);
+      },
+      child: Container(
+        child: Column(
+          children: [
+            const SizedBox(width: 10.0),
+            Row(
+              children: [
+                const Icon(Icons.add_location),
+                const SizedBox(width: 14.0),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 8.0,
+                      ),
+                      Text(
+                        placePredictions.name,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontSize: 16.0),
+                      ),
+                      const SizedBox(
+                        height: 2.0,
+                      ),
+                      Text(
+                        placePredictions.display_name,
+                        overflow: TextOverflow.ellipsis,
+                        style:
+                            const TextStyle(fontSize: 14.0, color: Colors.grey),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(width: 10.0),
-        ],
+              ],
+            ),
+            const SizedBox(width: 10.0),
+          ],
+        ),
       ),
     );
   }
+}
+
+void getPlaceAddressDetail(PlacePredictions place, context) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) => const ProgressDialog(
+            message: "Setting Dropoff,Please wait...",
+          ));
+  Navigator.pop(context);
+  Address address = Address();
+  address.placeName = place.name;
+  address.latitude = place.lat;
+  address.longtitude = place.lon;
+  Provider.of<AppData>(context, listen: false)
+      .updateDropOffLocationAddress(address);
+  print("this is Drop Off location::");
+  print(address.placeName);
+  print("lat: ${address.latitude}");
+  print("lon: ${address.longtitude}");
 }
