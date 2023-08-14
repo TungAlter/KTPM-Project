@@ -1,7 +1,7 @@
 class Address {
-  String placeFormatAddress;
-  String placeName="";
-  String placeId;
+  String? placeFormatAddress;
+  String? placeName="";
+  String? placeId;
   double latitude;
   double longtitude;
   Address(
