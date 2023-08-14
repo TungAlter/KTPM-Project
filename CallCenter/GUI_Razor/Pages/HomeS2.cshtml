@@ -9,6 +9,10 @@
 <!-- Thêm thư viện Leaflet -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+ <!-- Thêm thư viện Leaflet Geocoder -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
 
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/homes2.css" asp-append-version="true" />
@@ -16,98 +20,17 @@
 
 <div class="box">
     <div class="map-col" id="map"></div>
+    <script src="~/js/HomeS2.js" asp-append-version="true"></script>
         
-        <script>
-            // Tạo bản đồ Leaflet
-            var map = L.map('map').setView([0, 0], 10);
-            var startAt = "216/9 Dương Bá Trạc, phường 2, quận 8, TP.HCM";
-            var endAt = "Trường Đại học Khoa học Tự nhiên TP.HCM";
-            // Sử dụng OpenStreetMap làm nền bản đồ
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-
-            @* // Thêm marker và popup
-            L.marker([10.769444, 106.681944]).addTo(map)
-                .bindPopup('Thanh pho Ho Chi Minh')
-                .openPopup(); *@
-
-            function getCoordinates(address) {
-                var nominatimUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
-                return fetch(nominatimUrl)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.length > 0) {
-                            var lat = parseFloat(data[0].lat);
-                            var lon = parseFloat(data[0].lon);
-                            console.log("Address:", address)
-                            console.log("Latitude:", lat);
-                            console.log("Longitude:", lon);
-
-                            var marker = L.marker([lat, lon]).addTo(map)
-                                .bindPopup(address)
-                                .openPopup();
-
-                            marker._icon.style.width = '20px';  // Điều chỉnh kích thước chiều rộng
-                            marker._icon.style.height = '25px';
-                                
-                            return { lat, lon };
-                        } else {
-                            console.log("Không thể lấy tọa độ từ địa chỉ.");
-                            return null;
-                        }
-                    })
-                    .catch(error => {
-                        console.log("Lỗi:", error);
-                    });
-            }
-            @* getCoordinates("216/9 Dương Bá Trạc, phường 2, quận 8, TP.HCM");
-            getCoordinates("Trường Đại học Khoa học Tự nhiên, TP.HCM"); *@
-
-            function getRoute(startAddress, endAddress) {
-                Promise.all([getCoordinates(startAddress), getCoordinates(endAddress)])
-                    .then(coords => {
-                        var startCoords = coords[0];
-                        var endCoords = coords[1];
-                        
-                        if (startCoords && endCoords) {
-                            var routingUrl = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=5b3ce3597851110001cf62482b5d590182b843fdbc48437f5db43cf9&start=${startCoords.lon},${startCoords.lat}&end=${endCoords.lon},${endCoords.lat}`;
-                            
-                            return fetch(routingUrl)
-                                .then(response => response.json())
-                                .then(data => {
-                                    var routeCoordinates = data.features[0].geometry.coordinates;
-                                    var routeDistance = data.features[0].properties.segments[0].distance;
-                                    
-                                    var routeLatLngs = routeCoordinates.map(coord => [coord[1], coord[0]]);
-                                    var route = L.polyline(routeLatLngs, { color: 'blue' }).addTo(map);
-                                    map.fitBounds(route.getBounds());
-
-                                    console.log("Khoảng cách tuyến đường:", routeDistance, "mét");
-                                })
-                                .catch(error => {
-                                    console.log("Lỗi khi lấy tuyến đường:", error);
-                                });
-                        }
-                    })
-                    .catch(error => {
-                        console.log("Lỗi khi lấy tọa độ:", error);
-                    });
-            }
-
-            // Gọi hàm để lấy tuyến đường
-            getRoute(startAt, endAt);
-        </script>
     <div class="list-col">
         @for (int i=1; i<15; i++) {
-            <div class="unapproved-card">
+            <div class="unapproved-card" onclick="getRoute('Trường Đại học Khoa học Tự Nhiên, TP.HCM', '216 Dương Bá Trạc, phường 2, quận 8, TP.HCM')">
                 <div class="card-content" id="card-content">
                     <div><span class="card-title">STT: </span>@i</div>
                     <div><span class="card-title">Khách: </span>Lưu Minh Phát</div>
                     <div><span class="card-title">Địa điểm đi: </span>Trường đại học Khoa học Tự Nhiên TP HCM</div>
                     <div><span class="card-title">Địa điểm đến: </span>216/9, Dương Bá Trạc, phường 2, quận 8, TP.HCM</div>
                 </div>
-                
             </div>
         }
     </div> 

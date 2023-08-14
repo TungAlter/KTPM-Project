@@ -10,3 +10,15 @@ D:\New folder\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\GrabServerCo
 D:\New folder\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\refint\GrabServerCore.dll
 D:\New folder\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\GrabServerCore.pdb
 D:\New folder\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\ref\GrabServerCore.dll
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\bin\Debug\net7.0\GrabServerCore.deps.json
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\bin\Debug\net7.0\GrabServerCore.dll
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\bin\Debug\net7.0\GrabServerCore.pdb
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\GrabServerCore.csproj.AssemblyReference.cache
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\GrabServerCore.GeneratedMSBuildEditorConfig.editorconfig
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\GrabServerCore.AssemblyInfoInputs.cache
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\GrabServerCore.AssemblyInfo.cs
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\GrabServerCore.csproj.CoreCompileInputs.cache
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\GrabServerCore.dll
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\refint\GrabServerCore.dll
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\GrabServerCore.pdb
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerCore\obj\Debug\net7.0\ref\GrabServerCore.dll
