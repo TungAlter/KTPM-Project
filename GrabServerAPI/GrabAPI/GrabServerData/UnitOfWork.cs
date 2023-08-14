@@ -50,6 +50,18 @@ namespace GrabServerData
         }
         #endregion
 
+        #region Booking
+        private IBookingRepo _bookingRepo;
+        public IBookingRepo BookingRepo
+        {
+            get
+            {
+                if (_bookingRepo == null)
+                    _bookingRepo = new BookingRepo(_dataContext);
+                return _bookingRepo;
+            }
+        }
+        #endregion
         public List<string> SaveChanges()
         {
             var errors = new List<string>();

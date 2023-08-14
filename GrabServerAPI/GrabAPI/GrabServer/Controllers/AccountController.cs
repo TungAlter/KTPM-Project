@@ -32,8 +32,7 @@ namespace GrabServer.Controllers
 
             return Ok(result);
         }
-
-        [HttpGet("username")]
+            [HttpGet("username")]
         public async Task<ActionResult<Account>> GetAccountByUsername(string username)
         {
             var result = await _accountService.GetByUsername(username);
@@ -45,6 +44,15 @@ namespace GrabServer.Controllers
 
         [HttpPut("")]
         public async Task<ActionResult<List<Account>>> UpdateAccount(int id, Account request)
+        {
+            var result = await _accountService.UpdateAccount(request);
+            if (result is null)
+                return NotFound("Account not found.");
+
+            return Ok(result);
+        }
+        [HttpPut("booking")]
+        public async Task<ActionResult<List<Account>>> UpdateStatusAccount(int id, Account request)
         {
             var result = await _accountService.UpdateAccount(request);
             if (result is null)
