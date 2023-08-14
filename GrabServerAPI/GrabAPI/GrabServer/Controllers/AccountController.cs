@@ -13,7 +13,7 @@ namespace GrabServer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //
+    [EnableCors("MyPolicy")]
     public class AccountController : ControllerBase
     {
         readonly IAccountService _accountService;
