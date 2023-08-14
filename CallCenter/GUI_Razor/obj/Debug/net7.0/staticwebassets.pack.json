@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\GUI_Razor.bundle.scp.css"
     },
     {
+      "Id": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\css\\homes1.css",
+      "PackagePath": "staticwebassets\\css\\homes1.css"
+    },
+    {
       "Id": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\css\\homes2.css",
       "PackagePath": "staticwebassets\\css\\homes2.css"
     },
@@ -23,6 +27,10 @@
     {
       "Id": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\js\\Selector_location.js",
+      "PackagePath": "staticwebassets\\js\\Selector_location.js"
     },
     {
       "Id": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\js\\site.js",

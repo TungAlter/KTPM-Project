@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YWVUztC5hNYIyo3thv/XxleuPCd+bLdTc7/xQQ7FPyg=",
+  "Hash": "FyYep3l3q14+PxxHjx4cKoUe1X+Dx9bneLiqCoJx3og=",
   "Source": "GUI_Razor",
   "BasePath": "_content/GUI_Razor",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\GUI_Razor.bundle.scp.css"
+    },
+    {
+      "Identity": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\css\\homes1.css",
+      "SourceId": "GUI_Razor",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\",
+      "BasePath": "_content/GUI_Razor",
+      "RelativePath": "css/homes1.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\homes1.css"
     },
     {
       "Identity": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\css\\homes2.css",
@@ -134,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\js\\Selector_location.js",
+      "SourceId": "GUI_Razor",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\",
+      "BasePath": "_content/GUI_Razor",
+      "RelativePath": "js/Selector_location.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Selector_location.js"
     },
     {
       "Identity": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\js\\site.js",

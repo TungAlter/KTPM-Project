@@ -1,7 +1,10 @@
+using Microsoft.Data.SqlClient;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
 
 var app = builder.Build();
 
@@ -27,3 +30,8 @@ app.UseAuthorization();
 
 app.Run();
 
+var configuration = app.Configuration;
+var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+// Create a SqlConnectionStringBuilder
+var sqlConnectionStringBuilder = new SqlConnectionStringBuilder(connectionString);
