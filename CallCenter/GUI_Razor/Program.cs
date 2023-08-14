@@ -16,6 +16,16 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+// builder.Services.AddCors(options =>
+// {
+//     options.AddDefaultPolicy(builder =>
+//     {
+//         builder.WithOrigins("http://localhost:5236") // Thay bằng nguồn gốc của trang web của bạn
+//                .AllowAnyMethod()
+//                .AllowAnyHeader();
+//     });
+// });
+
 // app.UseHttpsRedirection();
 app.UseStaticFiles();
 

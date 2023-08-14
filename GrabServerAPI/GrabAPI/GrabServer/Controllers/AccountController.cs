@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Cors;
 
 namespace GrabServer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //
     public class AccountController : ControllerBase
     {
         readonly IAccountService _accountService;
