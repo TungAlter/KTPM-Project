@@ -1,20 +1,5 @@
 {
     "dotnet.defaultSolution": "CallCenter/CallCenter.sln",
-    "sqltools.connections": [
-        {
-            "mysqlOptions": {
-                "authProtocol": "default",
-                "enableSsl": "Disabled"
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
-            "driver": "MySQL",
-            "username": "root",
-            "password": "11102002",
-            "name": "GrabSystem",
-            "database": "GrabSystemDB"
-        }
-    ],
+    "sqltools.connections": [],
     "cmake.configureOnOpen": true
 }

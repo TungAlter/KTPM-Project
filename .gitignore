@@ -7,7 +7,6 @@
 
 
 # file
-GrabServerAPI/Database/GrabDB.sql
 CallCenter/GUI_Razor/obj/project.assets.json
 bin\Debug\net7.0\
 obj\GUI_Razor.csproj.nuget.dgspec.json

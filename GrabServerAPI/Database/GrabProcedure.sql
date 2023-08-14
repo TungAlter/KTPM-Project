@@ -269,7 +269,7 @@ END
 GO
 -- UPDATE
 -- Tài xế nhận chuyến
-	CREATE OR ALTER PROCEDURE USP_UpdateReceiveBooking
+CREATE OR ALTER PROCEDURE USP_UpdateReceiveBooking
 	@BookingId INTEGER,
     @DriverId INTEGER
 AS
