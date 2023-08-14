@@ -3441,19 +3441,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ADMIN\\.nuget\\packages\\": {}
+    "C:\\Users\\duyl8\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Git code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj",
+      "projectUniqueName": "E:\\Git Code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj",
       "projectName": "GrabServerData",
-      "projectPath": "E:\\Git code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj",
-      "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "E:\\Git code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\obj\\",
+      "projectPath": "E:\\Git Code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj",
+      "packagesPath": "C:\\Users\\duyl8\\.nuget\\packages\\",
+      "outputPath": "E:\\Git Code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\duyl8\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3467,8 +3467,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "E:\\Git code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj": {
-              "projectPath": "E:\\Git code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj"
+            "E:\\Git Code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj": {
+              "projectPath": "E:\\Git Code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj"
             }
           }
         }
@@ -3514,7 +3514,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
