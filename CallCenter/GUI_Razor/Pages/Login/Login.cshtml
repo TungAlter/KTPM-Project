@@ -124,7 +124,7 @@
                     alert("Sign up successful");
                     // Perform other actions as needed
                 } else {
-                    alert("Error signing up. Please try again later.");
+                    alert("username invalid. Please try again later.");
                 }
             } catch (error) {
                 console.error("An error occurred:", error);
@@ -151,13 +151,14 @@
 
             // Send user information to the server using an API
             try {
-                @* const response = await fetch("your_api_login_endpoint_here", {
+                const response = await fetch("http://localhost:5236/api/Auth/login", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify(userInformation),
-                }); *@
+                });
+                console.log(response);
 
                 if (response.ok) {
                     alert("Sign in successful");
