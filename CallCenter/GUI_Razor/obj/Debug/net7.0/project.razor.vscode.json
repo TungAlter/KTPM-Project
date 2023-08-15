@@ -24027,11 +24027,6 @@
   "RootNamespace": "GUI_Razor",
   "Documents": [
     {
-      "FilePath": "d:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\Pages\\HomeS2.cshtml",
-      "TargetPath": "Pages\\HomeS2.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "d:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\Pages\\Login\\Login.cshtml",
       "TargetPath": "Pages\\Login\\Login.cshtml",
       "FileKind": "mvc"
@@ -24074,6 +24069,11 @@
     {
       "FilePath": "d:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\Pages\\HomeS1.cshtml",
       "TargetPath": "Pages\\HomeS1.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\Pages\\HomeS2.cshtml",
+      "TargetPath": "Pages\\HomeS2.cshtml",
       "FileKind": "mvc"
     }
   ]

@@ -23,7 +23,17 @@
     <script src="~/js/HomeS2.js" asp-append-version="true"></script>
         
     <div class="list-col">
-        @for (int i=1; i<15; i++) {
+        @foreach (var booking in Model.listBooking) {
+            <div class="unapproved-card" onclick="getRoute('@booking.SrcAddress', '@booking.DesAddress')">
+                <div class="card-content" id="card-content">
+                    <div><span class="card-title">STT: </span>@booking.IdCustomer</div>
+                    <div><span class="card-title">Khách: </span>Lưu Minh Phát</div>
+                    <div><span class="card-title">Địa điểm đi: </span>@booking.SrcAddress</div>
+                    <div><span class="card-title">Địa điểm đến: </span>@booking.DesAddress</div>
+                </div>
+            </div>
+        }
+        @* @for (int i=1; i<15; i++) {
             <div class="unapproved-card" onclick="getRoute('Trường Đại học Khoa học Tự Nhiên, TP.HCM', '216 Dương Bá Trạc, phường 2, quận 8, TP.HCM')">
                 <div class="card-content" id="card-content">
                     <div><span class="card-title">STT: </span>@i</div>
@@ -32,6 +42,6 @@
                     <div><span class="card-title">Địa điểm đến: </span>216/9, Dương Bá Trạc, phường 2, quận 8, TP.HCM</div>
                 </div>
             </div>
-        }
+        } *@
     </div> 
 </div>

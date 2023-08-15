@@ -29,6 +29,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\img\\taxi.jpeg",
+      "PackagePath": "staticwebassets\\img\\taxi.jpeg"
+    },
+    {
+      "Id": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\js\\HomeS1.js",
+      "PackagePath": "staticwebassets\\js\\HomeS1.js"
+    },
+    {
       "Id": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\js\\HomeS2.js",
       "PackagePath": "staticwebassets\\js\\HomeS2.js"
     },

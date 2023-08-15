@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tjaJPuhDsjMKBLuLpUz12OlVMoh/UBbjbn+c44JLWxc=",
+  "Hash": "9jZOlcwhr1nXIKi0zd62i77cTs4AhCRrtHrSkRkJPx8=",
   "Source": "GUI_Razor",
   "BasePath": "_content/GUI_Razor",
   "Mode": "Default",
@@ -151,6 +151,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\img\\taxi.jpeg",
+      "SourceId": "GUI_Razor",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\",
+      "BasePath": "_content/GUI_Razor",
+      "RelativePath": "img/taxi.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\taxi.jpeg"
+    },
+    {
+      "Identity": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\js\\HomeS1.js",
+      "SourceId": "GUI_Razor",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\",
+      "BasePath": "_content/GUI_Razor",
+      "RelativePath": "js/HomeS1.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\HomeS1.js"
     },
     {
       "Identity": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter\\GUI_Razor\\wwwroot\\js\\HomeS2.js",

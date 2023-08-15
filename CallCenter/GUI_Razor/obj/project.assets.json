@@ -2547,6 +2547,16 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
+      },
+      "GrabServerCore/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/GrabServerCore.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GrabServerCore.dll": {}
+        }
       }
     }
   },
@@ -7830,10 +7840,16 @@
         "system.xml.xpath.xmldocument.4.0.1.nupkg.sha512",
         "system.xml.xpath.xmldocument.nuspec"
       ]
+    },
+    "GrabServerCore/1.0.0": {
+      "type": "project",
+      "path": "../../GrabServerAPI/GrabAPI/GrabServerCore/GrabServerCore.csproj",
+      "msbuildProject": "../../GrabServerAPI/GrabAPI/GrabServerCore/GrabServerCore.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "GrabServerCore >= 1.0.0",
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 7.0.9",
       "Microsoft.Data.SqlClient >= 5.1.1",
       "Microsoft.EntityFrameworkCore >= 7.0.10",
@@ -7873,7 +7889,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj": {
+              "projectPath": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

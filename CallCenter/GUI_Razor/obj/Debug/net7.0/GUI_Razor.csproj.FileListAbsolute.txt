@@ -409,3 +409,5 @@ D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\GUI_Ra
 D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\GUI_Razor\bin\Debug\net7.0\Renci.SshNet.dll
 D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\GUI_Razor\bin\Debug\net7.0\SshNet.Security.Cryptography.dll
 D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\GUI_Razor\bin\Debug\net7.0\System.Xml.XPath.XmlDocument.dll
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\GUI_Razor\bin\Debug\net7.0\GrabServerCore.dll
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter\GUI_Razor\bin\Debug\net7.0\GrabServerCore.pdb
