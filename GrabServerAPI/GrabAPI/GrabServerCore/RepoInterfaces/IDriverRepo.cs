@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace GrabServerCore.RepoInterfaces
 {
-    public interface IBookingRepo : IRepository<Booking>
+    public interface IDriverRepo : IRepository<Driver>
     {
         Task<IEnumerable<Booking>> GetAllAsync(int accountId);
-        Task<int> CreateBookingAsync(AddBookingDTO booking);
+        //Task<int> CreateBookingAsync(AddBookingDTO booking);
         Task<int> DeleteBookingAsync(int deleteBooking);
-        new Task<int> UpdateAsync(Booking deleteBooking);
-        Task<int> ConfirmBookingAsync(int accountId, int total);
-        //Task<int> FindDriverAsync(double Longi, double Lati);
+        Task<int> UpdateAsync(Booking deleteBooking);
+        Task<int> FindDriverAsync(double Longi, double Lat);
+        //Task<int> UpdatePositionAccountAsync(string username, double Long, double Lat);
     }
 }

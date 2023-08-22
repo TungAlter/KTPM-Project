@@ -92,5 +92,6 @@ namespace GrabServerData.Repositories
             //return await _dataContext.Database.ExecuteSqlInterpolatedAsync($"EXECUTE({str})");
             return 0;
         }
+
     }
 }

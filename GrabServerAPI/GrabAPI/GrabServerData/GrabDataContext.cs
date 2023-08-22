@@ -23,9 +23,11 @@ namespace GrabServerData
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Booking>().HasKey(x => new { x.IdCustomer, x.IdDriver, x.DateBooking });
+            modelBuilder.Entity<Driver>().HasKey(x => new { x.Id});
         }
 
         public DbSet<Account> Accounts { get; set; }
-        public DbSet<Booking> Bookings { get; set; }    
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Driver> Drivers { get; set; }
     }
 }

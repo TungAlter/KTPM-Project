@@ -1,4 +1,5 @@
 ﻿using GrabServerCore.DTOs.Booking;
+using Microsoft.Identity.Client;
 
 namespace GrabServer.Services.BookingService
 {
@@ -45,5 +46,11 @@ namespace GrabServer.Services.BookingService
             var result = await _unitOfWork.BookingRepo.ConfirmBookingAsync(accountId, totalPay);
             return result;
         }
+
+        //public async Task<int> FindDriverBooking(double Longi, double Lati)
+        //{
+        //    var result = await _unitOfWork.BookingRepo.FindDriverAsync(Longi, Lati);
+        //    return result;
+        //}
     }
 }

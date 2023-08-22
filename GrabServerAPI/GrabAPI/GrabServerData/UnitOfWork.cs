@@ -62,6 +62,19 @@ namespace GrabServerData
             }
         }
         #endregion
+
+        #region Driver
+        private IDriverRepo _driverRepo;
+        public IDriverRepo DriverRepo
+        {
+            get
+            {
+                if (_driverRepo == null)
+                    _driverRepo = new DriverRepo(_dataContext);
+                return _driverRepo;
+            }
+        }
+        #endregion
         public List<string> SaveChanges()
         {
             var errors = new List<string>();

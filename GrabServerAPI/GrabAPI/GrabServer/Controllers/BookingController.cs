@@ -50,6 +50,16 @@ namespace GrabServer.Controllers
             return Ok(new ResponseMessageDetails<int>("Add booking successfully", result));
         }
 
+        //[HttpGet("Find-Driver")]
+        ////, Authorize(Roles = GlobalConstant.User) 
+        //public async Task<ActionResult<ResponseMessageDetails<int>>> FindDriver(double Longi, double Lati)
+        //{
+        //    var result = await _bookingService.FindDriverBooking(Longi, Lati);
+
+        //    if (result == 0)
+        //        return BadRequest("Cannot add booking.");
+        //    return Ok(new ResponseMessageDetails<int>("Add booking successfully", result));
+        //}
 
     }
 }
