@@ -33,6 +33,8 @@ namespace GUI_Razor.Pages
                                                 DesAddress = "116/11 Phan Đăng Lưu, quận Phú Nhuận, TP.HCM" },
                 new AddBookingDTO{ IdCustomer = 5, SrcAddress = "415 Nguyễn Trãi, phường 7, quận 5, TP.HCM", 
                                                 DesAddress = "Trường Đại học Khoa học Tự Nhiên, TP.HCM" },
+                new AddBookingDTO{ IdCustomer = 5, SrcAddress = "415 Nguyễn Trãi, phường 7, quận 5, TP.HCM", 
+                                                DesAddress = "Trường Đại học Khoa học Tự Nhiên, TP.HCM" },
             };
         }
     }

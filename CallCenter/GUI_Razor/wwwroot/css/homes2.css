@@ -45,28 +45,26 @@
 
 .unapproved-card {
     margin: 3px 1px 3px 1px;
-    padding: 2px;
+    padding: 3px;
     display: inline-block;
     border-radius: 10px;
     width: 95%;
-    height: 100px;
     background: #008997;
-    font-size: 13px;
     color: white;
 }
 
 .card-content {
-    display: flex;
-    margin: 3px;
-    align-items: flex-start center;
-    justify-content: center;
-    flex-direction: column;
-    font-size: 10px;
+    display: inline-block;
+    margin: 0px;
+    height: 80px;
+    padding: 0px 2px;
+    font-size: 12px;
 }
 
 .card-title {
     font-weight: bold;
-    font-size: 11px;
-    margin-right: 5px;
+    font-size: 12px;
+    margin-right: 3px;
     color: rgb(23, 23, 124);
 }
+

@@ -29,13 +29,14 @@ function getCoordinates(address) {
         });
 }
 
-function getRoute(startAddress, endAddress) {
+function getRoute(startAddress, endAddress, IdCustomer) {
     Promise.all([getCoordinates(startAddress), getCoordinates(endAddress)])
         .then(coords => {
             var startCoords = coords[0];
             var endCoords = coords[1];
 
             if (startCoords && endCoords) {
+
                 var routingUrl = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=5b3ce3597851110001cf62482b5d590182b843fdbc48437f5db43cf9&start=${startCoords.lon},${startCoords.lat}&end=${endCoords.lon},${endCoords.lat}`;
 
                 return fetch(routingUrl)
@@ -47,7 +48,7 @@ function getRoute(startAddress, endAddress) {
                         var routeLatLngs = routeCoordinates.map(coord => [coord[1], coord[0]]);
                         var route = L.polyline(routeLatLngs, { color: 'blue' }).addTo(map);
                         map.fitBounds(route.getBounds());
-
+                        
                         console.log("Khoảng cách tuyến đường:", routeDistance, "mét");
                     })
                     .catch(error => {

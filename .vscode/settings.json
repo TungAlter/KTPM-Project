@@ -1,5 +1,6 @@
 {
     "dotnet.defaultSolution": "CallCenter/CallCenter.sln",
     "sqltools.connections": [],
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "cmake.sourceDirectory": "D:/LuuMinhPhat/Projects/SoftwareStructure_Project/KTPM-Project/Mobile/rider_app/windows/runner"
 }

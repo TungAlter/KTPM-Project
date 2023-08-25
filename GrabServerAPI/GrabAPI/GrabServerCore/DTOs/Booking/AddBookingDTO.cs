@@ -10,13 +10,13 @@ namespace GrabServerCore.DTOs.Booking
     {
         public int IdCustomer { get; set; }
         // public DateTime DateBooking { get; set; }
-        // public double SrcLong { get; set; }
-        // public double SrcLat { get; set; }
+        public double SrcLong { get; set; } = double.MaxValue;
+        public double SrcLat { get; set; } = double.MaxValue;
         public string SrcAddress { get; set; } = string.Empty;
-        // public double DesLong { get; set; }
-        // public double DesLat { get; set; }
+        public double DesLong { get; set; } = double.MaxValue;
+        public double DesLat { get; set; } = double.MaxValue;
         public string DesAddress { get; set; } = string.Empty;
-    //     public double Distance { get; set; }
+        public double Distance { get; set; } = 0;
     //     public string Notes { get; set; } = string.Empty;
     //     public int Total { get; set; }
     }
