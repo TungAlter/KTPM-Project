@@ -4,7 +4,7 @@
 *.pdb
 *.exe
 *.targets
-
+*.editorconfig
 
 # file
 CallCenter/GUI_Razor/obj/project.assets.json
@@ -18,3 +18,4 @@ CallCenter/BUS/bin/Debug/net7.0
 GrabServerAPI/Database/GrabDB.sql
 CallCenter/GUI_Razor/obj/project.assets.json
 CallCenter/GUI_Razor/bin/Debug/net7.0/GUI_Razor.dll
+
