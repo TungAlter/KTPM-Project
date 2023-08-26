@@ -18,6 +18,6 @@ namespace GrabServerCore.DTOs.Booking
         public string DesAddress { get; set; } = string.Empty;
         public double Distance { get; set; } = 0;
         public string Notes { get; set; } = string.Empty;
-        public int Total { get; set; }
+        public int Total { get; set; } = 0;
     }
 }
