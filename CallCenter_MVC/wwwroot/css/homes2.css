@@ -55,10 +55,12 @@
 
 .card-content {
     display: inline-block;
-    margin: 0px;
-    height: 80px;
-    padding: 0px 2px;
+    margin: 2px 1px 1px 1px ;
+    height: auto;
+    padding: 0px 3px;
     font-size: 12px;
+    border-radius: 5px;
+    background-color: #529da5;
 }
 
 .card-title {
@@ -68,3 +70,55 @@
     color: rgb(23, 23, 124);
 }
 
+.list-header {
+    background-color: #008997;
+}
+
+.btn-area {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 5px;
+    margin: 1px 1px 1px 1px;
+    background-color: #26bdce;
+    border-radius: 5px;
+}   
+
+.btn1, .btn2, .btn3 {
+    display: inline-block;
+    height: 25px;
+    width: 60px;
+    text-align: center;
+    font-weight: bold;
+    margin: 3px;
+    padding: 2px 0px;
+    font-size: 15px;
+    color: lightgray;
+    border-radius: 3px;
+}
+
+.btn1 {
+    background-color: blue;
+}
+
+.btn1:hover {
+    background-color: rgb(9, 9, 128);
+}
+
+.btn2 {
+    background-color: green;
+}
+
+.btn2:hover{
+    background-color: rgb(9, 64, 9);
+}
+
+.btn3 {
+    background-color: red;
+}
+.btn3:hover {
+    background-color: rgb(128, 9, 9);
+}
+
+.btn1:hover, .btn2:hover, .btn3:hover {
+    color: white;
+}

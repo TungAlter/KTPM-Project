@@ -9,6 +9,7 @@ namespace GrabServerCore.DTOs.Booking
     public class AddBookingDTO
     {
         public int IdCustomer { get; set; }
+        public string NameCustomer { get; set; }
         public DateTime DateBooking { get; set; }
         public double SrcLong { get; set; } = double.MaxValue;
         public double SrcLat { get; set; } = double.MaxValue;

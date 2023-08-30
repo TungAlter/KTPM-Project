@@ -11,6 +11,5 @@ namespace GrabServerCore.DTOs {
         public string SrcAddress { get; set;}
         public string DesAddress { get; set;}
         
-       
     }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wxkY4EWCV0ubs9dqx4Esf1+GtmODhX13ejvsIaiFIHY=",
+  "Hash": "wYqsMKsUJQ8PqymZ26hft16R8FZ7X/B06W9gH2ombPA=",
   "Source": "CallCenter_MVC",
   "BasePath": "_content/CallCenter_MVC",
   "Mode": "Default",
@@ -185,23 +185,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\HomeS2.js"
-    },
-    {
-      "Identity": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter_MVC\\wwwroot\\js\\Index.cshtml",
-      "SourceId": "CallCenter_MVC",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter_MVC\\wwwroot\\",
-      "BasePath": "_content/CallCenter_MVC",
-      "RelativePath": "js/Index.cshtml",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "wwwroot\\js\\Index.cshtml"
     },
     {
       "Identity": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter_MVC\\wwwroot\\js\\Selector_location.js",
