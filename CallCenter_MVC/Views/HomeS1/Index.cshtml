@@ -1,14 +1,16 @@
 ﻿@{
-    ViewData["Title"] = "HomeS1 Page";
+  ViewData["Title"] = "HomeS1 Page";
 }
 <link rel="stylesheet" href="~/css/homes1.css" asp-append-version="true" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/v4-shims.min.css" integrity="sha512-p++g4gkFY8DBqLItjIfuKJPFvTPqcg2FzOns2BNaltwoCOrXMqRIOqgWqWEvuqsj/3aVdgoEo2Y7X6SomTfUPA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <div class="main">
   @* button show history *@
   <div class="history" style="font-size: 20px;">
     <button class="btn-showHistory">
       <i class="bi bi-list-ul"></i>
+      =
     </button>
-    
+
   </div>
   @* end button *@
 
@@ -20,29 +22,33 @@
         <p>Nhập thông tin khách hàng:</p>
         <br>
         <div class="col-1">
-          <input type="text" id="fullnameInput" name="fullname" class="frm__border" size="109" placeholder="Họ và tên" value="">
+          <input type="text" id="fullnameInput" name="fullname" class="frm__border" size="90" placeholder="Họ và tên"
+            value="">
         </div>
         <div class="range_spcBtw frm__flex__spcBtw">
-          <div class="col-2">
-            <input type="text" size="50" id="emailInput" name="gmail" class="frm__border" placeholder="Email">
-          </div>  
-          <div class="col-2">
-            <input type="text" size="35" id="phonenumberInput" name="phonenumber" class="frm__border" placeholder="Số điện thoại">
+          <div class="col-2 info">
+            <input type="text" size="38" id="emailInput" name="gmail" class="frm__border" placeholder="Email">
+          </div>
+          <div class="col-2 info">
+            <input type="text" size="38" id="phonenumberInput" name="phonenumber" class="frm__border"
+              placeholder="Số điện thoại">
           </div>
         </div>
-        @*======================================================= form địa chỉ=================================================================*@
+        @*======================================================= form địa
+        chỉ=================================================================*@
         <p>Nhập địa chỉ đón:</p>
         <br>
         <div class="range_spcBtw frm__flex__spcBtw">
           <div class="col-4">
-            <input type="text" id="addressInfor" size="109" name="address" class="frm__border" placeholder="Địa chỉ" value="">
+            <input type="text" id="addressInfor" size="90" name="address" class="frm__border" placeholder="Địa chỉ"
+              value="">
           </div>
         </div>
         <div class="address-form frm__flex__spcBtw range_spcBtw">
           <div class="col-5">
             <div class="form-group ">
               <select id="province">
-                <option value="">Chọn tỉnh/thành phố*</option>
+                <option si value="">Chọn tỉnh/thành phố*</option>
               </select>
             </div>
           </div>
@@ -50,7 +56,7 @@
           <div class="col-5">
             <div class="form-group ">
               <select id="district">
-                <option value="">Quận/Huyện*</option>
+                <option si value="">Quận/Huyện*</option>
               </select>
             </div>
           </div>
@@ -58,16 +64,18 @@
           <div class="col-5">
             <div class="form-group ">
               <select id="ward">
-                <option value="">Phường* </option>
+                <option si value="">Phường* </option>
               </select>
             </div>
           </div>
         </div>
-        @* =====================================================end input address=============================================================== *@
+        @* =====================================================end input
+        address=============================================================== *@
 
 
 
-        @*======================================================= form địa chỉ==========================================================*@
+        @*======================================================= form địa
+        chỉ==========================================================*@
         <p>Nhập địa chỉ muốn đến:</p>
         <br>
         <div class="range_spcBtw frm__flex__spcBtw">
@@ -75,14 +83,15 @@
           <input type="date" id="dobInput" name="birthday" class="frm__border" value="">
           </div> *@
           <div class="col-4">
-            <input type="text" id="addressInfor_to" size="109" name="address" class="frm__border" placeholder="Địa chỉ" value="">
+            <input type="text" id="addressInfor_to" size="90" name="address" class="frm__border" placeholder="Địa chỉ"
+              value="">
           </div>
         </div>
         <div class="address-form frm__flex__spcBtw range_spcBtw">
           <div class="col-5">
             <div class="form-group ">
               <select id="province_to">
-                <option value="">Chọn tỉnh/thành phố*</option>
+                <option si value="">Chọn tỉnh/thành phố*</option>
               </select>
             </div>
           </div>
@@ -90,7 +99,7 @@
           <div class="col-5">
             <div class="form-group ">
               <select id="district_to">
-                <option value="">Quận/Huyện*</option>
+                <option si value="">Quận/Huyện*</option>
               </select>
             </div>
           </div>
@@ -98,12 +107,13 @@
           <div class="col-5">
             <div class="form-group ">
               <select id="ward_to">
-                <option value="">Phường* </option>
+                <option si value="">Phường* </option>
               </select>
             </div>
           </div>
         </div>
-        @* =====================================================end input address=============================================================== *@
+        @* =====================================================end input
+        address=============================================================== *@
       </section>
       <div class="frm__flex__spcBtw">
         <button type="submit" id="payment-confirm" class="mini-btn-form">
@@ -115,16 +125,17 @@
   </div>
 
 
-    @* start board history *@
+  @* start board history *@
   <div class="board-history" style="display: none;">
     <div class="board-header">
       <div class="title-header">History</div>
-      <div class="icon-exit"><i class="bi bi-x-lg"></i></div>
+      <div class="icon-exit">[x]</div>
     </div>
     <hr class="board-menu-header-divide">
-   
-   <div class="board-menu-content-frame" style="transition: auto; opacity: 1; box-sizing: border-box; flex: 0 0 auto; overflow: hidden; padding: 0 6px 0 12px; position: relative;">
-    
+
+    <div class="board-menu-content-frame"
+      style="transition: auto; opacity: 1; box-sizing: border-box; flex: 0 0 auto; overflow: hidden; padding: 0 6px 0 12px; position: relative;">
+
       <div class="list-activity">
         @* //thêm thẻ sự kiện *@
         <div class="card-acivity">
