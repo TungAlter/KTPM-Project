@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace GrabServerCore.DTOs.Booking
 {
-    public class AddBookingDTO
+    public class RecentBookingDTO
     {
         public string FullName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public string Phone { get; set; } = string.Empty;
-        public Address addrFrom { get; set; }
-        public Address addrTo { get; set; }
+        public string PhoneNumber { get; set; } = string.Empty;
+        public string SrcAddress { get; set; } = string.Empty;
+        public string DesAddress { get; set; } = string.Empty;
 
+        public DateTime DateBooking { get; set; }
     }
 }

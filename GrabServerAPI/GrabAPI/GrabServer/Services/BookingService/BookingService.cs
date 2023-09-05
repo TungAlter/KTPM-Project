@@ -1,4 +1,5 @@
 ﻿using GrabServerCore.DTOs.Booking;
+using GrabServerCore.Models;
 using Microsoft.Identity.Client;
 
 namespace GrabServer.Services.BookingService
@@ -11,7 +12,18 @@ namespace GrabServer.Services.BookingService
         {
             _unitOfWork = uof;
         }
-
+        public List<RecentBookingDTO> GetRecentBookingAsync()
+        {
+            var result =  _unitOfWork.BookingRepo.GetRecentBooking();
+            _unitOfWork.SaveChanges();
+            return result;
+        }
+        public List<ReadReceivedBookingDTO> GetReceivedBookingAsync()
+        {
+            var result = _unitOfWork.BookingRepo.GetAllReceivedBooking();
+            _unitOfWork.SaveChanges();
+            return result;
+        }
         public async Task<int> AddBooking(AddBookingDTO booking)
         {
             var result = await _unitOfWork.BookingRepo.CreateBookingAsync(booking);

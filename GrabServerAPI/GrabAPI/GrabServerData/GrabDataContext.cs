@@ -1,4 +1,5 @@
-﻿using GrabServerCore.Models;
+﻿using GrabServerCore.DTOs.Booking;
+using GrabServerCore.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,10 +25,14 @@ namespace GrabServerData
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Booking>().HasKey(x => new { x.IdCustomer, x.IdDriver, x.DateBooking });
             modelBuilder.Entity<Driver>().HasKey(x => new { x.Id});
+            modelBuilder.Entity<RecentBookingDTO>().HasNoKey();
+            modelBuilder.Entity<ReadReceivedBookingDTO>().HasNoKey();
         }
 
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Driver> Drivers { get; set; }
+        public virtual DbSet<RecentBookingDTO> RecentBookings { get; set; }
+        public virtual DbSet<ReadReceivedBookingDTO> ReadReceivedBookings { get; set; }
     }
 }

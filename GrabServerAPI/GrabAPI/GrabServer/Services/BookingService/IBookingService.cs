@@ -9,5 +9,7 @@ namespace GrabServer.Services.BookingService
         Task<int> UpdateBooking(Booking request);
         Task<int> DeleteBooking(int deleteDto);
         Task<int> ConfirmBooking(int accountId, int totalPay);
+        List<RecentBookingDTO> GetRecentBookingAsync();
+        List<ReadReceivedBookingDTO> GetReceivedBookingAsync();
     }
 }

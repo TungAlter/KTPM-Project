@@ -7,6 +7,7 @@ using System.Transactions;
 using GrabServerData;
 using GrabServerCore.RepoInterfaces;
 using GrabServerData.Repositories;
+using AutoMapper;
 
 namespace GrabServerData
 {
@@ -52,12 +53,13 @@ namespace GrabServerData
 
         #region Booking
         private IBookingRepo _bookingRepo;
+        private IMapper _mapper;
         public IBookingRepo BookingRepo
         {
             get
             {
                 if (_bookingRepo == null)
-                    _bookingRepo = new BookingRepo(_dataContext);
+                    _bookingRepo = new BookingRepo(_dataContext,_mapper);
                 return _bookingRepo;
             }
         }

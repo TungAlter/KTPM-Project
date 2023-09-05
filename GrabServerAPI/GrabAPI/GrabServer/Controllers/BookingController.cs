@@ -36,12 +36,44 @@ namespace GrabServer.Controllers
             }
             return Ok(new ResponseMessageDetails<List<Booking>>("Get bookings successfully", booking_list));
         }
+        [HttpGet("Recent")]
+        public List<RecentBookingDTO> GetRecentBooking()
+        {
+            var result = _bookingService.GetRecentBookingAsync();
+            var booking_list = new List<RecentBookingDTO>();
+            //if (result == null)
+            //{
+            //    return Ok(new ResponseMessageDetails<List<Booking>>("Not have any Booking", GrabServerCore.Common.Enum.ResponseStatusCode.NoContent));
+            //}
+            foreach (var item in result)
+            {
+                booking_list.Add(item);
+            }
+            return booking_list;
+        }
+
+        [HttpGet("Received")]
+        public List<ReadReceivedBookingDTO> GetAllReceivedBooking()
+        {
+            var result = _bookingService.GetReceivedBookingAsync();
+            var booking_list = new List<ReadReceivedBookingDTO>();
+            //if (result == null)
+            //{
+            //    return Ok(new ResponseMessageDetails<List<Booking>>("Not have any Booking", GrabServerCore.Common.Enum.ResponseStatusCode.NoContent));
+            //}
+            foreach (var item in result)
+            {
+                booking_list.Add(item);
+            }
+            return booking_list;
+        }
 
         [HttpPost, Authorize(Roles = GlobalConstant.User)]
         public async Task<ActionResult<ResponseMessageDetails<int>>> AddBooking(AddBookingDTO addBookingDTO)
         {
-            Account currentAcc = await _accountService.GetByUsername(User.Identity.Name);
-            addBookingDTO.IdCustomer = currentAcc.Id;
+            //Account currentAcc = await _accountService.GetByUsername(User.Identity.Name);
+            //addBookingDTO.IdCustomer = currentAcc.Id;
+
             var result = await _bookingService.AddBooking(addBookingDTO);
 
             if (result == 0)

@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using GrabServer.Services.AccountService;
 using GrabServer.Services.BookingService;
 using GrabServer.Services.DriverService;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +24,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IDriverService, DriverSerivce>();
-
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddServicesData();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(option =>

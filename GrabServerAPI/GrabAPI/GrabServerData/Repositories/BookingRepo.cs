@@ -10,23 +10,20 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
-
+using AutoMapper;
 namespace GrabServerData.Repositories
 {
     public class BookingRepo : RepositoryBase<Booking>, IBookingRepo
     {
         readonly GrabDataContext _dataContext;
+        private readonly IMapper _mapper;
 
-        public BookingRepo(GrabDataContext dataContext) : base(dataContext)
+        public BookingRepo(GrabDataContext dataContext, IMapper mapper) : base(dataContext)
         {
             _dataContext = dataContext;
+            _mapper = mapper;
         }
 
-
-        //eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRw
-        //    Oi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiaGFoYWhhIiwiaHR0cDovL3NjaG
-        //    VtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTY5MTY2NTYyNH0
-        //    .31gycnyhrBK1vDIXA4XHxWMKG1kH1C129_iALw7BcAOIusBrfrm8XkGsk1sBGjUSBwY9nlGLzVQAIVAGGOxasw
         public async Task<IEnumerable<Booking>> GetAllAsync(int accountId)
         {
             string a = accountId.ToString();
@@ -39,29 +36,47 @@ namespace GrabServerData.Repositories
             Console.WriteLine(builder.ToString());
             var result = await _dataContext.Bookings.FromSqlInterpolated($"EXECUTE({builder.ToString()})").ToListAsync();
             
+            
             return result;
+        }
+
+        public List<RecentBookingDTO> GetRecentBooking()
+        {
+            var builder = new StringBuilder(@"dbo.USP_Get3RecentBooking");;
+
+            Console.WriteLine(builder.ToString());
+            var bookings = new List<RecentBookingDTO>();
+            //bookings = _dataContext.Database.SqlQuery<RecentBookingDTO>($"EXECUTE({builder.ToString()})").ToList();
+            bookings = _dataContext.RecentBookings.FromSqlInterpolated($"EXECUTE({builder.ToString()})").ToList();
+
+            return bookings;
+        }
+
+        public List<ReadReceivedBookingDTO> GetAllReceivedBooking()
+        {
+            var builder = new StringBuilder(@"dbo.USP_GetReceivedBooking"); ;
+
+            Console.WriteLine(builder.ToString());
+            var bookings = new List<ReadReceivedBookingDTO>();
+            //bookings = _dataContext.Database.SqlQuery<RecentBookingDTO>($"EXECUTE({builder.ToString()})").ToList();
+            bookings = _dataContext.ReadReceivedBookings.FromSqlInterpolated($"EXECUTE({builder.ToString()})").ToList();
+
+            return bookings;
         }
 
         public async Task<int> CreateBookingAsync(AddBookingDTO booking)
         {
+            string srcaddr = booking.addrFrom.address+","+booking.addrFrom.ward+","+booking.addrFrom.district+","+booking.addrFrom.province;
+            string desaddr = booking.addrTo.address + "," + booking.addrTo.ward + "," + booking.addrTo.district + "," + booking.addrTo.province;
             var builder = new StringBuilder(@"EXEC dbo.USP_AddBooking ");
-            builder.Append($"@AccountId = \'{booking.IdCustomer}\', ");
-            //builder.Append($"@CreatedDate = \'{booking.DateBooking}\', ");
-            builder.Append($"@srclongi = \'{booking.SrcLong}\', ");
-            builder.Append($"@srclati = \'{booking.SrcLat}\', ");
-            builder.Append($"@deslongi = \'{booking.DesLong}\', ");
-            builder.Append($"@deslati = \'{booking.DesLat}\', ");
-            builder.Append($"@distance = \'{booking.Distance}\',\n");
-            builder.Append($"@srcaddr = N\'{booking.SrcAddress}\',\n");
-            builder.Append($"@desaddr = N\'{booking.DesAddress}\',\n");
-            builder.Append($"@note= N\'{booking.Notes}\';\n");
-            //builder.Append($"@total = \'{booking.Total}\';\n");
-
+            builder.Append($"@fullname = N\'{booking.FullName}\', ");
+            builder.Append($"@email = N\'{booking.Email}\', ");
+            builder.Append($"@phone = N\'{booking.Phone}\', ");
+            builder.Append($"@srcaddr = N\'{srcaddr}\', ");
+            builder.Append($"@desaddr = N\'{desaddr}\' ");
             Console.WriteLine(builder.ToString());
             var result = await _dataContext.Database.ExecuteSqlInterpolatedAsync($"EXECUTE({builder.ToString()})");
             return result;
-
-
         }
 
         public new async Task<int> UpdateAsync(Booking booking)

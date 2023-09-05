@@ -234,31 +234,32 @@ GO
 -- CRUD BOOKING
 --CREATE
 CREATE OR ALTER PROCEDURE USP_AddBooking
-    @AccountId INTEGER,
-    @srclongi FLOAT,
-	@srclati FLOAT,
-	@deslongi FLOAT,
-	@deslati FLOAT,
-    @distance FLOAT,
+	@fullname NVARCHAR(200),
+	@email VARCHAR(100),
+	@phone VARCHAR(50),
 	@srcaddr NVARCHAR(200),
-	@desaddr NVARCHAR(200),
-    @note NVARCHAR(200)
+	@desaddr NVARCHAR(200)
 AS
 BEGIN
 	BEGIN TRAN
 	BEGIN TRY
 		DECLARE @BookingId INT
 		DECLARE	@total INT
-
-		SET @total = @distance * 2000;
-		
-
+		DECLARE @AccountId INT
+		IF NOT EXISTS(SELECT * FROM CUSTOMER WHERE PhoneNumber = @phone)
+		BEGIN
+			EXEC @AccountId = USP_GetNextColumnId 'ACCOUNT','Id'
+			INSERT INTO ACCOUNT VALUES (@AccountId,null,null,null,null,null,null,null,null,null)
+			INSERT INTO CUSTOMER VALUES (@AccountId,null,@fullname,@email,@phone,null,null,null)
+		END
+		ELSE
+		BEGIN
+			SELECT @AccountId = c.AccountId FROM CUSTOMER c where c.PhoneNumber =@phone
+		END
 		EXEC @BookingId = USP_GetNextColumnId 'BOOKING', 'IdBooking'
 		DECLARE @booking_date DATETIME
 		select @booking_date  = GETDATE()
-		INSERT INTO BOOKING 
-		VALUES (@BookingId, @AccountId, 3, @booking_date, 'WAITING', 
-		@srclongi,@srclati,@deslongi,@deslati, @distance, @srcaddr,@desaddr, @note, @total);
+		INSERT INTO BOOKING VALUES (@BookingId, @AccountId, null, @booking_date, 'WAITING', null,null,null,null,null,@srcaddr,@desaddr,N'Không',null);
 
 	END TRY
 
@@ -275,6 +276,7 @@ GO
 
 
 --READ
+-- Lấy tất cả
 CREATE OR ALTER PROCEDURE USP_GetAllBooking -- // 
 	@AccountId INTEGER
 AS
@@ -282,14 +284,36 @@ BEGIN
 	SELECT * FROM BOOKING WHERE IdCustomer = @AccountId;
 END
 GO
+
 -- Lấy 3 Cuốc gần nhất
 CREATE OR ALTER PROCEDURE USP_Get3RecentBooking -- // 
-	@AccountId INTEGER
 AS
 BEGIN
-	SELECT TOP 3 *  FROM BOOKING 
-	WHERE IdCustomer = @AccountId
+	SELECT TOP 3  c.FullName,c.Email,c.PhoneNumber,b.SrcAddress,b.DesAddress , b.DateBooking
+	FROM BOOKING b join CUSTOMER c on b.IdCustomer = c.AccountId
+	WHERE b.StatusBooking = 'COMPLETED'
 	ORDER BY DateBooking ASC;
+END
+GO
+-- Lấy các cuốc mới tạo
+CREATE OR ALTER PROCEDURE USP_GetNewBooking -- // 
+AS
+BEGIN
+	SELECT TOP 3  c.FullName,c.Email,c.PhoneNumber,b.SrcAddress,b.DesAddress , b.DateBooking
+	FROM BOOKING b join CUSTOMER c on b.IdCustomer = c.AccountId
+	WHERE b.StatusBooking = 'COMPLETED'
+	ORDER BY DateBooking ASC;
+END
+GO
+-- Lấy các cuốc đã được tài xế nhận 
+
+EXEC USP_GetReceivedBooking
+CREATE OR ALTER PROCEDURE USP_GetReceivedBooking -- // 
+AS
+BEGIN
+	SELECT c.FullName CustomerName,c.PhoneNumber Phone,d.FullName DriverName,b.SrcAddress,b.DesAddress , b.SrcLong, b.SrcLat, b.DesLong, b.DesLat, b.Distance, b.Total
+	FROM BOOKING b join CUSTOMER c on b.IdCustomer = c.AccountId join DRIVER d on d.AccountId = b.IdDriver
+	WHERE b.StatusBooking = 'RECEIVED';
 END
 GO
 
