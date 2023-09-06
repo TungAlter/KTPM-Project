@@ -1,7 +1,4 @@
-﻿INSERT INTO CUSTOMER VALUES (1,'Bronze', N'Nguyễn Lê Duy', 'duyl111@gmail.com','035123456','08-12-2001','Nam','https:/image')
-INSERT INTO CUSTOMER VALUES (2,'Bronze', N'Nguyễn', 'duyl111@gmail.com','035123456','08-12-2001','Nam','https:/image')
-INSERT INTO CUSTOMER VALUES (3,'Bronze', N'Lê Duy', 'duyl111@gmail.com','035123456','08-12-2001',N'Nữ','https:/image')
-GO
+﻿GO
 USE GrabSystemDB
 
 CREATE OR ALTER PROCEDURE USP_GetNextColumnId(
@@ -64,19 +61,19 @@ CREATE OR ALTER PROC USP_GetAllAccount
 AS
 	SELECT * FROM ACCOUNT
 GO
-EXEC USP_FindDriver 2.1,3.2
--- TÌM TÀI XẾ
-CREATE OR ALTER PROCEDURE USP_FindDriver -- // 
-	@longi FLOAT,
-	@Lati FLOAT
-AS
-BEGIN
-	DECLARE @Id INT,
-			@Id1 INT
-	SELECT TOP 1 @Id = AccountId FROM DRIVER WHERE WorkStatus = 'WAITING';
-	ESET @Id1 = @Id OUTPUT
-END
-GO
+--EXEC USP_FindDriver 2.1,3.2
+---- TÌM TÀI XẾ
+--CREATE OR ALTER PROCEDURE USP_FindDriver -- // 
+--	@longi FLOAT,
+--	@Lati FLOAT
+--AS
+--BEGIN
+--	DECLARE @Id INT,
+--			@Id1 INT
+--	SELECT TOP 1 @Id = AccountId FROM DRIVER WHERE WorkStatus = 'WAITING';
+--	RESET @Id1 = @Id OUTPUT
+--END
+--GO
 
 CREATE OR ALTER PROC USP_GetAccountByUsername
 	@Username VARCHAR(50)
@@ -233,6 +230,7 @@ END
 GO
 -- CRUD BOOKING
 --CREATE
+
 CREATE OR ALTER PROCEDURE USP_AddBooking
 	@fullname NVARCHAR(200),
 	@email VARCHAR(100),
@@ -259,7 +257,7 @@ BEGIN
 		EXEC @BookingId = USP_GetNextColumnId 'BOOKING', 'IdBooking'
 		DECLARE @booking_date DATETIME
 		select @booking_date  = GETDATE()
-		INSERT INTO BOOKING VALUES (@BookingId, @AccountId, null, @booking_date, 'WAITING', null,null,null,null,null,@srcaddr,@desaddr,N'Không',null);
+		INSERT INTO BOOKING VALUES (@BookingId, @AccountId, null, @booking_date, 'WAITING', null,null,null,null,0,@srcaddr,@desaddr,N'Không',0);
 
 	END TRY
 
@@ -295,19 +293,17 @@ BEGIN
 	ORDER BY DateBooking ASC;
 END
 GO
+
 -- Lấy các cuốc mới tạo
 CREATE OR ALTER PROCEDURE USP_GetNewBooking -- // 
 AS
 BEGIN
-	SELECT TOP 3  c.FullName,c.Email,c.PhoneNumber,b.SrcAddress,b.DesAddress , b.DateBooking
+	SELECT c.FullName,c.Email,c.PhoneNumber,b.SrcAddress,b.DesAddress , b.DateBooking
 	FROM BOOKING b join CUSTOMER c on b.IdCustomer = c.AccountId
-	WHERE b.StatusBooking = 'COMPLETED'
-	ORDER BY DateBooking ASC;
+	WHERE b.StatusBooking = 'WAITING';
 END
 GO
 -- Lấy các cuốc đã được tài xế nhận 
-
-EXEC USP_GetReceivedBooking
 CREATE OR ALTER PROCEDURE USP_GetReceivedBooking -- // 
 AS
 BEGIN
@@ -318,25 +314,58 @@ END
 GO
 
 -- UPDATE
--- Tài xế nhận chuyến
-CREATE OR ALTER PROCEDURE USP_UpdateReceiveBooking
+-- Update vị trí chuyến đi
+CREATE OR ALTER PROCEDURE USP_UpdateLocationBooking
 	@BookingId INTEGER,
-    @DriverId INTEGER
+	@srcLong FLOAT,
+	@srcLat FLOAT,
+	@desLong FLOAT,
+    @desLat FLOAT,
+	@Distance FLOAT
 AS
 BEGIN
     BEGIN TRY
         UPDATE BOOKING
-        SET StatusBooking = 'RECEIVED',
-			IdDriver =  @DriverId 
+        SET SrcLong=@srcLong, SrcLat=@srcLat, DesLong=@desLong, DesLat=@desLat,Distance=@Distance
 		WHERE IdBooking = @BookingId;
     END TRY
 
     BEGIN CATCH
-		RAISERROR(N'Cập nhật trạng thái thất bại.', 11, 1);
+		RAISERROR(N'Cập nhật vị trí thất bại.', 11, 1);
         RETURN -1; -- Gán giá trị trả về là -1 (thất bại)
     END CATCH
 
-    RETURN 0;  -- Gán giá trị trả về là 0 (thành công)
+    RETURN 1;  -- Gán giá trị trả về là 1 (thành công)
+END
+GO
+
+-- Tìm tài xế nhận chuyến
+CREATE OR ALTER PROCEDURE USP_FindDriverForBooking
+	@BookingId INTEGER
+AS
+BEGIN
+    BEGIN TRY
+		Declare @IdDriver INT
+		IF NOT EXISTS(select TOP 1 d.AccountId FROM DRIVER d where d.WorkStatus='WAITING')
+		BEGIN
+		RETURN -1;
+		END
+		ELSE
+		BEGIN
+			select TOP 1 @IdDriver = d.AccountId FROM DRIVER d where d.WorkStatus='WAITING'
+			UPDATE DRIVER SET WorkStatus = 'WORKING' WHERE AccountId = @IdDriver;
+		    UPDATE BOOKING
+			SET StatusBooking = 'RECEIVED', IdDriver = @IdDriver
+			WHERE IdBooking = @BookingId;
+			RETURN 1;
+		END
+    END TRY
+    BEGIN CATCH
+		RAISERROR(N'Tìm tài xế thất bại.', 11, 1);
+        RETURN -1; -- Gán giá trị trả về là -1 (thất bại)
+    END CATCH
+
+    RETURN 0;  -- Gán giá trị trả về là 1 (thành công)
 END
 GO
 
@@ -373,7 +402,7 @@ BEGIN
         RETURN -1; -- Gán giá trị trả về là -1 (thất bại)
     END CATCH
 
-    RETURN 0;  -- Gán giá trị trả về là 0 (thành công)
+    RETURN 1;  -- Gán giá trị trả về là 0 (thành công)
 END
 GO
 	-- DELETE

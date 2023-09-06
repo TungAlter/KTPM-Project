@@ -74,7 +74,7 @@ CREATE TABLE BOOKING (
 	IdBooking INT,
 	IdCustomer INT,
 	IdDriver INT,
-	DateBooking DATE,
+	DateBooking DATETIME,
 	StatusBooking VARCHAR(20) CHECK(StatusBooking IN ('WAITING','RECEIVED', 'COMPLETED')),
 	SrcLong FLOAT,
 	SrcLat FLOAT,
@@ -82,7 +82,7 @@ CREATE TABLE BOOKING (
 	DesLat FLOAT,
 	Distance FLOAT,
 	SrcAddress NVARCHAR(200),
-	DesAddress VARCHAR (200),
+	DesAddress NVARCHAR (200),
 	Note NVARCHAR(200),
 	Total INT
 
@@ -148,3 +148,15 @@ ADD
 	CONSTRAINT FK_VEHICLE_VEH_TYPE
 	FOREIGN KEY(TypeVehicle)
 	REFERENCES VEHICLE_TYPE
+
+
+-- Tạo 7 Account để có Id Thêm tài xế và khách hàng
+-- Customer Data
+INSERT INTO CUSTOMER VALUES(1,'Bronze',N'Khách Hàng 1','customer1@gmail.com','0358889999','2002-11-25',N'Nam','https://image..')
+INSERT INTO CUSTOMER VALUES(2,'Bronze',N'Khách Hàng 2','customer2@gmail.com','0351236789','2000-10-19',N'Nữ','https://image..')
+-- Driver Data
+INSERT INTO DRIVER VALUES(3,'Bronze',N'Tài xế 1','driver1@gmail.com','0123456789','2000-08-19',N'Nam','https://image..',5.9,'WAITING')
+INSERT INTO DRIVER VALUES(4,'Bronze',N'Tài xế 2','driver1@gmail.com','0123456789','2000-08-19',N'Nam','https://image..',5.9,'WAITING')
+INSERT INTO DRIVER VALUES(5,'Bronze',N'Tài xế 3','driver1@gmail.com','0123456789','2000-08-19',N'Nam','https://image..',5.9,'WAITING')
+INSERT INTO DRIVER VALUES(6,'Bronze',N'Tài xế 4','driver1@gmail.com','0123456789','2000-08-19',N'Nam','https://image..',5.9,'WAITING')
+INSERT INTO DRIVER VALUES(7,'Bronze',N'Tài xế 5','driver1@gmail.com','0123456789','2000-08-19',N'Nam','https://image..',5.9,'WAITING')

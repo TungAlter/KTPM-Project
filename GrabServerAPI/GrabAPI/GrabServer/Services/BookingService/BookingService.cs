@@ -18,6 +18,12 @@ namespace GrabServer.Services.BookingService
             _unitOfWork.SaveChanges();
             return result;
         }
+        public List<RecentBookingDTO> GetNewBookingAsync()
+        {
+            var result = _unitOfWork.BookingRepo.GetNewBooking();
+            _unitOfWork.SaveChanges();
+            return result;
+        }
         public List<ReadReceivedBookingDTO> GetReceivedBookingAsync()
         {
             var result = _unitOfWork.BookingRepo.GetAllReceivedBooking();
@@ -38,7 +44,18 @@ namespace GrabServer.Services.BookingService
 
             return result;
         }
-
+        public async Task<int> FindDriverAsync(int id)
+        {
+            var result = await _unitOfWork.BookingRepo.FindDriverForBooking(id);
+            await _unitOfWork.SaveChangesAsync();
+            return result;
+        }
+        public async Task<int> UpdateLocationAsync(int id, float srcLong, float srcLat, float desLong, float desLat, float Distance)
+        {
+            var result = await _unitOfWork.BookingRepo.UpdateLocationBookingAsync(id, srcLong, srcLat, desLong, desLat, Distance);
+            await _unitOfWork.SaveChangesAsync();
+            return result;
+        }
         public async Task<List<Booking>> GetAllBookings(int accountId)
         {
             var listBookingAccounts = await _unitOfWork.BookingRepo.GetAllAsync(accountId);

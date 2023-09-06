@@ -64,6 +64,22 @@ namespace GrabServerData.Repositories
             return bookings;
         }
 
+        public List<RecentBookingDTO> GetNewBooking()
+        {
+            var builder = new StringBuilder(@"dbo.USP_GetNewBooking"); ;
+
+            Console.WriteLine(builder.ToString());
+            var bookings = new List<RecentBookingDTO>();
+            //bookings = _dataContext.Database.SqlQuery<RecentBookingDTO>($"EXECUTE({builder.ToString()})").ToList();
+            bookings = _dataContext.RecentBookings.FromSqlInterpolated($"EXECUTE({builder.ToString()})").ToList();
+            //List<ReadNewBookingDTO> lists = new List<ReadNewBookingDTO>();
+            //foreach ( var item in bookings )
+            //{
+            //    ReadNewBookingDTO p = new<ReadNewBookingDTO>();
+            //    lists.Add(p);
+            //}
+            return bookings;
+        }
         public async Task<int> CreateBookingAsync(AddBookingDTO booking)
         {
             string srcaddr = booking.addrFrom.address+","+booking.addrFrom.ward+","+booking.addrFrom.district+","+booking.addrFrom.province;
@@ -78,7 +94,27 @@ namespace GrabServerData.Repositories
             var result = await _dataContext.Database.ExecuteSqlInterpolatedAsync($"EXECUTE({builder.ToString()})");
             return result;
         }
-
+        public async Task<int> FindDriverForBooking(int id)
+        {
+            var builder = new StringBuilder(@"EXEC dbo.USP_FindDriverForBooking ");
+            builder.Append($"@BookingId = \'{id}\' ");
+            Console.WriteLine(builder.ToString());
+            var result = await _dataContext.Database.ExecuteSqlInterpolatedAsync($"EXECUTE({builder.ToString()})");
+            return result;
+        }
+        public async Task<int> UpdateLocationBookingAsync(int id, float srcLong, float srcLat, float desLong, float desLat, float Distance)
+        {
+            var builder = new StringBuilder(@"EXEC dbo.USP_UpdateLocationBooking ");
+            builder.Append($"@BookingId = \'{id}\', ");
+            builder.Append($"@srcLong = \'{srcLong}\', ");
+            builder.Append($"@srcLat = \'{srcLat}\', ");
+            builder.Append($"@desLong = \'{desLong}\', ");
+            builder.Append($"@desLat = \'{desLat}\', ");
+            builder.Append($"@Distance = \'{Distance}\' ");
+            Console.WriteLine(builder.ToString());
+            var result = await _dataContext.Database.ExecuteSqlInterpolatedAsync($"EXECUTE({builder.ToString()})");
+            return result;
+        }
         public new async Task<int> UpdateAsync(Booking booking)
         {
             //int paid = booking.Paid ? 1 : 0;

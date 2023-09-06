@@ -13,7 +13,9 @@ namespace GrabServerData
     {
         public Profiles()
         {
+            // src --> des
             CreateMap<Booking, RecentBookingDTO>();
+            CreateMap<RecentBookingDTO, ReadNewBookingDTO>();
         }
     }
 }
