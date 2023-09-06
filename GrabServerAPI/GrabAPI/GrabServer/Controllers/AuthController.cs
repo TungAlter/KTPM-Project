@@ -15,9 +15,10 @@ using Microsoft.AspNetCore.Cors;
 
 namespace GrabServer.Controllers
 {
-    [EnableCors("AllowSpecificOrigin")]
+    
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("MyPolicy")]
     public class AuthController : ControllerBase
     {
         readonly IConfiguration _configuration;
@@ -30,6 +31,7 @@ namespace GrabServer.Controllers
         }
 
         [HttpPost("register-user")]
+        
         public async Task<ActionResult<ResponseMessageDetails<string>>> Register(LoginDTO request)
         {
             var acc = await _accService.GetByUsername(request.Username);

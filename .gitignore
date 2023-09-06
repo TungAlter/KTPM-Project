@@ -4,7 +4,18 @@
 *.pdb
 *.exe
 *.targets
-
+*.editorconfig
 
 # file
+CallCenter/GUI_Razor/obj/project.assets.json
+bin\Debug\net7.0\
+obj\GUI_Razor.csproj.nuget.dgspec.json
+obj\GUI_Razor.csproj.nuget.g.props
+obj\GUI_Razor.csproj.nuget.g.targets
+obj\project.assets.json
+obj\project.nuget.cache
 CallCenter/BUS/bin/Debug/net7.0
+GrabServerAPI/Database/GrabDB.sql
+CallCenter/GUI_Razor/obj/project.assets.json
+CallCenter/GUI_Razor/bin/Debug/net7.0/GUI_Razor.dll
+

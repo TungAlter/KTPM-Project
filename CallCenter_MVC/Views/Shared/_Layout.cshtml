@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CallCenter_MVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CallCenter_MVC.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="header" id="header">
+        <a class="nav-brand" asp-area="" asp-controller="Home" asp-action="Index">CALL CENTER</a>
+        <div>
+            <ul class="nav-opts">
+                <li>
+                    <a class="nav-item" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li>
+                    <a class="nav-item" asp-area="" asp-controller="HomeS1" asp-action="Index">HomeS1</a>
+                </li>
+                <li>
+                    <a class="nav-item" asp-area="" asp-controller="HomeS2" asp-action="Index">HomeS2</a>
+                </li>
+                <li>
+                    <a class="nav-item" asp-area="" asp-controller="HomeS3" asp-action="Index">HomeS3</a>
+                </li>
+                <li>
+                    <a class="nav-item" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </li>
+            </ul>
+        </div>
+        <a class="nav-auth btn-login" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+        <script>
+        const currentPath = window.location.pathname; // Lấy đường dẫn hiện tại
+        console.log('đường dẫn: ' + currentPath);
+        const navLinks = document.querySelectorAll(".nav-item");
+        navLinks.forEach(link => {
+            if (link.getAttribute("href") === currentPath) {
+                @* console.log('nav tương ứng: ' + link.getAttribute("href")); *@
+                link.classList.add("active");
+                @* link.style.backgroundColor = "green"; *@
+            }
+        });
+    </script>
+</body>
+</html>

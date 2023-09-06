@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "HomeS2 Page";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<!-- Thêm thư viện Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+ <!-- Thêm thư viện Leaflet Geocoder -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/homes2.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/CallCenter_MVC.styles.css" asp-append-version="true" />
+
+<div class="box">
+    <div class="map-col" id="map"></div>
+    <script src="~/js/HomeS2.js" asp-append-version="true"></script> 
+    <div class="list-col">
+        <div class="list-header">
+            Danh sách
+            <select id="mapOptions" onchange="changeMapPlugin()">
+                <option value="google">Google Maps</option>
+                <option value="leaflet">Leaflet</option>
+            </select>
+        </div>
+            @foreach (var booking in ViewBag.listBooking) {
+                <div class="unapproved-card">
+                    <div class="card-content" id="card-content" onclick="getRoute('@booking.SrcAddress', '@booking.DesAddress')">
+                        <div><span class="card-title">STT: </span>@booking.IdCustomer</div>
+                        <div><span class="card-title" type="hidden">Khách: </span>Lưu Minh Phát</div>
+                        <div><span class="card-title">Địa điểm đi: </span>@booking.SrcAddress</div>
+                        <div><span class="card-title">Địa điểm đến: </span>@booking.DesAddress</div>
+                        <input type="hidden" name="nameCustomer" value='@booking.NameCustomer'>
+                    </div>
+                    <div class="btn-area">
+                        <span class="btn1">Detail</span>
+                        <span class="btn2">Send</span>
+                        <span class="btn3">Discard</span>
+                    </div>
+                </div>
+            }
+
+    </div> 
+</div>
+
+<div id="myModal" class="modal">
+    <div class="modal-header" id="modal-header">
+        Thông tin chi tiết
+    </div>
+    <div class="modal-content" id="modal-content">
+
+    </div>
+    <div class="modal-footer" id="modal-footer">
+        <span class="btn2">Send</span>
+    </div>
+</div>

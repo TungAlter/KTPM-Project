@@ -15,3 +15,20 @@ D:\New folder\GrabServerAPI\GrabAPI\GrabServerData\obj\Debug\net7.0\refint\GrabS
 D:\New folder\GrabServerAPI\GrabAPI\GrabServerData\obj\Debug\net7.0\GrabServerData.pdb
 D:\New folder\GrabServerAPI\GrabAPI\GrabServerData\obj\Debug\net7.0\GrabServerData.genruntimeconfig.cache
 D:\New folder\GrabServerAPI\GrabAPI\GrabServerData\obj\Debug\net7.0\ref\GrabServerData.dll
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerData\bin\Debug\net7.0\GrabServerData.deps.json
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerData\bin\Debug\net7.0\GrabServerData.runtimeconfig.json
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerData\bin\Debug\net7.0\GrabServerData.dll
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerData\bin\Debug\net7.0\GrabServerData.pdb
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerData\bin\Debug\net7.0\GrabServerCore.dll
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerData\bin\Debug\net7.0\GrabServerCore.pdb
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerData\obj\Debug\net7.0\GrabServerData.csproj.AssemblyReference.cache
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerData\obj\Debug\net7.0\GrabServerData.GeneratedMSBuildEditorConfig.editorconfig
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerData\obj\Debug\net7.0\GrabServerData.AssemblyInfoInputs.cache
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerData\obj\Debug\net7.0\GrabServerData.AssemblyInfo.cs
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerData\obj\Debug\net7.0\GrabServerData.csproj.CoreCompileInputs.cache
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerData\obj\Debug\net7.0\GrabServerData.csproj.CopyComplete
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerData\obj\Debug\net7.0\GrabServerData.dll
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerData\obj\Debug\net7.0\refint\GrabServerData.dll
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerData\obj\Debug\net7.0\GrabServerData.pdb
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerData\obj\Debug\net7.0\GrabServerData.genruntimeconfig.cache
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServerData\obj\Debug\net7.0\ref\GrabServerData.dll

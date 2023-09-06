@@ -5,23 +5,52 @@
 }
 
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<!-- Thêm thư viện Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+ <!-- Thêm thư viện Leaflet Geocoder -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/css/homes2.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/GUI_Razor.styles.css" asp-append-version="true" />
 
 <div class="box">
-    <div class="map-col">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125427.61252539777!2d106.68605439999999!3d10.764287999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m3!3e6!4m0!4m0!5e0!3m2!1sen!2s!4v1690693046592!5m2!1sen!2s" style="border:0; width: 100%; heigth: 100%" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+    <div class="map-col" id="map"></div>
+    <script src="~/js/HomeS2.js" asp-append-version="true"></script>
+        
     <div class="list-col">
-        <div class="unapproved-card">
-            This will display list of unapproved 1
-        </div>
-        <div class="unapproved-card">
-            This will display list of unapproved 2
-        </div>
-        <div class="unapproved-card">
-            This will display list of unapproved 3
-        </div>
+            <script>
+                var listBookingData = @Html.Raw(Json.Serialize(Model.listBooking));
+            </script>
+            @foreach (var booking in Model.listBooking) {
+                <form class="unapproved-card" onclick="getRoute('@booking.SrcAddress', '@booking.DesAddress', '@booking.IdCustomer')">
+                    <div class="card-content" id="card-content">
+                        @* <div><span class="card-title">STT: </span>@booking.IdCustomer</div> *@
+                        @* <div><span class="card-title">Khách: </span>Lưu Minh Phát</div> *@
+                        <div><span class="card-title">Địa điểm đi: </span>@booking.SrcAddress</div>
+                        <div><span class="card-title">Địa điểm đến: </span>@booking.DesAddress</div>
+                    </div>
+                    <div class="btn-area">
+                        <span class="btn1">Detail</span>
+                        <span class="btn1">Send</span>
+                        <span class="btn3">Discard</span>
+                    </div>
+                </form>
+            }
+        @* @for (int i=1; i<15; i++) {
+            <div class="unapproved-card" onclick="getRoute('Trường Đại học Khoa học Tự Nhiên, TP.HCM', '216 Dương Bá Trạc, phường 2, quận 8, TP.HCM')">
+                <div class="card-content" id="card-content">
+                    <div><span class="card-title">STT: </span>@i</div>
+                    <div><span class="card-title">Khách: </span>Lưu Minh Phát</div>
+                    <div><span class="card-title">Địa điểm đi: </span>Trường đại học Khoa học Tự Nhiên TP HCM</div>
+                    <div><span class="card-title">Địa điểm đến: </span>216/9, Dương Bá Trạc, phường 2, quận 8, TP.HCM</div>
+                </div>
+            </div>
+        } *@
+
     </div> 
 </div>

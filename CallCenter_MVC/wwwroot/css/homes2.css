@@ -1,0 +1,124 @@
+.box {
+    padding: 0;
+    height:100%;
+    background-color: lightgray;
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    top: 50px;
+}
+
+.map-col {
+    width: 80%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.list-col {
+    width: 20%;
+    padding: 0px 0px 50px 0px;
+    margin: 0;
+    border-radius: 6px 0px 0px 6px;
+    padding: 0;
+    background-color: aqua;
+    overflow-y: auto;
+    max-height: 91%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list-col::-webkit-scrollbar {
+    width: 6px;
+}
+.list-col::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.list-col::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 33, 71, 0.815);
+    outline: 0px solid slategrey;
+}
+
+.unapproved-card {
+    margin: 3px 1px 3px 1px;
+    padding: 3px;
+    display: inline-block;
+    border-radius: 10px;
+    width: 95%;
+    background: #008997;
+    color: white;
+}
+
+.card-content {
+    display: inline-block;
+    margin: 2px 1px 1px 1px ;
+    height: auto;
+    padding: 0px 3px;
+    font-size: 12px;
+    border-radius: 5px;
+    background-color: #529da5;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 12px;
+    margin-right: 3px;
+    color: rgb(23, 23, 124);
+}
+
+.list-header {
+    background-color: #008997;
+}
+
+.btn-area {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 5px;
+    margin: 1px 1px 1px 1px;
+    background-color: #26bdce;
+    border-radius: 5px;
+}   
+
+.btn1, .btn2, .btn3 {
+    display: inline-block;
+    height: 25px;
+    width: 60px;
+    text-align: center;
+    font-weight: bold;
+    margin: 3px;
+    padding: 2px 0px;
+    font-size: 15px;
+    color: lightgray;
+    border-radius: 3px;
+}
+
+.btn1 {
+    background-color: blue;
+}
+
+.btn1:hover {
+    background-color: rgb(9, 9, 128);
+}
+
+.btn2 {
+    background-color: green;
+}
+
+.btn2:hover{
+    background-color: rgb(9, 64, 9);
+}
+
+.btn3 {
+    background-color: red;
+}
+.btn3:hover {
+    background-color: rgb(128, 9, 9);
+}
+
+.btn1:hover, .btn2:hover, .btn3:hover {
+    color: white;
+}

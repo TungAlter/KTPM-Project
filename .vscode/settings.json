@@ -1,19 +1,6 @@
 {
     "dotnet.defaultSolution": "CallCenter/CallCenter.sln",
-    "sqltools.connections": [
-        {
-            "mysqlOptions": {
-                "authProtocol": "default",
-                "enableSsl": "Disabled"
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
-            "driver": "MySQL",
-            "username": "root",
-            "password": "11102002",
-            "name": "GrabSystem",
-            "database": "GrabSystemDB"
-        }
-    ]
+    "sqltools.connections": [],
+    "cmake.configureOnOpen": true,
+    "cmake.sourceDirectory": "D:/LuuMinhPhat/Projects/SoftwareStructure_Project/KTPM-Project/Mobile/rider_app/windows/runner"
 }
