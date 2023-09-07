@@ -8,6 +8,7 @@ namespace GrabServerCore.DTOs.Booking
 {
     public class ReadNewBookingDTO
     {
+        public int Id { get; set; } = 0;
         public string FullName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;

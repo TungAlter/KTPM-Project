@@ -37,7 +37,7 @@ CREATE TABLE CUSTOMER (
 
 CREATE TABLE DRIVER (
 	AccountId INT,
-	DriverRank INT,
+	DriverRank VARCHAR(10),
 	FullName NVARCHAR(100),
 	Email VARCHAR(100),
 	PhoneNumber VARCHAR(50),
@@ -150,7 +150,7 @@ ADD
 	REFERENCES VEHICLE_TYPE
 
 
--- Tạo 7 Account để có Id Thêm tài xế và khách hàng
+-- Tạo 7 Account trên SWAGGER UI để có Id Thêm tài xế và khách hàng
 -- Customer Data
 INSERT INTO CUSTOMER VALUES(1,'Bronze',N'Khách Hàng 1','customer1@gmail.com','0358889999','2002-11-25',N'Nam','https://image..')
 INSERT INTO CUSTOMER VALUES(2,'Bronze',N'Khách Hàng 2','customer2@gmail.com','0351236789','2000-10-19',N'Nữ','https://image..')

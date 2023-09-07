@@ -23,18 +23,19 @@ namespace GrabServer.Controllers
         [HttpGet, Authorize(Roles = GlobalConstant.User)]
         public async Task<ActionResult<ResponseMessageDetails<List<Booking>>>> GetAllUserBookings()
         {
-            Account currentAcc = await _accountService.GetByUsername(User.Identity.Name);
-            var result = await _bookingService.GetAllBookings(currentAcc.Id);
-            var booking_list = new List<Booking>();
-            //if (result == null)
+            //Account currentAcc = await _accountService.GetByUsername(User.Identity.Name);
+            //var result = await _bookingService.GetAllBookings(currentAcc.Id);
+            //var booking_list = new List<Booking>();
+            ////if (result == null)
+            ////{
+            ////    return Ok(new ResponseMessageDetails<List<Booking>>("Not have any Booking", GrabServerCore.Common.Enum.ResponseStatusCode.NoContent));
+            ////}
+            //foreach (var item in result)
             //{
-            //    return Ok(new ResponseMessageDetails<List<Booking>>("Not have any Booking", GrabServerCore.Common.Enum.ResponseStatusCode.NoContent));
+            //    booking_list.Add(item);
             //}
-            foreach (var item in result)
-            {
-                booking_list.Add(item);
-            }
-            return Ok(new ResponseMessageDetails<List<Booking>>("Get bookings successfully", booking_list));
+            //return Ok(new ResponseMessageDetails<List<Booking>>("Get bookings successfully", booking_list));
+            return BadRequest("Not Supported This Methods");
         }
         [HttpGet("recent")]
         public List<RecentBookingDTO> GetRecentBooking()
@@ -64,6 +65,7 @@ namespace GrabServer.Controllers
             foreach (var item in result)
             {
                 var p = new ReadNewBookingDTO ();
+                p.Id = item.Id;
                 p.FullName = item.FullName;
                 p.Email = item.Email;
                 p.Phone = item.PhoneNumber;
