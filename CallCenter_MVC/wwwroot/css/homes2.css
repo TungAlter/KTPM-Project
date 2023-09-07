@@ -104,6 +104,11 @@
     color: lightgray !important; 
 }
 
+.disable {
+    background-color: gray !important;
+    color: lightgray !important; 
+}
+
 .btn1 {
     background-color: blue;
 }
