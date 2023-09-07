@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wYqsMKsUJQ8PqymZ26hft16R8FZ7X/B06W9gH2ombPA=",
+  "Hash": "LX1dS4CwpljXz/l025PFU2SB1rkoDO5h9UJidQQmN+w=",
   "Source": "CallCenter_MVC",
   "BasePath": "_content/CallCenter_MVC",
   "Mode": "Default",
@@ -151,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter_MVC\\wwwroot\\img\\taxi.jpeg",
+      "SourceId": "CallCenter_MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter_MVC\\wwwroot\\",
+      "BasePath": "_content/CallCenter_MVC",
+      "RelativePath": "img/taxi.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\taxi.jpeg"
     },
     {
       "Identity": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter_MVC\\wwwroot\\js\\HomeS1.js",

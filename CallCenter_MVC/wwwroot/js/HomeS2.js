@@ -18,11 +18,6 @@ function getCoordinates(address) {
                 console.log("Latitude:", lat);
                 console.log("Longitude:", lon);
 
-                // var marker = L.marker([lat, lon]).addTo(map)
-                //     .bindPopup(address)
-                //     .openPopup();
-                // marker;
-
                 return { lat, lon };
             } else {
                 console.log("Không thể lấy tọa độ từ địa chỉ.");
@@ -34,9 +29,8 @@ function getCoordinates(address) {
         });
 }
 
-
 // Xử lý lấy đường đi
-function getRoute(startAddress, endAddress) {
+function getRoute(startAddress, endAddress, customerId) {
     if (startMarker || endMarker || route){
         map.removeLayer(startMarker);
         map.removeLayer(endMarker);
@@ -54,7 +48,7 @@ function getRoute(startAddress, endAddress) {
                     .then(response => response.json())
                     .then(data => {
                         var routeCoordinates = data.features[0].geometry.coordinates;
-                        var routeDistance = data.features[0].properties.segments[0].distance;
+                        var routeDistance = data.features[0].properties.segments[0].distance / 1000;
 
                         // Tạo marker cho địa điểm xuất phát và đích
                         startMarker = L.marker([startCoords.lat, startCoords.lon]).addTo(map)
@@ -70,6 +64,14 @@ function getRoute(startAddress, endAddress) {
                         
                         console.log("Khoảng cách tuyến đường:", routeDistance, "mét");
                         
+                        document.getElementById(`srclong-${customerId}`).value = startCoords.lon;
+                        document.getElementById(`srclat-${customerId}`).value = startCoords.lat;
+                        document.getElementById(`deslong-${customerId}`).value = endCoords.lon;
+                        document.getElementById(`deslat-${customerId}`).value = endCoords.lat;
+                        document.getElementById(`distance-${customerId}`).value = routeDistance;
+                        
+                        enableBTNs(customerId);
+                        showModalDialog(customerId, startAddress, endAddress)
                         return allInfo = {
                             startAddress: startAddress,
                             endAddress: endAddress,
@@ -89,6 +91,54 @@ function getRoute(startAddress, endAddress) {
         });
 }
 
+// Xử lý hiện/ẩn Modal Dialog
+function showModalDialog(customerId, startaddress, endaddress){
+
+    var detailBtn = document.getElementById(`detail-${customerId}`)
+    if (detailBtn.classList.contains('disable')) {
+        var modal = document.getElementById('myModal');
+        modal.style.display = 'hidden';
+    } else {
+        var idCustomer = customerId;
+        var nameCustomer = document.getElementById(`name-${customerId}`).value;;
+        var startAddress = startaddress;
+        var startLat = document.getElementById(`srclat-${customerId}`).value;
+        var startLon = document.getElementById(`srclong-${customerId}`).value;
+        var endAddress = endaddress;
+        var endLat = document.getElementById(`deslat-${customerId}`).value;
+        var endLon = document.getElementById(`deslong-${customerId}`).value;
+        var routeDistance = document.getElementById(`distance-${customerId}`).value;
+    
+        document.getElementById('modal-customerId').textContent = idCustomer;
+        document.getElementById('modal-customerName').textContent = nameCustomer;
+        document.getElementById('modal-startAddress').textContent = startAddress;
+        document.getElementById('modal-startLat').textContent = startLat;
+        document.getElementById('modal-startLon').textContent = startLon;
+        document.getElementById('modal-endAddress').textContent = endAddress;
+        document.getElementById('modal-endLat').textContent = endLat;
+        document.getElementById('modal-endLon').textContent = endLon;
+        document.getElementById('modal-routeDistance').textContent = routeDistance;
+        
+        var modal = document.getElementById('myModal');
+        modal.style.display = 'block';
+    }
+    // var btnArea = document.querySelector(".btn-area");
+    // var detailBtn = btnArea.querySelector(".btn1");    
+}
+function closeModal() {
+    var modal = document.getElementById('myModal');
+    modal.style.display = 'none';
+}
+
+
+// Xử lý enable button
+function enableBTNs (customerId) {
+    var detailButton = document.getElementById(`detail-${customerId}`);
+    var sendButton = document.getElementById(`send-${customerId}`);
+    detailButton.classList.remove("disable");
+    sendButton.classList.remove("disable");
+}
+
 // Xử lý hiện map sử dụng LeafLet
 window.onload = function() {
     map = L.map('map').setView([10.7743, 106.6669], 10);
@@ -96,6 +146,8 @@ window.onload = function() {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
+
+    
 }
 
 // Xử lý hiện map sử dụng Google Map

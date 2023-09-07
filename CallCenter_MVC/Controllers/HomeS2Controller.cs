@@ -11,31 +11,24 @@ namespace CallCenter_MVC.Controllers
 {
     public class HomeS2Controller : Controller
     {
-        private readonly ILogger<HomeS2Controller> _logger;
-
-        public HomeS2Controller(ILogger<HomeS2Controller> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
-            var listBooking = new List<AddBookingDTO>{
-                new AddBookingDTO{ IdCustomer = 1, SrcAddress = "Trường Đại học Khoa học Tự Nhiên, TP.HCM", 
-                                                DesAddress = "216/9 đường Dương Bá Trạc, phường 2, quận 8, TP.HCM" },
-                new AddBookingDTO{ IdCustomer = 2, SrcAddress = "46A Đinh Công Tráng, phường Tân Định, quận 1, TP.HCM", 
-                                                DesAddress = "216/9 đường Dương Bá Trạc, phường 2, quận 8, TP.HCM" },
-                new AddBookingDTO{ IdCustomer = 3, SrcAddress = "53 Cao Thắng, quận 3, TP.HCM", 
-                                                DesAddress = "18 Ký Hòa, phường 11, quận 5, TP.HCM" },
-                new AddBookingDTO{ IdCustomer = 4, SrcAddress = "46A Đinh Công Tráng, phường Tân Định, quận 1", 
-                                                DesAddress = "116/11 Phan Đăng Lưu, quận Phú Nhuận, TP.HCM" },
-                new AddBookingDTO{ IdCustomer = 5, SrcAddress = "415 Nguyễn Trãi, phường 7, quận 5, TP.HCM", 
-                                                DesAddress = "Trường Đại học Khoa học Tự Nhiên, TP.HCM" },
-                new AddBookingDTO{ IdCustomer = 6, SrcAddress = "415 Nguyễn Trãi, phường 7, quận 5, TP.HCM", 
-                                                DesAddress = "Trường Đại học Khoa học Tự Nhiên, TP.HCM" },
+            var listBooking = new List<ReadNewBookingDTO>{
+                new ReadNewBookingDTO{ FullName = "1", AddrFrom = "Trường Đại học Khoa học Tự Nhiên, TP.HCM", 
+                                                AddrTo = "216/9 đường Dương Bá Trạc, phường 2, quận 8, TP.HCM" },
+                new ReadNewBookingDTO{ FullName = "2", AddrFrom = "46A Đinh Công Tráng, phường Tân Định, quận 1, TP.HCM", 
+                                                AddrTo = "216/9 đường Dương Bá Trạc, phường 2, quận 8, TP.HCM" },
+                new ReadNewBookingDTO{ FullName = "3", AddrFrom = "53 Cao Thắng quận 3 TP.HCM", 
+                                                AddrTo = "18 Ký Hòa phường 11 quận 5 TP.HCM" },
+                new ReadNewBookingDTO{ FullName = "4", AddrFrom = "46A Đinh Công Tráng, phường Tân Định, quận 1", 
+                                                AddrTo = "116/11 Phan Đăng Lưu, quận Phú Nhuận, TP.HCM" },
+                new ReadNewBookingDTO{ FullName = "5", AddrFrom = "415 Nguyễn Trãi, phường 7, quận 5, TP.HCM", 
+                                                AddrTo = "Trường Đại học Khoa học Tự Nhiên, TP.HCM" },
+                new ReadNewBookingDTO{ FullName = "6", AddrFrom = "415 Nguyễn Trãi phường 7 quận 5 TP.HCM", 
+                                                AddrTo = "Trường Đại học Khoa học Tự Nhiên TP.HCM" },
             };
             ViewBag.listBooking = listBooking;
-            return View();
+            return View("Index", listBooking);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

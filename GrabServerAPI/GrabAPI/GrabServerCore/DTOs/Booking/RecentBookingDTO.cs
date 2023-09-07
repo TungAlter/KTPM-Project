@@ -14,7 +14,6 @@ namespace GrabServerCore.DTOs.Booking
         public string PhoneNumber { get; set; } = string.Empty;
         public string SrcAddress { get; set; } = string.Empty;
         public string DesAddress { get; set; } = string.Empty;
-
         public DateTime DateBooking { get; set; }
     }
 }

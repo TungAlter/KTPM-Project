@@ -77,23 +77,31 @@
 .btn-area {
     display: flex;
     justify-content: space-between;
-    padding: 2px 5px;
+    padding: 2px 2px;
     margin: 1px 1px 1px 1px;
     background-color: #26bdce;
     border-radius: 5px;
 }   
 
+
+
 .btn1, .btn2, .btn3 {
     display: inline-block;
-    height: 25px;
-    width: 60px;
+    width: 62px;
     text-align: center;
+    text-decoration: none;
     font-weight: bold;
-    margin: 3px;
-    padding: 2px 0px;
-    font-size: 15px;
+    margin: 2px;
+    padding: 4px 1px;
+    font-size: 14px;
     color: lightgray;
     border-radius: 3px;
+    border: 1px solid black;
+}
+
+.disable {
+    background-color: gray !important;
+    color: lightgray !important; 
 }
 
 .btn1 {
@@ -121,4 +129,33 @@
 
 .btn1:hover, .btn2:hover, .btn3:hover {
     color: white;
+}
+
+.modal {
+    background-color: aliceblue;
+    padding: 10px;
+    width: 50ch;
+    height: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    align-self: center;
+    & > * {
+        margin: 0 0 7px 0;
+    }
+}
+.modal-header {
+    height: 8%;
+    background-color: #008997;
+}
+.modal-content {
+    display: block;
+    height: 80%;
+}
+.modal-footer {
+    height: 8%;
+    background-color: #26bdce;
+    display: flex;
+    justify-content:end;
+    align-content: center;
 }
