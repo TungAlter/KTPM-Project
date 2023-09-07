@@ -287,7 +287,7 @@ GO
 CREATE OR ALTER PROCEDURE USP_Get3RecentBooking -- // 
 AS
 BEGIN
-	SELECT TOP 3  c.FullName,c.Email,c.PhoneNumber,b.SrcAddress,b.DesAddress , b.DateBooking
+	SELECT TOP 3 b.IdBooking Id,c.FullName,c.Email,c.PhoneNumber,b.SrcAddress,b.DesAddress , b.DateBooking
 	FROM BOOKING b join CUSTOMER c on b.IdCustomer = c.AccountId
 	WHERE b.StatusBooking = 'COMPLETED'
 	ORDER BY DateBooking ASC;
@@ -295,10 +295,11 @@ END
 GO
 
 -- Lấy các cuốc mới tạo
+EXEC USP_GetNewBooking
 CREATE OR ALTER PROCEDURE USP_GetNewBooking -- // 
 AS
 BEGIN
-	SELECT c.FullName,c.Email,c.PhoneNumber,b.SrcAddress,b.DesAddress , b.DateBooking
+	SELECT b.IdBooking Id,c.FullName,c.Email,c.PhoneNumber,b.SrcAddress,b.DesAddress , b.DateBooking
 	FROM BOOKING b join CUSTOMER c on b.IdCustomer = c.AccountId
 	WHERE b.StatusBooking = 'WAITING';
 END
@@ -307,7 +308,7 @@ GO
 CREATE OR ALTER PROCEDURE USP_GetReceivedBooking -- // 
 AS
 BEGIN
-	SELECT c.FullName CustomerName,c.PhoneNumber Phone,d.FullName DriverName,b.SrcAddress,b.DesAddress , b.SrcLong, b.SrcLat, b.DesLong, b.DesLat, b.Distance, b.Total
+	SELECT b.IdBooking Id,c.FullName CustomerName,c.PhoneNumber Phone,d.FullName DriverName,b.SrcAddress,b.DesAddress , b.SrcLong, b.SrcLat, b.DesLong, b.DesLat, b.Distance, b.Total
 	FROM BOOKING b join CUSTOMER c on b.IdCustomer = c.AccountId join DRIVER d on d.AccountId = b.IdDriver
 	WHERE b.StatusBooking = 'RECEIVED';
 END
