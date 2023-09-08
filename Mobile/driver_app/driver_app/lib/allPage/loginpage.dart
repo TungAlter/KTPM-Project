@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'mainpage.dart'; // Import màn hình MainPage
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,10 +13,11 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Future<void> loginUser(String username, String password) async {
     const String apiUrl =
-        'https://aa90-113-185-76-248.ngrok-free.app/api/Auth/login';
+        'https://16e9-2001-ee0-4fc8-7ac0-894f-c0fd-15fa-64a7.ngrok-free.app/api/Auth/login';
 
     final Map<String, dynamic> postData = {
       'username': username,
@@ -34,19 +36,42 @@ class _LoginPageState extends State<LoginPage> {
       // Xử lý kết quả đăng nhập thành công
       print('Đăng nhập thành công');
       print(response.body);
-      // Thực hiện các thao tác sau khi đăng nhập thành công
+
+      // Hiển thị thông báo đăng nhập thành công nếu Scaffold không phải là null
+      _showSnackBar('Đăng nhập thành công');
+
+      // Điều hướng sang màn hình MainPage
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MainPage(),
+        ),
+      );
     } else {
       // Xử lý lỗi đăng nhập
       print('Đăng nhập thất bại');
       print(response.statusCode);
       print(response.body);
-      // Hiển thị thông báo lỗi cho người dùng hoặc thực hiện các xử lý khác dựa trên lỗi.
+
+      // Hiển thị thông báo lỗi cho người dùng nếu Scaffold không phải là null
+      _showSnackBar('Đăng nhập thất bại');
     }
+  }
+
+// Hàm hiển thị SnackBar
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: const Duration(seconds: 3),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey, // Đặt key cho Scaffold
       appBar: AppBar(
         title: const Text('Đăng nhập'),
       ),
