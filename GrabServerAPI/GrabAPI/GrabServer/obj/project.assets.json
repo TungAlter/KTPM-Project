@@ -557,7 +557,7 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Analyzers/7.0.9": {
+      "Microsoft.EntityFrameworkCore.Analyzers/7.0.10": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/_._": {}
@@ -1646,6 +1646,9 @@
       "GrabServerCore/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.10"
+        },
         "compile": {
           "bin/placeholder/GrabServerCore.dll": {}
         },
@@ -1660,6 +1663,7 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "GrabServerCore": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.9",
+          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.10",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.9"
         },
         "compile": {
@@ -2204,17 +2208,17 @@
         "microsoft.entityframeworkcore.abstractions.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Analyzers/7.0.9": {
-      "sha512": "VvqFD3DdML6LhPCAR/lG2xNX66juylC8v57yUAAYnUSdEUOMRi3lNoT4OrNdG0rere3UOQPhvVl5FH2QdyoF8Q==",
+    "Microsoft.EntityFrameworkCore.Analyzers/7.0.10": {
+      "sha512": "+8NVNpyJTzW6nNh/7RGfldf+mbeboVcn+X1tD8kMBCEJswuy3RqM/qecEEfOfTcWLliZExPMaHwOwtHO6RMpdA==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.analyzers/7.0.9",
+      "path": "microsoft.entityframeworkcore.analyzers/7.0.10",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll",
         "lib/netstandard2.0/_._",
-        "microsoft.entityframeworkcore.analyzers.7.0.9.nupkg.sha512",
+        "microsoft.entityframeworkcore.analyzers.7.0.10.nupkg.sha512",
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
     },
@@ -4605,25 +4609,26 @@
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.9",
       "Microsoft.AspNetCore.Cors >= 2.2.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.5",
+      "Microsoft.EntityFrameworkCore.Analyzers >= 7.0.10",
       "Newtonsoft.Json >= 13.0.3",
       "Swashbuckle.AspNetCore >= 6.4.0",
       "Swashbuckle.AspNetCore.Filters >= 7.0.6"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\duyl8\\.nuget\\packages\\": {}
+    "C:\\Users\\admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Git Code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServer\\GrabServer.csproj",
+      "projectUniqueName": "C:\\Users\\admin\\Documents\\GitHub\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServer\\GrabServer.csproj",
       "projectName": "GrabServer",
-      "projectPath": "E:\\Git Code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServer\\GrabServer.csproj",
-      "packagesPath": "C:\\Users\\duyl8\\.nuget\\packages\\",
-      "outputPath": "E:\\Git Code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServer\\obj\\",
+      "projectPath": "C:\\Users\\admin\\Documents\\GitHub\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServer\\GrabServer.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\admin\\Documents\\GitHub\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\duyl8\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4637,8 +4642,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "E:\\Git Code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj": {
-              "projectPath": "E:\\Git Code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj"
+            "C:\\Users\\admin\\Documents\\GitHub\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj": {
+              "projectPath": "C:\\Users\\admin\\Documents\\GitHub\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj"
             }
           }
         }
@@ -4672,6 +4677,10 @@
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[7.0.5, )"
+          },
+          "Microsoft.EntityFrameworkCore.Analyzers": {
+            "target": "Package",
+            "version": "[7.0.10, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",
