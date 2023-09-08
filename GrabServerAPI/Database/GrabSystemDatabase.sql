@@ -44,7 +44,6 @@ CREATE TABLE DRIVER (
 	DateBirth DATE,
 	Gender NVARCHAR(10),
 	Avatar VARCHAR(500),
-	LicenseDate DATE,
 	Rating FLOAT,
 	WorkStatus VARCHAR(20) CHECK(WorkStatus IN ('WAITING','WORKING', 'INACTIVE'))
 
