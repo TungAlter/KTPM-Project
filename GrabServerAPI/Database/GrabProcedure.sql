@@ -295,7 +295,7 @@ END
 GO
 
 -- Lấy các cuốc mới tạo
-EXEC USP_GetNewBooking
+--EXEC USP_GetNewBooking
 CREATE OR ALTER PROCEDURE USP_GetNewBooking -- // 
 AS
 BEGIN

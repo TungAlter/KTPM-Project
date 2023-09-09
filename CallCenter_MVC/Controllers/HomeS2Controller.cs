@@ -3,32 +3,60 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net;
+using System.Net.Http;
+using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CallCenter_MVC.Models;
-using GrabServerCore.DTOs.Booking;
+using CallCenter_MVC.DTOs;
+
 namespace CallCenter_MVC.Controllers
-{
+{   
     public class HomeS2Controller : Controller
     {
-        public IActionResult Index()
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly string _apiUrl = "http://localhost:5236/api/Booking/new";
+
+        public HomeS2Controller(IHttpClientFactory httpClientFactory)
         {
-            var listBooking = new List<ReadNewBookingDTO>{
-                new ReadNewBookingDTO{ FullName = "1", AddrFrom = "Trường Đại học Khoa học Tự Nhiên, TP.HCM", 
-                                                AddrTo = "216/9 đường Dương Bá Trạc, phường 2, quận 8, TP.HCM" },
-                new ReadNewBookingDTO{ FullName = "2", AddrFrom = "46A Đinh Công Tráng, phường Tân Định, quận 1, TP.HCM", 
-                                                AddrTo = "216/9 đường Dương Bá Trạc, phường 2, quận 8, TP.HCM" },
-                new ReadNewBookingDTO{ FullName = "3", AddrFrom = "53 Cao Thắng quận 3 TP.HCM", 
-                                                AddrTo = "18 Ký Hòa phường 11 quận 5 TP.HCM" },
-                new ReadNewBookingDTO{ FullName = "4", AddrFrom = "46A Đinh Công Tráng, phường Tân Định, quận 1", 
-                                                AddrTo = "116/11 Phan Đăng Lưu, quận Phú Nhuận, TP.HCM" },
-                new ReadNewBookingDTO{ FullName = "5", AddrFrom = "415 Nguyễn Trãi, phường 7, quận 5, TP.HCM", 
-                                                AddrTo = "Trường Đại học Khoa học Tự Nhiên, TP.HCM" },
-                new ReadNewBookingDTO{ FullName = "6", AddrFrom = "415 Nguyễn Trãi phường 7 quận 5 TP.HCM", 
-                                                AddrTo = "Trường Đại học Khoa học Tự Nhiên TP.HCM" },
-            };
-            ViewBag.listBooking = listBooking;
-            return View("Index", listBooking);
+            _httpClientFactory = httpClientFactory;
+        }
+        
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            try {        
+                
+                    var httpClient = _httpClientFactory.CreateClient();
+                    var response = await httpClient.GetAsync(_apiUrl);
+                    Console.WriteLine($"State Code: {response.StatusCode}");
+                    if (response.StatusCode == HttpStatusCode.OK) {
+                        var content = await response.Content.ReadAsStringAsync();
+
+                        var newBooking = JsonConvert.DeserializeObject<IEnumerable<NewBookingDTO>>(content);  
+                    
+                        var listBooking = new List<BookingModel>();
+                        foreach (var data in newBooking) {
+                            Console.WriteLine($"{data.Id}, {data.Distance}");
+                            var item = new BookingModel {};
+                            if (data.Distance == 0){
+                                item.IdBooking = data.Id;
+                                item.Customer = data.FullName;
+                                item.SrcAddress = data.AddrFrom;
+                                item.DesAddress = data.AddrTo;
+                                listBooking.Add(item);
+                            }    
+                        }
+                        return View("Index", listBooking);
+
+                    } else {
+                        return View("Error");
+                    }
+                await Task.Delay(10000); 
+            } catch (Exception e) {
+                return View("Error");
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

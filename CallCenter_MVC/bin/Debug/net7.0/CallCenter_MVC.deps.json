@@ -3074,6 +3074,9 @@
         }
       },
       "GrabServerCore/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.10"
+        },
         "runtime": {
           "GrabServerCore.dll": {}
         },
@@ -3086,6 +3089,7 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "GrabServerCore": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.10",
+          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.10",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.10"
         },
         "runtime": {

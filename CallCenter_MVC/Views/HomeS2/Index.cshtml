@@ -1,4 +1,6 @@
-﻿@{
+﻿@using CallCenter_MVC.Models
+@model IEnumerable<BookingModel>
+@{
     ViewData["Title"] = "HomeS2 Page";
 }
 
@@ -27,63 +29,35 @@
                 <option value="leaflet">Leaflet</option>
             </select>
         </div>
-        @* @foreach (var booking in ViewBag.listBooking) {
-            <div class="unapproved-card" id="card-@booking.IdCustomer">
-                <div class="card-content" id="card-content" onclick="getRoute('@booking.SrcAddress', '@booking.DesAddress', '@booking.IdCustomer')">
-                    <div><span class="card-title">STT: </span>@booking.IdCustomer</div>
-                    <input type="hidden" id="id-@booking.IdCustomer" value="@booking.IdCustomer">
+        @foreach (var booking in Model) {
+            <div class="unapproved-card" id="card-@booking.IdBooking">
+                <div class="card-content" id="card-content" onclick="getRoute('@booking.IdBooking', '@booking.SrcAddress', '@booking.DesAddress')">
+                    <div><span class="card-title">STT: </span>@booking.IdBooking</div>
+                    <input type="hidden" id="id-@booking.IdBooking" value="@booking.IdBooking">
 
-                    <div><span class="card-title" type="hidden">Khách: </span>@booking.NameCustomer</div>
-                    <input type="hidden" id="name-@booking.IdCustomer" value='@booking.NameCustomer'>
+                    <div><span class="card-title" type="hidden">Khách: </span>@booking.Customer</div>
+                    <input type="hidden" id="name-@booking.IdBooking" value='@booking.Customer'>
 
                     <div><span class="card-title">Địa điểm đi: </span>@booking.SrcAddress</div>
-                    <input type="hidden" id="srcaddress-@booking.IdCustomer" value="@booking.SrcAddress">
-                    <input type="hidden" id="srclong-@booking.IdCustomer" value="@booking.SrcLong">
-                    <input type="hidden" id="srclat-@booking.IdCustomer" value="@booking.SrcLat">
+                    <input type="hidden" id="srcaddress-@booking.IdBooking" value="@booking.SrcAddress">
+                    <input type="hidden" id="srclong-@booking.IdBooking" value="@booking.SrcLong">
+                    <input type="hidden" id="srclat-@booking.IdBooking" value="@booking.SrcLat">
 
                     <div><span class="card-title">Địa điểm đến: </span>@booking.DesAddress</div>
-                    <input type="hidden" id="desaddress-@booking.IdCustomer" value="@booking.DesAddress">
-                    <input type="hidden" id="deslong-@booking.IdCustomer" value="@booking.DesLong">
-                    <input type="hidden" id="deslat-@booking.IdCustomer" value="@booking.DesLat">
+                    <input type="hidden" id="desaddress-@booking.IdBooking" value="@booking.DesAddress">
+                    <input type="hidden" id="deslong-@booking.IdBooking" value="@booking.DesLong">
+                    <input type="hidden" id="deslat-@booking.IdBooking" value="@booking.DesLat">
 
-                    <input type="hidden" id="distance-@booking.IdCustomer" value="@booking.Distance">
+                    <input type="hidden" id="distance-@booking.IdBooking" value="@booking.Distance">
                 </div>
                 <div class="btn-area">
-                    <span class="btn1 disable" id="detail-@booking.IdCustomer" onclick="showModalDialog('@booking.IdCustomer', '@booking.NameCustomer', '@booking.SrcAddress', '@booking.DesAddress')">Detail</span>
-                    <span class="btn2 disable" id="send-@booking.IdCustomer">Send</span>
-                    <span class="btn3">Discard</span>
+                    <span class="btn1 disable" id="detail-@booking.IdBooking" onclick="showModalDialog('@booking.IdBooking', '@booking.SrcAddress', '@booking.DesAddress')">Detail</span>
+                    <span class="btn2 disable" id="send-@booking.IdBooking" onclick="sendBooking('@booking.IdBooking')">Send</span>
+                    <span class="btn3" onclick="deleteBooking('@booking.IdBooking')">Discard</span>
                 </div>
             </div>
-        } *@
+        }
         
-        @foreach (var booking in ViewBag.listBooking) {
-            <div class="unapproved-card" id="card-@booking.FullName">
-                <div class="card-content" id="card-content" onclick="getRoute('@booking.AddrFrom', '@booking.AddrTo', '@booking.FullName')">
-                    <div><span class="card-title">STT: </span>@booking.FullName</div>
-                    <input type="hidden" id="id-@booking.FullName" value="@booking.FullName">
-
-                    <div><span class="card-title" type="hidden">Khách: </span>@booking.FullName</div>
-                    <input type="hidden" id="name-@booking.FullName" value='@booking.FullName'>
-
-                    <div><span class="card-title">Địa điểm đi: </span>@booking.AddrFrom</div>
-                    <input type="hidden" id="srcaddress-@booking.FullName" value="@booking.AddrFrom">
-                    <input type="hidden" id="srclong-@booking.FullName" value="@booking.SrcLong">
-                    <input type="hidden" id="srclat-@booking.FullName" value="@booking.SrcLat">
-
-                    <div><span class="card-title">Địa điểm đến: </span>@booking.AddrTo</div>
-                    <input type="hidden" id="desaddress-@booking.FullName" value="@booking.AddrTo">
-                    <input type="hidden" id="deslong-@booking.FullName" value="@booking.DesLong">
-                    <input type="hidden" id="deslat-@booking.FullName" value="@booking.DesLat">
-
-                    <input type="hidden" id="distance-@booking.FullName" value="@booking.Distance">
-                </div>
-                <div class="btn-area">
-                    <span class="btn1 disable" id="detail-@booking.FullName" onclick="showModalDialog('@booking.FullName', '@booking.AddrFrom', '@booking.AddrTo')">Detail</span>
-                    <span class="btn2 disable" id="send-@booking.FullName">Send</span>
-                    <span class="btn3">Discard</span>
-                </div>
-            </div>
-        } 
     </div> 
 </div>
 
@@ -92,7 +66,7 @@
         Thông tin chi tiết
     </div>
     <div class="modal-content" id="modal-content">  
-        <p>ID: <span id="modal-customerId"></span></p>
+        <p>ID: <span id="modal-bookingId"></span></p>
         <p>Customer Name: <span id="modal-customerName"></span></p>
         <p>Start Address: <span id="modal-startAddress"></span></p>
         <p>Start Latitude: <span id="modal-startLat"></span></p>
