@@ -58,10 +58,6 @@ namespace GrabServer.Controllers
         {
             var result = _bookingService.GetNewBookingAsync();
             var booking_list = new List<ReadNewBookingDTO>();
-            //if (result == null)
-            //{
-            //    return Ok(new ResponseMessageDetails<List<ReadNewBookingDTO>>("Not have any Booking", GrabServerCore.Common.Enum.ResponseStatusCode.NoContent));
-            //}
             foreach (var item in result)
             {
                 var p = new ReadNewBookingDTO ();
@@ -93,12 +89,17 @@ namespace GrabServer.Controllers
         }
 
         [HttpPost, Authorize(Roles = GlobalConstant.User)]
-        public async Task<ActionResult<ResponseMessageDetails<int>>> AddBooking(AddBookingDTO addBookingDTO)
+        public async Task<ActionResult<ResponseMessageDetails<int>>> AddBooking(AddBookingDTO obj)
         {
             //Account currentAcc = await _accountService.GetByUsername(User.Identity.Name);
             //addBookingDTO.IdCustomer = currentAcc.Id;
-
-            var result = await _bookingService.AddBooking(addBookingDTO);
+            if (obj.Phone == null || obj.addrFrom.address == null || obj.addrFrom.ward == null || obj.addrFrom.district == null
+                || obj.addrFrom.province == null || obj.addrTo.address == null || obj.addrTo.ward == null || obj.addrTo.district == null
+                || obj.addrTo.province == null || obj.Email == null)
+            {
+                return BadRequest("Invalid Input.");
+            }
+            var result = await _bookingService.AddBooking(obj);
 
             if (result == 0)
                 return BadRequest("Cannot add booking.");
@@ -108,7 +109,7 @@ namespace GrabServer.Controllers
         [HttpPut("location")]
         public async Task<ActionResult<ResponseMessageDetails<int>>> UpdateLocationBooking(int id, float srcLong, float srcLat, float desLong, float desLat, float Distance)
         {
-            if(id == 0 || srcLong == float.NaN || srcLat == float.NaN)
+            if(id == 0 || srcLong == float.NaN || srcLat == float.NaN || desLong == float.NaN || desLat == float.NaN || Distance <= 0)
             {
                 return BadRequest("Not Valid Input");
             }
@@ -127,16 +128,35 @@ namespace GrabServer.Controllers
 
             return Ok(new ResponseMessageDetails<int>("Find Driver Success", result));
         }
-        //[HttpGet("Find-Driver")]
-        ////, Authorize(Roles = GlobalConstant.User) 
-        //public async Task<ActionResult<ResponseMessageDetails<int>>> FindDriver(double Longi, double Lati)
-        //{
-        //    var result = await _bookingService.FindDriverBooking(Longi, Lati);
+        [HttpPut("Completed")]
+        public async Task<ActionResult<ResponseMessageDetails<int>>> CompletedBooking(int IdBooking)
+        {
+            var result = await _bookingService.CompletedBooking(IdBooking);
+            if (result == -1)
+                return BadRequest("Cannot Completed this booking.");
 
-        //    if (result == 0)
-        //        return BadRequest("Cannot add booking.");
-        //    return Ok(new ResponseMessageDetails<int>("Add booking successfully", result));
-        //}
+            return Ok(new ResponseMessageDetails<int>("Completed Success", result));
+        }
+        [HttpPut("CaculateTotal")]
+        public async Task<ActionResult<ResponseMessageDetails<int>>> CaculatingTotalBooking(int IdBooking)
+        {
+            int weather = 1;
+            bool Peak = true;
+            var result = await _bookingService.CaculatingTotalBooking(IdBooking,weather,Peak);
+            if (result == -1)
+                return BadRequest("Cannot Caculating total.");
 
+            return Ok(new ResponseMessageDetails<int>("Total:", result));
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult<ResponseMessageDetails<int>>> DeleteBooking(int IdBooking)
+        {
+            var result = await _bookingService.DeleteBooking(IdBooking);
+            if (result == -1)
+                return BadRequest("Cannot Delete this booking.");
+
+            return Ok(new ResponseMessageDetails<int>("Delete Success !", result));
+        }
     }
 }
