@@ -1,4 +1,5 @@
-﻿using GrabServerCore.DTOs.Booking;
+﻿using Azure.Core;
+using GrabServerCore.DTOs.Booking;
 using GrabServerCore.Models;
 using Microsoft.Identity.Client;
 
@@ -50,6 +51,12 @@ namespace GrabServer.Services.BookingService
             await _unitOfWork.SaveChangesAsync();
             return result;
         }
+        public async Task<int> CompletedBooking(int Id)
+        {
+            var result = await _unitOfWork.BookingRepo.UpdateCompletedBooking(Id);
+            await _unitOfWork.SaveChangesAsync();
+            return result;
+        }
         public async Task<int> UpdateLocationAsync(int id, float srcLong, float srcLat, float desLong, float desLat, float Distance)
         {
             var result = await _unitOfWork.BookingRepo.UpdateLocationBookingAsync(id, srcLong, srcLat, desLong, desLat, Distance);
@@ -69,12 +76,19 @@ namespace GrabServer.Services.BookingService
 
             return result;
         }
-
-        public async Task<int> ConfirmBooking(int accountId, int totalPay)
+        public async Task<int> CaculatingTotalBooking(int bookingId, int WeatherInfo, bool isPeak)
         {
-            var result = await _unitOfWork.BookingRepo.ConfirmBookingAsync(accountId, totalPay);
+            var result = await _unitOfWork.BookingRepo.CaculatingTotalBooking(bookingId,WeatherInfo,isPeak);
+            await _unitOfWork.SaveChangesAsync();
+
             return result;
         }
+
+        //public async Task<int> ConfirmBooking(int accountId, int totalPay)
+        //{
+        //    var result = await _unitOfWork.BookingRepo.ConfirmBookingAsync(accountId, totalPay);
+        //    return result;
+        //}
 
         //public async Task<int> FindDriverBooking(double Longi, double Lati)
         //{

@@ -37,14 +37,13 @@ CREATE TABLE CUSTOMER (
 
 CREATE TABLE DRIVER (
 	AccountId INT,
-	DriverRank INT,
+	DriverRank VARCHAR(10),
 	FullName NVARCHAR(100),
 	Email VARCHAR(100),
 	PhoneNumber VARCHAR(50),
 	DateBirth DATE,
 	Gender NVARCHAR(10),
 	Avatar VARCHAR(500),
-	LicenseDate DATE,
 	Rating FLOAT,
 	WorkStatus VARCHAR(20) CHECK(WorkStatus IN ('WAITING','WORKING', 'INACTIVE'))
 

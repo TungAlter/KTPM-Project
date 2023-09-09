@@ -314,6 +314,51 @@ END
 GO
 
 -- UPDATE
+-- Update tính tiền
+CREATE OR ALTER PROCEDURE USP_CaculatingTotal
+	@BookingId INTEGER,
+	@WeatherInfo INTEGER,
+	@isPeak BIT
+
+AS
+BEGIN
+    BEGIN TRY
+		IF NOT EXISTS(SELECT* FROM BOOKING WHERE IdBooking = @BookingId and StatusBooking='RECEIVED')
+		BEGIN
+			RETURN -1
+		END
+		Declare @total INT
+		Declare @distance FLOAT
+		select @distance = b.Distance FROM BOOKING b WHERE b.IdBooking = @BookingId 
+		IF(@WeatherInfo = 1) -- trời mát
+		BEGIN
+			SET @total = @distance * 5000
+		END
+		ELSE IF(@WeatherInfo = 2) -- trời nắng
+		BEGIN
+			SET @total = @distance * 5400
+		END
+		ELSE IF(@WeatherInfo = 3) -- trời mưa
+		BEGIN
+			SET @total = @distance * 5800
+		END
+		IF(@isPeak = 1)
+		BEGIN
+			SET @total = @total + 2000
+		END
+        UPDATE BOOKING
+        SET Total = @total WHERE IdBooking = @BookingId;
+    END TRY
+
+    BEGIN CATCH
+		RAISERROR(N'Tính tiền không thành công.', 11, 1);
+        RETURN -1; -- Gán giá trị trả về là -1 (thất bại)
+    END CATCH
+
+    RETURN @total;  -- Gán giá trị trả về là 1 (thành công)
+END
+GO
+
 -- Update vị trí chuyến đi
 CREATE OR ALTER PROCEDURE USP_UpdateLocationBooking
 	@BookingId INTEGER,
@@ -325,6 +370,16 @@ CREATE OR ALTER PROCEDURE USP_UpdateLocationBooking
 AS
 BEGIN
     BEGIN TRY
+		IF NOT EXISTS(SELECT* FROM BOOKING WHERE IdBooking=@BookingId and StatusBooking ='WAITING')
+		BEGIN
+			RETURN -1
+		END
+		Declare @d FLOAT
+		select @d = Distance FROM BOOKING WHERE IdBooking=@BookingId
+		IF(@d != 0)
+		BEGIN
+			RETURN -1
+		END
         UPDATE BOOKING
         SET SrcLong=@srcLong, SrcLat=@srcLat, DesLong=@desLong, DesLat=@desLat,Distance=@Distance
 		WHERE IdBooking = @BookingId;
@@ -346,12 +401,18 @@ AS
 BEGIN
     BEGIN TRY
 		Declare @IdDriver INT
-		IF NOT EXISTS(select TOP 1 d.AccountId FROM DRIVER d where d.WorkStatus='WAITING')
+		IF NOT EXISTS(select TOP 1 d.AccountId FROM DRIVER d where d.WorkStatus='WAITING') 
 		BEGIN
 		RETURN -1;
 		END
 		ELSE
 		BEGIN
+			Declare @d FLOAT
+			select @d = Distance FROM BOOKING WHERE IdBooking=@BookingId
+			IF(@d = 0)
+			BEGIN
+				RETURN -1
+			END
 			select TOP 1 @IdDriver = d.AccountId FROM DRIVER d where d.WorkStatus='WAITING'
 			UPDATE DRIVER SET WorkStatus = 'WORKING' WHERE AccountId = @IdDriver;
 		    UPDATE BOOKING
@@ -368,7 +429,6 @@ BEGIN
     RETURN 0;  -- Gán giá trị trả về là 1 (thành công)
 END
 GO
-
 -- Lấy Id Tài xế của BOOKING
 CREATE OR ALTER FUNCTION USF_GetIdDriverBooking(@BookingId INT)
 RETURNS INT

@@ -11,6 +11,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using AutoMapper;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
 namespace GrabServerData.Repositories
 {
     public class BookingRepo : RepositoryBase<Booking>, IBookingRepo
@@ -129,20 +132,38 @@ namespace GrabServerData.Repositories
 
         public async Task<int> DeleteBookingAsync(int deleteBooking)
         {
-            //var builder = new StringBuilder("EXECUTE dbo.USP_DeleteBooking ");
-            //builder.Append($"@BookingId = \'{deleteBooking}\';");
+            var builder = new StringBuilder("EXECUTE dbo.USP_DeleteBooking ");
+            builder.Append($"@BookingId = \'{deleteBooking}\' ");
 
-            //Console.WriteLine(builder.ToString());
-            //return await _dataContext.Database.ExecuteSqlInterpolatedAsync($"EXECUTE sp_executesql {builder.ToString()}");
-            return 0;
+            Console.WriteLine(builder.ToString());
+            var result = await _dataContext.Database.ExecuteSqlInterpolatedAsync($"EXECUTE sp_executesql {builder.ToString()}");
+            return result;
         }
 
-        public async Task<int> ConfirmBookingAsync(int accountId, int total)
+        public async Task<int> UpdateCompletedBooking(int bookingId)
         {
+            var builder = new StringBuilder(@"EXEC dbo.USP_UpdateCompleteBooking ");
+            builder.Append($"@BookingId = \'{bookingId}\' ");
+            Console.WriteLine(builder.ToString());
+            var result = await _dataContext.Database.ExecuteSqlInterpolatedAsync($"EXECUTE({builder.ToString()})");
+            return result;
             //string str = $"EXEC USP_ConfirmBooking @AccountId={accountId}, @Total={total};";
             //return await _dataContext.Database.ExecuteSqlInterpolatedAsync($"EXECUTE({str})");
-            return 0;
         }
-
+        public async Task<int> CaculatingTotalBooking(int bookingId, int WeatherInfo, bool isPeak)
+        {
+            int Peak = 0;
+            if(isPeak == true)
+            {
+                Peak = 1;
+            }
+            var builder = new StringBuilder(@"EXEC dbo.USP_CaculatingTotal ");
+            builder.Append($"@BookingId = \'{bookingId}\', ");
+            builder.Append($"@srcLong = \'{WeatherInfo}\', ");
+            builder.Append($"@srcLat = \'{Peak}\' ");
+            Console.WriteLine(builder.ToString());
+            var result = await _dataContext.Database.ExecuteSqlInterpolatedAsync($"EXECUTE({builder.ToString()})");
+            return result;
+        }
     }
 }
