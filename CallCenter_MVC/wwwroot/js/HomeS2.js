@@ -212,12 +212,7 @@ function longPolling() {
                 if (response.status === 200) {
                     // New data is available, handle it here
                     console.log("New data received");
-                    response.json().then(function (newData) {
-                        console.log("New data received", newData);
-
-                        // Gọi updateListBooking với dữ liệu mới
-                        updateListBooking(newData);
-                    });
+                    
                     // Perform any necessary actions to update the UI or fetch data.
                 }
                 // After handling the response, initiate Long-Polling again.
@@ -241,56 +236,6 @@ window.onload = function() {
     longPolling();
 }
 
-function updateListBooking(newData) {
-    // newData là dữ liệu mới nhận được từ long-polling
-    // Cập nhật danh sách listBooking bằng cách thêm newData vào nó
-    listBooking.push(newData);
-    // Sau khi cập nhật danh sách, gọi hàm cập nhật giao diện
-    updateUI();
-}
-
-function updateUI() {
-    // Xóa toàn bộ nội dung cũ của cột hiện các item
-    var listColumn = document.querySelector('.list-col');
-    listColumn.innerHTML = '';
-
-    // Duyệt qua danh sách listBooking và tạo phần tử HTML cho mỗi item
-    listBooking.forEach(function (item) {
-        var card = document.createElement('div');
-        card.className = 'unapproved-card';
-        card.innerHTML = `
-            <div class="unapproved-card" id="card-@booking.IdBooking">
-                <div class="card-content" id="card-content" onclick="getRoute('@booking.IdBooking', '@booking.SrcAddress', '@booking.DesAddress')">
-                    <div><span class="card-title">STT: </span>@booking.IdBooking</div>
-                    <input type="hidden" id="id-@booking.IdBooking" value="@booking.IdBooking">
-
-                    <div><span class="card-title" type="hidden">Khách: </span>@booking.Customer</div>
-                    <input type="hidden" id="name-@booking.IdBooking" value='@booking.Customer'>
-
-                    <div><span class="card-title">Địa điểm đi: </span>@booking.SrcAddress</div>
-                    <input type="hidden" id="srcaddress-@booking.IdBooking" value="@booking.SrcAddress">
-                    <input type="hidden" id="srclong-@booking.IdBooking" value="@booking.SrcLong">
-                    <input type="hidden" id="srclat-@booking.IdBooking" value="@booking.SrcLat">
-
-                    <div><span class="card-title">Địa điểm đến: </span>@booking.DesAddress</div>
-                    <input type="hidden" id="desaddress-@booking.IdBooking" value="@booking.DesAddress">
-                    <input type="hidden" id="deslong-@booking.IdBooking" value="@booking.DesLong">
-                    <input type="hidden" id="deslat-@booking.IdBooking" value="@booking.DesLat">
-
-                    <input type="hidden" id="distance-@booking.IdBooking" value="@booking.Distance">
-                </div>
-                <div class="btn-area">
-                    <span class="btn1 disable" id="detail-@booking.IdBooking" onclick="showModalDialog('@booking.IdBooking', '@booking.SrcAddress', '@booking.DesAddress')">Detail</span>
-                    <span class="btn2 disable" id="send-@booking.IdBooking" onclick="sendBooking('@booking.IdBooking')">Send</span>
-                    <span class="btn3" onclick="deleteBooking('@booking.IdBooking')">Discard</span>
-                </div>
-            </div>
-        `;
-
-        // Thêm card vào cột hiện các item
-        listColumn.appendChild(card);
-    });
-}
 
 
 

@@ -27,7 +27,6 @@ namespace CallCenter_MVC.Controllers
         public async Task<IActionResult> Index()
         {
             try {        
-                
                     var httpClient = _httpClientFactory.CreateClient();
                     var response = await httpClient.GetAsync(_apiUrl);
                     Console.WriteLine($"State Code: {response.StatusCode}");
