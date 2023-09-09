@@ -11315,24 +11315,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DELL\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter_MVC\\CallCenter_MVC.csproj",
+      "projectUniqueName": "D:\\Đồ án kiến trúc phần mềm - KTPM\\Project 9-9\\KTPM-Project\\CallCenter_MVC\\CallCenter_MVC.csproj",
       "projectName": "CallCenter_MVC",
-      "projectPath": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter_MVC\\CallCenter_MVC.csproj",
-      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\CallCenter_MVC\\obj\\",
+      "projectPath": "D:\\Đồ án kiến trúc phần mềm - KTPM\\Project 9-9\\KTPM-Project\\CallCenter_MVC\\CallCenter_MVC.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "D:\\Đồ án kiến trúc phần mềm - KTPM\\Project 9-9\\KTPM-Project\\CallCenter_MVC\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11340,18 +11335,17 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj": {
-              "projectPath": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj"
+            "D:\\Đồ án kiến trúc phần mềm - KTPM\\Project 9-9\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj": {
+              "projectPath": "D:\\Đồ án kiến trúc phần mềm - KTPM\\Project 9-9\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj"
             },
-            "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj": {
-              "projectPath": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj"
+            "D:\\Đồ án kiến trúc phần mềm - KTPM\\Project 9-9\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj": {
+              "projectPath": "D:\\Đồ án kiến trúc phần mềm - KTPM\\Project 9-9\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj"
             }
           }
         }
