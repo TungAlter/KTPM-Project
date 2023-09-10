@@ -295,7 +295,7 @@ END
 GO
 
 -- Lấy các cuốc mới tạo
---EXEC USP_GetNewBooking
+-- EXEC USP_GetNewBooking
 CREATE OR ALTER PROCEDURE USP_GetNewBooking -- // 
 AS
 BEGIN
@@ -330,22 +330,21 @@ BEGIN
 		END
 		Declare @total INT
 		Declare @distance FLOAT
-		select @distance = b.Distance FROM BOOKING b WHERE b.IdBooking = @BookingId 
-		IF(@WeatherInfo = 1) -- trời mát
+		Declare @date DATETIME
+		Declare @hour INT
+		select @distance = b.Distance, @date=b.DateBooking FROM BOOKING b WHERE b.IdBooking = @BookingId 
+		SET @hour = DATEPART(HOUR, @date)
+		IF(@hour>=16 and @hour<=19) -- thời tiết bình thường
 		BEGIN
-			SET @total = @distance * 5000
+			SET @total = @distance * 5000 * 1.2;
 		END
-		ELSE IF(@WeatherInfo = 2) -- trời nắng
+		ELSE IF(@hour>=17 and @hour<=19 and @WeatherInfo=1) -- thời tiết xấu
 		BEGIN
-			SET @total = @distance * 5400
+			SET @total = @distance * 5000 * 1.5;
 		END
-		ELSE IF(@WeatherInfo = 3) -- trời mưa
+		ELSE
 		BEGIN
-			SET @total = @distance * 5800
-		END
-		IF(@isPeak = 1)
-		BEGIN
-			SET @total = @total + 2000
+			SET @total = @distance * 5000;
 		END
         UPDATE BOOKING
         SET Total = @total WHERE IdBooking = @BookingId;

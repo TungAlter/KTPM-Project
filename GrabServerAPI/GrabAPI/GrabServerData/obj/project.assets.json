@@ -3537,8 +3537,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj": {
-              "projectPath": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj"
+            "d:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj": {
+              "projectPath": "d:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj"
             }
           }
         }

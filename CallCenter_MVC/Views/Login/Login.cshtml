@@ -1,11 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Login Page";
-}
+@page "/Login/DangKy"
 
 <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
 
-
-@* UI *@
 <div class="imgBackGround">
 	<div id="mainLogin">
 		<div class="container-login right-panel-active">
@@ -123,7 +119,7 @@
                     body: JSON.stringify(userInformation)
                 });
 
-                console.log(response.body);
+                console.log(response);
                 if (response.ok) {
                     alert("Sign up successful");
                     // Perform other actions as needed
@@ -162,16 +158,7 @@
                     },
                     body: JSON.stringify(userInformation),
                 });
-
-                response.json().then(function (result) {
-                    // Trích xuất dữ liệu từ thuộc tính "data"
-                    const responseData = result.data;
-                    localStorage.setItem('AuthToken', JSON.stringify(responseData));
-                    console.log(responseData); // In ra dữ liệu
-                }).catch(function (error) {
-                    // Xử lý lỗi nếu có
-                    console.error(error);
-                });
+                console.log(response);
 
                 if (response.ok) {
                     alert("Sign in successful");
