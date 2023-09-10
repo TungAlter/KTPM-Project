@@ -1,10 +1,21 @@
-﻿USE MASTER
-IF DB_ID('GrabSystemDB') IS NOT NULL
-	DROP DATABASE GrabSystemDB
+﻿USE GrabSystemDB
 GO
-CREATE DATABASE GrabSystemDB
+
+-- drop constraints
+DECLARE @DropConstraints NVARCHAR(max) = '';
+SELECT @DropConstraints += 'ALTER TABLE ' + QUOTENAME(OBJECT_SCHEMA_NAME(parent_object_id)) + '.'
+                        +  QUOTENAME(OBJECT_NAME(parent_object_id)) + ' ' + 'DROP CONSTRAINT' + QUOTENAME(name) + ';' + CHAR(13)
+FROM sys.foreign_keys
+--SET @DropConstraints = SUBSTRING(@DropConstraints, 1 , LEN(@DropConstraints)-1)
+EXECUTE sp_executesql @DropConstraints;
 GO
-USE GrabSystemDB
+
+-- drop tables
+DECLARE @DropTables NVARCHAR(max) = '';
+SELECT @DropTables += 'DROP TABLE ' + QUOTENAME(TABLE_SCHEMA) + '.' + QUOTENAME(TABLE_NAME) + ';' + CHAR(13)
+FROM INFORMATION_SCHEMA.TABLES WHERE QUOTENAME(TABLE_SCHEMA) != '[sys]' AND QUOTENAME(TABLE_CATALOG) != '[master]'
+--SET @DropTables = SUBSTRING(@DropTables, 1 , LEN(@DropTables)-1)
+EXECUTE sp_executesql @DropTables;
 GO
 
 CREATE TABLE ACCOUNT (
