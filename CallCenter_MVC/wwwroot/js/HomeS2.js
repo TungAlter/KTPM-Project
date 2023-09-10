@@ -2,8 +2,6 @@ var map = null;
 var route;
 var startMarker;  
 var endMarker;
-var startAt = "216/9 Dương Bá Trạc, phường 2, quận 8, TP.HCM";
-var endAt = "Trường Đại học Khoa học Tự nhiên TP.HCM";
 var apiUrl = "YOUR_API_HERE"
 
 const headers = {
@@ -126,10 +124,8 @@ function showModalDialog(bookingId, startaddress, endaddress){
         document.getElementById('modal-routeDistance').textContent = routeDistance;
         
         var modal = document.getElementById('myModal');
-        modal.style.display = 'block';
+        modal.style.display = 'block';        
     }
-    // var btnArea = document.querySelector(".btn-area");
-    // var detailBtn = btnArea.querySelector(".btn1");    
 }
 function closeModal() {
     var modal = document.getElementById('myModal');
@@ -169,9 +165,6 @@ async function sendBooking(bookingId) {
         var endLat = document.getElementById(`deslat-${bookingId}`).value;
         var endLon = document.getElementById(`deslong-${bookingId}`).value;
         var routeDistance = document.getElementById(`distance-${bookingId}`).value;
-        console.log(startLat, ", ", startLon);
-        console.log(endLat, ", ", endLon);
-        console.log("Distance", routeDistance);
         updateBooking.Id = bookingId;
         updateBooking.FullName = name;
         updateBooking.SrcLon = startLon;
@@ -233,8 +226,16 @@ window.onload = function() {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-    longPolling();
+    //longPolling();
 }
+
+function sendWithModal(){
+    var modal = document.getElementById('myModal');
+    let idBooking = document.getElementById(`modal-bookingId`).textContent;
+    console.log("id", idBooking);
+    sendBooking(idBooking);
+}
+
 
 
 
