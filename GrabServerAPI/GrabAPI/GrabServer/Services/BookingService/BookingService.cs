@@ -19,6 +19,12 @@ namespace GrabServer.Services.BookingService
             _unitOfWork.SaveChanges();
             return result;
         }
+        public async Task<Booking> GetBookingById(int id)
+        {
+            var result = await _unitOfWork.BookingRepo.GetBookingById(id);
+            _unitOfWork.SaveChangesAsync();
+            return result;
+        }
         public List<RecentBookingDTO> GetNewBookingAsync()
         {
             var result = _unitOfWork.BookingRepo.GetNewBooking();

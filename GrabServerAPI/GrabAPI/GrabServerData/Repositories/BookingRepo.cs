@@ -42,7 +42,16 @@ namespace GrabServerData.Repositories
             
             return result;
         }
-
+        public async Task<Booking> GetBookingById(int id)
+        {
+            var builder = new StringBuilder(@"dbo.USP_GetBookingById ");
+            builder.Append($"@Id = \'{id}\' ");
+            Console.WriteLine(builder.ToString());
+            //Booking b = new Booking();
+            //bookings = _dataContext.Database.SqlQuery<RecentBookingDTO>($"EXECUTE({builder.ToString()})").ToList();
+            var b =  await _dataContext.Bookings.FromSqlInterpolated($"EXECUTE({builder.ToString()})").ToListAsync();
+            return b.FirstOrDefault();
+        }
         public List<RecentBookingDTO> GetRecentBooking()
         {
             var builder = new StringBuilder(@"dbo.USP_Get3RecentBooking");;

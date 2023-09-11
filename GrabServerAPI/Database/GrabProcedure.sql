@@ -282,7 +282,14 @@ BEGIN
 	SELECT * FROM BOOKING WHERE IdCustomer = @AccountId;
 END
 GO
-
+-- Lấy Booking theo Id
+CREATE OR ALTER PROCEDURE USP_GetBookingById -- // 
+	@Id INTEGER
+AS
+BEGIN
+	SELECT * FROM BOOKING WHERE IdBooking = @Id;
+END
+GO
 -- Lấy 3 Cuốc gần nhất
 CREATE OR ALTER PROCEDURE USP_Get3RecentBooking -- // 
 AS
@@ -318,7 +325,7 @@ GO
 CREATE OR ALTER PROCEDURE USP_CaculatingTotal
 	@BookingId INTEGER,
 	@WeatherInfo INTEGER,
-	@isPeak BIT
+	@isPeak INTEGER
 
 AS
 BEGIN
@@ -330,21 +337,14 @@ BEGIN
 		Declare @total INT
 		Declare @distance FLOAT
 		select @distance = b.Distance FROM BOOKING b WHERE b.IdBooking = @BookingId 
-		IF(@WeatherInfo = 1) -- trời mát
+		SET @total = @distance * 5000
+		IF(@WeatherInfo = 0 and @isPeak = 1) -- cao điểm
 		BEGIN
-			SET @total = @distance * 5000
+			SET @total = @total * 1.2
 		END
-		ELSE IF(@WeatherInfo = 2) -- trời nắng
+		ELSE IF(@WeatherInfo = 1 and @isPeak = 1) -- cao điểm + thời tiết xấu
 		BEGIN
-			SET @total = @distance * 5400
-		END
-		ELSE IF(@WeatherInfo = 3) -- trời mưa
-		BEGIN
-			SET @total = @distance * 5800
-		END
-		IF(@isPeak = 1)
-		BEGIN
-			SET @total = @total + 2000
+			SET @total = @total * 1.5
 		END
         UPDATE BOOKING
         SET Total = @total WHERE IdBooking = @BookingId;

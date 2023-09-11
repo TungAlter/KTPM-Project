@@ -7,6 +7,7 @@ namespace GrabServer.Services.BookingService
         Task<List<Booking>> GetAllBookings(int accountId);
         Task<int> AddBooking(AddBookingDTO bookingDto);
         Task<int> UpdateBooking(Booking request);
+        Task<Booking> GetBookingById(int id);
         Task<int> DeleteBooking(int deleteDto);
         //Task<int> ConfirmBooking(int accountId, int totalPay);
         Task<int> FindDriverAsync(int id);

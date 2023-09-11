@@ -34,5 +34,6 @@ namespace GrabServerData
         public DbSet<Driver> Drivers { get; set; }
         public virtual DbSet<RecentBookingDTO> RecentBookings { get; set; }
         public virtual DbSet<ReadReceivedBookingDTO> ReadReceivedBookings { get; set; }
+        //public virtual DbSet<Booking> Booking { get; set; }
     }
 }

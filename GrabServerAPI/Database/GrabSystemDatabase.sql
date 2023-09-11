@@ -74,7 +74,7 @@ CREATE TABLE BOOKING (
 	IdCustomer INT,
 	IdDriver INT,
 	DateBooking DATETIME,
-	StatusBooking VARCHAR(20) CHECK(StatusBooking IN ('WAITING','RECEIVED', 'COMPLETED')),
+	StatusBooking VARCHAR(20) CHECK(StatusBooking IN ('WAITING','RECEIVED','COMPLETING', 'COMPLETED')),
 	SrcLong FLOAT,
 	SrcLat FLOAT,
 	DesLong FLOAT,
