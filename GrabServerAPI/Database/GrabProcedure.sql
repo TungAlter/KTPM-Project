@@ -282,12 +282,19 @@ BEGIN
 	SELECT * FROM BOOKING WHERE IdCustomer = @AccountId;
 END
 GO
-
+-- Lấy Booking theo Id
+CREATE OR ALTER PROCEDURE USP_GetBookingById -- // 
+	@Id INTEGER
+AS
+BEGIN
+	SELECT * FROM BOOKING WHERE IdBooking = @Id;
+END
+GO
 -- Lấy 3 Cuốc gần nhất
 CREATE OR ALTER PROCEDURE USP_Get3RecentBooking -- // 
 AS
 BEGIN
-	SELECT TOP 3 b.IdBooking Id,c.FullName,c.Email,c.PhoneNumber,b.SrcAddress,b.DesAddress , b.DateBooking
+	SELECT TOP 3  c.FullName,c.Email,c.PhoneNumber,b.SrcAddress,b.DesAddress , b.DateBooking
 	FROM BOOKING b join CUSTOMER c on b.IdCustomer = c.AccountId
 	WHERE b.StatusBooking = 'COMPLETED'
 	ORDER BY DateBooking ASC;
@@ -295,11 +302,10 @@ END
 GO
 
 -- Lấy các cuốc mới tạo
--- EXEC USP_GetNewBooking
 CREATE OR ALTER PROCEDURE USP_GetNewBooking -- // 
 AS
 BEGIN
-	SELECT b.IdBooking Id,c.FullName,c.Email,c.PhoneNumber,b.SrcAddress,b.DesAddress , b.DateBooking
+	SELECT c.FullName,c.Email,c.PhoneNumber,b.SrcAddress,b.DesAddress , b.DateBooking
 	FROM BOOKING b join CUSTOMER c on b.IdCustomer = c.AccountId
 	WHERE b.StatusBooking = 'WAITING';
 END
@@ -308,7 +314,7 @@ GO
 CREATE OR ALTER PROCEDURE USP_GetReceivedBooking -- // 
 AS
 BEGIN
-	SELECT b.IdBooking Id,c.FullName CustomerName,c.PhoneNumber Phone,d.FullName DriverName,b.SrcAddress,b.DesAddress , b.SrcLong, b.SrcLat, b.DesLong, b.DesLat, b.Distance, b.Total
+	SELECT c.FullName CustomerName,c.PhoneNumber Phone,d.FullName DriverName,b.SrcAddress,b.DesAddress , b.SrcLong, b.SrcLat, b.DesLong, b.DesLat, b.Distance, b.Total
 	FROM BOOKING b join CUSTOMER c on b.IdCustomer = c.AccountId join DRIVER d on d.AccountId = b.IdDriver
 	WHERE b.StatusBooking = 'RECEIVED';
 END
@@ -319,7 +325,7 @@ GO
 CREATE OR ALTER PROCEDURE USP_CaculatingTotal
 	@BookingId INTEGER,
 	@WeatherInfo INTEGER,
-	@isPeak BIT
+	@isPeak INTEGER
 
 AS
 BEGIN
@@ -330,21 +336,15 @@ BEGIN
 		END
 		Declare @total INT
 		Declare @distance FLOAT
-		Declare @date DATETIME
-		Declare @hour INT
-		select @distance = b.Distance, @date=b.DateBooking FROM BOOKING b WHERE b.IdBooking = @BookingId 
-		SET @hour = DATEPART(HOUR, @date)
-		IF(@hour>=16 and @hour<=19) -- thời tiết bình thường
+		select @distance = b.Distance FROM BOOKING b WHERE b.IdBooking = @BookingId 
+		SET @total = @distance * 5000
+		IF(@WeatherInfo = 0 and @isPeak = 1) -- cao điểm
 		BEGIN
-			SET @total = @distance * 5000 * 1.2;
+			SET @total = @total * 1.2
 		END
-		ELSE IF(@hour>=17 and @hour<=19 and @WeatherInfo=1) -- thời tiết xấu
+		ELSE IF(@WeatherInfo = 1 and @isPeak = 1) -- cao điểm + thời tiết xấu
 		BEGIN
-			SET @total = @distance * 5000 * 1.5;
-		END
-		ELSE
-		BEGIN
-			SET @total = @distance * 5000;
+			SET @total = @total * 1.5
 		END
         UPDATE BOOKING
         SET Total = @total WHERE IdBooking = @BookingId;

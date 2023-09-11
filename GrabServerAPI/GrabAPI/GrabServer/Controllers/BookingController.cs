@@ -1,5 +1,6 @@
 ﻿using GrabServer.Services.AccountService;
 using GrabServer.Services.BookingService;
+using GrabServer.Services.WeatherService;
 using GrabServerCore.Common.Constant;
 using GrabServerCore.DTOs;
 using GrabServerCore.DTOs.Booking;
@@ -16,27 +17,29 @@ namespace GrabServer.Controllers
     {
         IBookingService _bookingService;
         IAccountService _accountService;
-        public BookingController(IBookingService bookingService, IAccountService accountService) {
+        private readonly IWeatherService _weatherService;
+
+        public BookingController(IBookingService bookingService, IAccountService accountService, IWeatherService weatherService) {
             _bookingService = bookingService;
             _accountService = accountService;
+            _weatherService = weatherService;
         }
-        [HttpGet, Authorize(Roles = GlobalConstant.User)]
-        public async Task<ActionResult<ResponseMessageDetails<List<Booking>>>> GetAllUserBookings()
-        {
-            //Account currentAcc = await _accountService.GetByUsername(User.Identity.Name);
-            //var result = await _bookingService.GetAllBookings(currentAcc.Id);
-            //var booking_list = new List<Booking>();
-            ////if (result == null)
-            ////{
-            ////    return Ok(new ResponseMessageDetails<List<Booking>>("Not have any Booking", GrabServerCore.Common.Enum.ResponseStatusCode.NoContent));
-            ////}
-            //foreach (var item in result)
-            //{
-            //    booking_list.Add(item);
-            //}
-            //return Ok(new ResponseMessageDetails<List<Booking>>("Get bookings successfully", booking_list));
-            return BadRequest("Not Supported This Methods");
-        }
+        //[HttpGet, Authorize(Roles = GlobalConstant.User)]
+        //public async Task<ActionResult<ResponseMessageDetails<List<Booking>>>> GetAllUserBookings()
+        //{
+        //    Account currentAcc = await _accountService.GetByUsername(User.Identity.Name);
+        //    var result = await _bookingService.GetAllBookings(currentAcc.Id);
+        //    var booking_list = new List<Booking>();
+        //    //if (result == null)
+        //    //{
+        //    //    return Ok(new ResponseMessageDetails<List<Booking>>("Not have any Booking", GrabServerCore.Common.Enum.ResponseStatusCode.NoContent));
+        //    //}
+        //    foreach (var item in result)
+        //    {
+        //        booking_list.Add(item);
+        //    }
+        //    return Ok(new ResponseMessageDetails<List<Booking>>("Get bookings successfully", booking_list));
+        //}
         [HttpGet("recent")]
         public List<RecentBookingDTO> GetRecentBooking()
         {
@@ -61,7 +64,6 @@ namespace GrabServer.Controllers
             foreach (var item in result)
             {
                 var p = new ReadNewBookingDTO ();
-                p.Id = item.Id;
                 p.FullName = item.FullName;
                 p.Email = item.Email;
                 p.Phone = item.PhoneNumber;
@@ -140,15 +142,32 @@ namespace GrabServer.Controllers
         [HttpPut("CaculateTotal")]
         public async Task<ActionResult<ResponseMessageDetails<int>>> CaculatingTotalBooking(int IdBooking)
         {
-            int weather = 1;
-            bool Peak = true;
-            var result = await _bookingService.CaculatingTotalBooking(IdBooking,weather,Peak);
+            int BadWeather = 0;
+            bool Peak = false;
+            var booking = await _bookingService.GetBookingById(IdBooking);
+            Booking b = new Booking();
+            b = booking;
+            double lon = (b.SrcLong + b.DesLong) / 2.0;
+            double lat = (b.SrcLat + b.DesLat) / 2.0;
+            string weather = _weatherService.GetWeatherNow(lon, lat);
+            Console.WriteLine("Weather current: "+ weather.ToString());
+            if(weather.ToString() == "Rain")
+            {
+                BadWeather = 1;
+            }
+            int h = b.DateBooking.Hour;
+            if(h > 16 && h < 19)
+            {
+                Peak = true;
+            }
+            Console.WriteLine("Booking Hour:" + h.ToString());
+            var result = await _bookingService.CaculatingTotalBooking(IdBooking, BadWeather, Peak);
             if (result == -1)
                 return BadRequest("Cannot Caculating total.");
 
             return Ok(new ResponseMessageDetails<int>("Total:", result));
+            //return Ok(new ResponseMessageDetails<int>("Total:", 1));
         }
-
         [HttpDelete]
         public async Task<ActionResult<ResponseMessageDetails<int>>> DeleteBooking(int IdBooking)
         {
@@ -157,6 +176,13 @@ namespace GrabServer.Controllers
                 return BadRequest("Cannot Delete this booking.");
 
             return Ok(new ResponseMessageDetails<int>("Delete Success !", result));
+        }
+
+        [HttpGet("weather")]
+        public ActionResult GetWeather(double lon, double lat)
+        {
+            var result = _weatherService.GetWeatherNow(lon, lat);
+            return Ok(result);
         }
     }
 }

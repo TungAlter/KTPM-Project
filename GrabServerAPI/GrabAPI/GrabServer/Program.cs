@@ -10,6 +10,9 @@ using GrabServer.Services.AccountService;
 using GrabServer.Services.BookingService;
 using GrabServer.Services.DriverService;
 using AutoMapper;
+using GrabServer.EventProcess;
+using GrabServer.RabbitMQ;
+using GrabServer.Services.WeatherService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +27,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IDriverService, DriverSerivce>();
+builder.Services.AddScoped<IWeatherService, WeatherService>();
+//builder.Services.AddSingleton<IEventProcess, EventProcess>();
+//builder.Services.AddHostedService<MessageBusSubscriber>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddServicesData();
@@ -43,7 +49,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
-// Không biết là gì 
+
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
@@ -56,7 +62,7 @@ builder.Services.AddSwaggerGen(options =>
 
     options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
-//khởi tạo cc gì ấy
+
 builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
 
