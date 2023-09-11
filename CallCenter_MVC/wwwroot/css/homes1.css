@@ -2,6 +2,10 @@
   padding: 10px;
 }
 
+p{
+  margin: 0;
+}
+
 /* Apply background image to the body */
 body {
   background-image: url('../img/taxi.jpeg');
@@ -41,6 +45,7 @@ a {
   vertical-align: baseline;
   border: 0;
   color: #cccc;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 
@@ -365,6 +370,8 @@ hr {
   background-color: none
 }
 
+
+
 .card-desc {
   color: #ccc;
   word-wrap: break-word;
@@ -372,9 +379,34 @@ hr {
   cursor: pointer;
 }
 
+
 .card-desc:hover {
   color: #74808b;
 }
+
+.card-desc>.title-name{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.card-desc>.des-phone{
+  font-size: 13px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 5px;
+}
+
+.card-desc>.des-address{
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+.card-desc>.src-address{
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
 
 .card-meta {
   /* display: inline-block; */
@@ -382,6 +414,7 @@ hr {
   margin: 0;
   min-width: 110px;
   color: #ccc;
+  margin-bottom: 5px;
 }
 
 .btn-showHistory {

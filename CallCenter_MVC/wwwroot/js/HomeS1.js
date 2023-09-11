@@ -79,7 +79,7 @@ btnShowHistory.addEventListener('click', async () => {
             console.log(desAddr);
             const srcAddr = booking.srcAddress.split(",").slice(-2);
             console.log(srcAddr);
-            const addr = desAddr + "-" + srcAddr;
+            const addr = desAddr + " .To: " + srcAddr;
             const dateParts = booking.dateBooking.split("T")[0].split("-");
             const time = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
 
@@ -87,12 +87,13 @@ btnShowHistory.addEventListener('click', async () => {
 
             cardActivity.innerHTML = `
             <div class="card-logo">
-                <i class="bi bi-taxi-front-fill"></i>
+                <i class="fa fa-car"></i>
             </div>
             <div class="card-desc">
                 <p class="title-name">${booking.fullName}</p>
                 <p class="des-phone">${booking.phoneNumber}</p>
-                <p class="des-address">${addr}</p>
+                <p class="des-address"> From: ${desAddr}</p>
+                <p class="src-address"> To: ${srcAddr}</p>
             </div>
             <div class="card-meta">
                 <a>${time}</a>

@@ -2,12 +2,13 @@
   ViewData["Title"] = "HomeS1 Page";
 }
 <link rel="stylesheet" href="~/css/homes1.css" asp-append-version="true" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/v4-shims.min.css" integrity="sha512-p++g4gkFY8DBqLItjIfuKJPFvTPqcg2FzOns2BNaltwoCOrXMqRIOqgWqWEvuqsj/3aVdgoEo2Y7X6SomTfUPA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <div class="main">
   @* button show history *@
   <div class="history" style="font-size: 20px;">
     <button class="btn-showHistory">
-      [=]
+      <i class="fa fa-bars" aria-hidden="true"></i>
     </button>
 
   </div>
@@ -128,7 +129,9 @@
   <div class="board-history" style="display: none;">
     <div class="board-header">
       <div class="title-header">History</div>
-      <div class="icon-exit">[x]</div>
+      <div class="icon-exit">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </div>
     </div>
     <hr class="board-menu-header-divide">
 
@@ -140,7 +143,7 @@
         @* //thêm thẻ sự kiện *@
         <div class="card-acivity">
           <div class="card-logo">
-            <i class="bi bi-taxi-front-fill"></i>
+            <i class="fa fa-car"></i>
           </div>
           <div class="card-desc">
             Lạng Sơn - Cà Mau
@@ -154,7 +157,7 @@
 
         <div class="card-acivity">
           <div class="card-logo">
-            <i class="bi bi-taxi-front-fill"></i>
+            <i class="fa fa-car"></i>
           </div>
           <div class="card-desc">
             Lạng Sơn - Huế
@@ -166,7 +169,7 @@
         <hr class="board-menu-header-divide">
         <div class="card-acivity">
           <div class="card-logo">
-            <i class="bi bi-taxi-front-fill"></i>
+            <i class="fa fa-car"></i>
           </div>
           <div class="card-desc">
             Lạng Sơn - Cà Mau
