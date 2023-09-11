@@ -448,6 +448,7 @@ hr {
 }
 
 .popup-content {
+  position: relative;
   color: black;
   width: 1000px;
   height: 500px;
@@ -457,7 +458,17 @@ hr {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-/* button>#closePopup{
-    position: ;
-    bottom: 0;
-  } */
+#closePopup{
+  border: none;
+  background-color: #E85D00;
+  color: white;
+  padding: 3px 5px;
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+
+#closePopup:hover{
+  background-color: #ccc;
+  color: #323940;
+}
