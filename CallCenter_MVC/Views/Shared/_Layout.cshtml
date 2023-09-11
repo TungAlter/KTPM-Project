@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CallCenter_MVC.styles.css" asp-append-version="true" />
 </head>
+
 <body>
     <header class="header" id="header">
         <a class="nav-brand" asp-area="" asp-controller="Home" asp-action="Index">CALL CENTER</a>
@@ -32,6 +34,10 @@
         </div>
         <a class="nav-auth btn-login" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
     </header>
+    <div id="loginAlert" class="alert alert-warning" style="display: none;">
+        Vui lòng đăng nhập để truy cập trang này. Tự động chuyển hướng sau <span id="countdown">5</span> giây.
+        <button id="okButton" class="btn btn-primary">OK</button>
+    </div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -40,19 +46,83 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+    <script>
+        // Lấy giá trị của biến AuthToken từ local storage
+        const authToken = localStorage.getItem("AuthToken");
+
+        // Kiểm tra nếu AuthToken tồn tại, thì hiển thị nút Logout
+        if (authToken) {
+            const loginButton = document.querySelector(".btn-login");
+            loginButton.textContent = "Logout";
+
+            // Thêm sự kiện click cho nút Logout để xóa AuthToken khỏi local storage và đăng xuất
+            loginButton.addEventListener("click", () => {
+                // Xóa giá trị AuthToken từ local storage
+                localStorage.removeItem("AuthToken");
+
+                // Chuyển người dùng đến trang đăng nhập hoặc thực hiện hành động đăng xuất cụ thể
+                // window.location.href = "/Login/Logout"; // Thay đổi URL nếu cần
+
+                // Reload trang để áp dụng thay đổi
+                location.reload();
+            });
+        } else {
+            // Nếu AuthToken không tồn tại, kiểm tra xem người dùng đang truy cập trang S1, S2, S3 hay không
+            const currentPath = window.location.pathname;
+            if (currentPath.includes("/HomeS1") || currentPath.includes("/HomeS2") || currentPath.includes("/HomeS3")) {
+                // Nếu người dùng truy cập trang S1, S2, S3 mà chưa đăng nhập, hiển thị thông báo
+                const loginAlert = document.getElementById("loginAlert");
+                loginAlert.style.display = "block";
+
+                // Lấy nút "OK" và thời gian đếm ngược
+                const okButton = document.getElementById("okButton");
+                const countdownElement = document.getElementById("countdown");
+
+                // Thêm sự kiện click cho nút "OK" để chuyển hướng đến trang đăng nhập
+                okButton.addEventListener("click", () => {
+                    // Chuyển hướng đến trang đăng nhập (thay đổi URL nếu cần)
+                    window.location.href = "/Login/Index";
+                });
+
+                // Thời gian đếm ngược (5 giây)
+                let countdown = 5;
+
+                // Cập nhật thời gian đếm ngược trên giao diện
+                countdownElement.textContent = countdown;
+
+                // Thiết lập đếm ngược tự động và chuyển hướng sau 5 giây
+                const countdownInterval = setInterval(() => {
+                    countdown--;
+                    countdownElement.textContent = countdown;
+                    if (countdown === 0) {
+                        clearInterval(countdownInterval); // Dừng đếm ngược
+                        // Chuyển hướng đến trang đăng nhập khi hết thời gian
+                        window.location.href = "/Login/Index";
+                    }
+                }, 1000);
+            }
+        }
+    </script>
+
+
+
+
     @await RenderSectionAsync("Scripts", required: false)
 
-        <script>
+    <script>
         const currentPath = window.location.pathname; // Lấy đường dẫn hiện tại
         console.log('đường dẫn: ' + currentPath);
         const navLinks = document.querySelectorAll(".nav-item");
         navLinks.forEach(link => {
             if (link.getAttribute("href") === currentPath) {
-                @* console.log('nav tương ứng: ' + link.getAttribute("href")); *@
-                link.classList.add("active");
-                @* link.style.backgroundColor = "green"; *@
+        @* console.log('nav tương ứng: ' + link.getAttribute("href")); *@
+                    link.classList.add("active");
+        @* link.style.backgroundColor = "green"; *@
             }
         });
     </script>
 </body>
+
 </html>
