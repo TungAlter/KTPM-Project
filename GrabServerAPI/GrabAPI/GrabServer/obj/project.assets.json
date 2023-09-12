@@ -4695,24 +4695,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DELL\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\duyl8\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServer\\GrabServer.csproj",
+      "projectUniqueName": "E:\\Git Code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServer\\GrabServer.csproj",
       "projectName": "GrabServer",
-      "projectPath": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServer\\GrabServer.csproj",
-      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServer\\obj\\",
+      "projectPath": "E:\\Git Code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServer\\GrabServer.csproj",
+      "packagesPath": "C:\\Users\\duyl8\\.nuget\\packages\\",
+      "outputPath": "E:\\Git Code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServer\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\duyl8\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4720,15 +4715,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj": {
-              "projectPath": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj"
+            "E:\\Git Code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj": {
+              "projectPath": "E:\\Git Code\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerData\\GrabServerData.csproj"
             }
           }
         }

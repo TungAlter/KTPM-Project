@@ -64,6 +64,7 @@ namespace GrabServer.Controllers
             foreach (var item in result)
             {
                 var p = new ReadNewBookingDTO ();
+                p.Id = item.Id;
                 p.FullName = item.FullName;
                 p.Email = item.Email;
                 p.Phone = item.PhoneNumber;
