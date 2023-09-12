@@ -164,3 +164,4 @@ D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\Gra
 D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServer\obj\Debug\net7.0\ref\GrabServer.dll
 D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServer\bin\Debug\net7.0\AutoMapper.dll
 D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServer\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\GrabServerAPI\GrabAPI\GrabServer\bin\Debug\net7.0\RabbitMQ.Client.dll

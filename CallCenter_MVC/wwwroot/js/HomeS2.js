@@ -40,6 +40,7 @@ function getRoute(bookingId, startAddress, endAddress) {
         map.removeLayer(endMarker);
         map.removeLayer(route);
     }
+    
     Promise.all([getCoordinates(startAddress), getCoordinates(endAddress)])
         .then(coords => {
             var startCoords = coords[0];
@@ -51,6 +52,7 @@ function getRoute(bookingId, startAddress, endAddress) {
                 return fetch(routingUrl)
                     .then(response => response.json())
                     .then(data => {
+                        console.log(data);
                         var routeCoordinates = data.features[0].geometry.coordinates;
                         var routeDistance = data.features[0].properties.segments[0].distance / 1000;
 
@@ -186,27 +188,57 @@ async function sendBooking(bookingId) {
         } catch (error) {
             console.error("An error occurred:", error);
         }
-        var card = document.getElementById(`card-${bookingId}`);
-        card.remove();
-        closeModal();
+
     }
 }
 
 // Xử lý xóa
 function deleteBooking(bookingId) {
-    var card = document.getElementById(`card-${bookingId}`);
-    card.remove();
+    if (confirm('Bạn có chắc chắn muốn xóa bản ghi này không?')) {
+        // Sử dụng AJAX hoặc Fetch để gửi yêu cầu Xóa đến Action Delete trong Controller
+        console.log(bookingId);
+        fetch(`/HomeS2/Delete/${bookingId}`, {
+            method: 'DELETE'
+        })
+        .then(response => {
+            if (response.status === 200) {
+                // Xóa thành công, sau đó chuyển hướng lại trang Index
+                window.location.href = '/HomeS2/Index';
+            } else {
+                // Xóa không thành công, xử lý lỗi tại đây (nếu cần)
+            }
+        })
+        .catch(error => {
+            console.error("Lỗi khi xóa:", error);
+            // Xử lý lỗi tại đây (nếu cần)
+        });
+    }
 }
 
 function longPolling() {
     setTimeout(function() {
-        fetch('/HomeS2/Index') // Replace with the correct URL for your Long-Polling action
+        fetch('http://localhost:5236/api/Booking/new') // Replace with the correct URL for your Long-Polling action
             .then(response => {
                 if (response.status === 200) {
                     // New data is available, handle it here
                     console.log("New data received");
-                    
+                    console.log(response);
                     // Perform any necessary actions to update the UI or fetch data.
+                    response.json().then(function(newData) {
+                        console.log("New data received", newData);
+                        //window.location.href = '/HomeS2/Index';
+                        // Xử lý dữ liệu JSON và cập nhật giao diện
+                        const bookingList = document.getElementById('booking-list');
+                        bookingList.innerHTML = '';
+                        newData.forEach(booking => {
+                            const existingCard = document.getElementById(`card-${booking.idBooking}`);
+                            if (!existingCard) {
+                                // Nếu thẻ không tồn tại, tạo và thêm vào booking-list
+                                const bookingCard = createBookingCard(booking);
+                                bookingList.appendChild(bookingCard);
+                            }
+                        });
+                    });
                 }
                 // After handling the response, initiate Long-Polling again.
                 longPolling();
@@ -216,8 +248,51 @@ function longPolling() {
                 // Handle errors, and then retry Long-Polling.
                 longPolling();
             });
-    }, 5000); 
+    }, 10000); 
 }
+
+function createBookingCard(booking) {
+    const cardHTML = `
+        <div class="unapproved-card" id="card-${booking.IdBooking}">
+            <div class="card-content" id="card-content" onclick="getRoute('${booking.IdBooking}', '@booking.SrcAddress', '@booking.DesAddress')">
+                <div><span class="card-title">STT: </span>${booking.IdBooking}</div>
+                <input type="hidden" id="id-${booking.IdBooking}" value="${booking.IdBooking}">
+
+                <div><span class="card-title" type="hidden">Khách: </span>@booking.Customer</div>
+                <input type="hidden" id="name-${booking.IdBooking}" value='${booking.Customer}'>
+
+                <div><span class="card-title">Địa điểm đi: </span>@booking.SrcAddress</div>
+                <input type="hidden" id="srcaddress-${booking.IdBooking}" value="${booking.SrcAddress}">
+                <input type="hidden" id="srclong-${booking.IdBooking}" value="${booking.SrcLong}">
+                <input type="hidden" id="srclat-${booking.IdBooking}" value="${booking.SrcLat}">
+
+                <div><span class="card-title">Địa điểm đến: </span>@booking.DesAddress</div>
+                <input type="hidden" id="desaddress-${booking.IdBooking}" value="${booking.DesAddress}">
+                <input type="hidden" id="deslong-${booking.IdBooking}" value="${booking.DesLong}">
+                <input type="hidden" id="deslat-${booking.IdBooking}" value="${booking.DesLat}">
+
+                <input type=" " id="distance-${booking.IdBooking}" value="${booking.Distance}">
+            </div>
+            <div class="btn-area">
+                @if (booking.Distance == 0) {
+                    <span class="btn1 disable" id="detail-${booking.IdBooking}" onclick="showModalDialog('${booking.IdBooking}', '@booking.SrcAddress', '@booking.DesAddress')">Detail</span>
+                    <span class="btn2 disable" id="send-${booking.IdBooking}" onclick="sendBooking('${booking.IdBooking}')">Send</span>
+                    <span class="btn3" onclick="deleteBooking('${booking.IdBooking}')">Discard</span>
+                } else {
+                    <span class="btn1" id="detail-${booking.IdBooking}" onclick="showModalDialog('${booking.IdBooking}', '@booking.SrcAddress', '@booking.DesAddress')">Detail</span>
+                    <span class="btn2" id="send-${booking.IdBooking}" onclick="sendBooking('${booking.IdBooking}')">Send</span>
+                    <span class="btn3" onclick="deleteBooking('${booking.IdBooking}')">Discard</span>
+                }
+                
+            </div>
+        </div>
+    `;
+    const card = document.createElement('div');
+    card.innerHTML = cardHTML;
+
+    return card.firstChild;// Make sure to return the card element
+}
+
 
 // Xử lý hiện map sử dụng LeafL et
 window.onload = function() {    
@@ -226,7 +301,7 @@ window.onload = function() {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-    //longPolling();
+    longPolling();
 }
 
 function sendWithModal(){

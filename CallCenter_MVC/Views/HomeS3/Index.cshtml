@@ -31,7 +31,7 @@
         </div>
         @foreach (var booking in Model) {
             <div class="unapproved-card" id="card-@booking.IdBooking">
-                <div class="card-content" id="card-content" onclick="getRoute('@booking.IdBooking', '@booking.SrcAddress', '@booking.DesAddress')">
+                <div class="card-content" id="card-content" onclick="showRoute('@booking.IdBooking')">
                     <div><span class="card-title">STT: </span>@booking.IdBooking</div>
                     <input type="hidden" id="id-@booking.IdBooking" value="@booking.IdBooking">
 
@@ -63,14 +63,23 @@
     </div> 
 </div>
 
-@* <div id="myModal" class="modal">
+<div open id="myModal" class="modal">
     <div class="modal-header" id="modal-header">
         Thông tin chi tiết
     </div>
-    <div class="modal-content" id="modal-content">
-
+    <div class="modal-content" id="modal-content">  
+        <p>ID: <span id="modal-bookingId"></span></p>
+        <p>Customer Name: <span id="modal-customerName"></span></p>
+        <p>Driver Name: <span id="modal-driverName"></span></p>
+        <p>Start Address: <span id="modal-startAddress"></span></p>
+        <p>Start Latitude: <span id="modal-startLat"></span></p>
+        <p>Start Longitude: <span id="modal-startLon"></span></p>
+        <p>End Address: <span id="modal-endAddress"></span></p>
+        <p>Latitude: <span id="modal-endLat"></span></p><p>Longitude: <span id="modal-endLon"></span></p>
+        <p>Route Distance: <span id="modal-routeDistance"></span><span> km</span></p>
     </div>
     <div class="modal-footer" id="modal-footer">
-        <span class="btn2">Send</span>
+        <span class="btn2" id="modal-send" onclick="sendWithModal()">Send</span>
+        <span class="btn3" id="modal-close" onclick="closeModal()">Close</span>
     </div>
-</div> *@
+</div>

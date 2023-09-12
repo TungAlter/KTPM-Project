@@ -12,7 +12,7 @@ using CallCenter_MVC.Models;
 using CallCenter_MVC.DTOs;
 
 namespace CallCenter_MVC.Controllers
-{   
+{
     public class HomeS2Controller : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -22,40 +22,79 @@ namespace CallCenter_MVC.Controllers
         {
             _httpClientFactory = httpClientFactory;
         }
-        
+
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            try {        
-                    var httpClient = _httpClientFactory.CreateClient();
-                    var response = await httpClient.GetAsync(_apiUrl);
-                    Console.WriteLine($"State Code: {response.StatusCode}");
-                    if (response.StatusCode == HttpStatusCode.OK) {
-                        var content = await response.Content.ReadAsStringAsync();
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient();
+                var response = await httpClient.GetAsync(_apiUrl);
+                Console.WriteLine($"State Code: {response.StatusCode}");
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
 
-                        var newBooking = JsonConvert.DeserializeObject<IEnumerable<NewBookingDTO>>(content);  
-                    
-                        var listBooking = new List<BookingModel>();
-                        foreach (var data in newBooking) {
-                            Console.WriteLine($"{data.Id}, {data.Distance}");
-                            var item = new BookingModel {};
-                            if (data.Distance == 0){
-                                item.IdBooking = data.Id;
-                                item.Customer = data.FullName;
-                                item.SrcAddress = data.AddrFrom;
-                                item.DesAddress = data.AddrTo;
-                                listBooking.Add(item);
-                            }    
+                    var newBooking = JsonConvert.DeserializeObject<IEnumerable<NewBookingDTO>>(content);
+
+                    var listBooking = new List<BookingModel>();
+                    foreach (var data in newBooking)
+                    {
+                        Console.WriteLine($"{data.Id}, {data.Distance}");
+                        var item = new BookingModel { };
+                        if (data.Distance == 0)
+                        {
+                            item.IdBooking = data.Id;
+                            item.Customer = data.FullName;
+                            item.SrcAddress = data.AddrFrom;
+                            item.DesAddress = data.AddrTo;
+                            listBooking.Add(item);
                         }
-                        return View("Index", listBooking);
-
-                    } else {
-                        return View("Error");
                     }
-                await Task.Delay(10000); 
-            } catch (Exception e) {
+                    return View("Index", listBooking);
+
+                }
+                else
+                {
+                    return View("Error");
+                }
+                await Task.Delay(10000);
+            }
+            catch (Exception e)
+            {
                 return View("Error");
             }
+        }
+
+        [HttpDelete]
+        [Route("/HomeS2/Delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            
+            Console.WriteLine(id);
+            try
+            {
+                var urlDelete = $"http://localhost:5236/api/Booking?IdBooking={id}";
+                var httpClient = _httpClientFactory.CreateClient();
+                using (httpClient)
+                {
+                    var response = await httpClient.DeleteAsync(urlDelete);
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return View("Error");
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                return View("Error");
+            }
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
