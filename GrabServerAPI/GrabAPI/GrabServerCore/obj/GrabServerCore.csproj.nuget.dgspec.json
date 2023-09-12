@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj": {}
+    "d:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj": {}
   },
   "projects": {
-    "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj": {
+    "d:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj",
+        "projectUniqueName": "d:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj",
         "projectName": "GrabServerCore",
-        "projectPath": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj",
+        "projectPath": "d:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\GrabServerCore.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\obj\\",
+        "outputPath": "d:\\LuuMinhPhat\\Projects\\SoftwareStructure_Project\\KTPM-Project\\GrabServerAPI\\GrabAPI\\GrabServerCore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

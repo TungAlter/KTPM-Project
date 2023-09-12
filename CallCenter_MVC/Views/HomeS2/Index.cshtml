@@ -9,7 +9,7 @@
 <!-- Thêm thư viện Leaflet -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
- <!-- Thêm thư viện Leaflet Geocoder -->
+<!-- Thêm thư viện Leaflet Geocoder -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
 <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
@@ -20,7 +20,7 @@
 
 <div class="box">
     <div class="map-col" id="map"></div>
-    <script src="~/js/HomeS2.js" asp-append-version="true"></script> 
+    <script src="~/js/HomeS2.js" asp-append-version="true"></script>
     <div class="list-col">
         <div class="list-header">
             Danh sách
@@ -30,9 +30,11 @@
             </select>
         </div>
         <div id="booking-list">
-            @foreach (var booking in Model) {
+            @foreach (var booking in Model)
+            {
                 <div class="unapproved-card" id="card-@booking.IdBooking">
-                    <div class="card-content" id="card-content" onclick="getRoute('@booking.IdBooking', '@booking.SrcAddress', '@booking.DesAddress')">
+                    <div class="card-content" id="card-content"
+                        onclick="getRoute('@booking.IdBooking', '@booking.SrcAddress', '@booking.DesAddress')">
                         <div><span class="card-title">STT: </span>@booking.IdBooking</div>
                         <input type="hidden" id="id-@booking.IdBooking" value="@booking.IdBooking">
 
@@ -52,28 +54,26 @@
                         <input type="hidden" id="distance-@booking.IdBooking" value="@booking.Distance">
                     </div>
                     <div class="btn-area">
-                        @if (booking.Distance == 0) {
-                            <span class="btn1 disable" id="detail-@booking.IdBooking" onclick="showModalDialog('@booking.IdBooking', '@booking.SrcAddress', '@booking.DesAddress')">Detail</span>
-                            <span class="btn2 disable" id="send-@booking.IdBooking" onclick="sendBooking('@booking.IdBooking')">Send</span>
-                            <span class="btn3" onclick="deleteBooking('@booking.IdBooking')">Discard</span>
-                        } else {
-                            <span class="btn1" id="detail-@booking.IdBooking" onclick="showModalDialog('@booking.IdBooking', '@booking.SrcAddress', '@booking.DesAddress')">Detail</span>
-                            <span class="btn2" id="send-@booking.IdBooking" onclick="sendBooking('@booking.IdBooking')">Send</span>
-                            <span class="btn3" onclick="deleteBooking('@booking.IdBooking')">Discard</span>
-                        }
-                        
+
+                        <span class="btn1 disable" id="detail-@booking.IdBooking"
+                            onclick="showModalDialog('@booking.IdBooking', '@booking.SrcAddress', '@booking.DesAddress')">Detail</span>
+                        <span class="btn2 disable" id="send-@booking.IdBooking"
+                            onclick="sendBooking('@booking.IdBooking')">Send</span>
+                        <span class="btn3" onclick="deleteBooking('@booking.IdBooking')">Discard</span>
+
+
                     </div>
                 </div>
             }
         </div>
-    </div> 
+    </div>
 </div>
 
 <div open id="myModal" class="modal">
     <div class="modal-header" id="modal-header">
         Thông tin chi tiết
     </div>
-    <div class="modal-content" id="modal-content">  
+    <div class="modal-content" id="modal-content">
         <p>ID: <span id="modal-bookingId"></span></p>
         <p>Customer Name: <span id="modal-customerName"></span></p>
         <p>Start Address: <span id="modal-startAddress"></span></p>

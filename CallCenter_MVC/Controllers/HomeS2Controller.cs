@@ -42,14 +42,17 @@ namespace CallCenter_MVC.Controllers
                     {
                         Console.WriteLine($"{data.Id}, {data.Distance}");
                         var item = new BookingModel { };
-                        if (data.Distance == 0)
-                        {
-                            item.IdBooking = data.Id;
-                            item.Customer = data.FullName;
-                            item.SrcAddress = data.AddrFrom;
-                            item.DesAddress = data.AddrTo;
-                            listBooking.Add(item);
-                        }
+                        
+                        item.IdBooking = data.Id;
+                        item.Customer = data.FullName;
+                        item.SrcAddress = data.AddrFrom;
+                        item.SrcLong = data.SrcLong;
+                        item.SrcLat = data.SrcLat;
+                        item.DesAddress = data.AddrTo;
+                        item.DesLong = data.DesLong;
+                        item.DesLat = data.DesLat;
+                        item.Distance = item.Distance;
+                        listBooking.Add(item);
                     }
                     return View("Index", listBooking);
 
@@ -76,6 +79,7 @@ namespace CallCenter_MVC.Controllers
             {
                 var urlDelete = $"http://localhost:5236/api/Booking?IdBooking={id}";
                 var httpClient = _httpClientFactory.CreateClient();
+                Console.WriteLine(urlDelete);
                 using (httpClient)
                 {
                     var response = await httpClient.DeleteAsync(urlDelete);
@@ -96,7 +100,6 @@ namespace CallCenter_MVC.Controllers
             }
 
         }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

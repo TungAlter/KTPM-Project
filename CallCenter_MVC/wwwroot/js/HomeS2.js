@@ -198,7 +198,10 @@ function deleteBooking(bookingId) {
         // Sử dụng AJAX hoặc Fetch để gửi yêu cầu Xóa đến Action Delete trong Controller
         console.log(bookingId);
         fetch(`/HomeS2/Delete/${bookingId}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'accept': 'text/plain',
+            },
         })
         .then(response => {
             if (response.status === 200) {
@@ -229,15 +232,16 @@ function longPolling() {
                         //window.location.href = '/HomeS2/Index';
                         // Xử lý dữ liệu JSON và cập nhật giao diện
                         const bookingList = document.getElementById('booking-list');
-                        bookingList.innerHTML = '';
                         newData.forEach(booking => {
-                            const existingCard = document.getElementById(`card-${booking.idBooking}`);
+                            const existingCard = document.getElementById(`card-${booking.id}`);
                             if (!existingCard) {
                                 // Nếu thẻ không tồn tại, tạo và thêm vào booking-list
                                 const bookingCard = createBookingCard(booking);
+                                console.log(bookingCard);
                                 bookingList.appendChild(bookingCard);
                             }
                         });
+                        console.log(bookingList);
                     });
                 }
                 // After handling the response, initiate Long-Polling again.
@@ -252,45 +256,39 @@ function longPolling() {
 }
 
 function createBookingCard(booking) {
+    console.log(booking);
     const cardHTML = `
-        <div class="unapproved-card" id="card-${booking.IdBooking}">
-            <div class="card-content" id="card-content" onclick="getRoute('${booking.IdBooking}', '@booking.SrcAddress', '@booking.DesAddress')">
-                <div><span class="card-title">STT: </span>${booking.IdBooking}</div>
-                <input type="hidden" id="id-${booking.IdBooking}" value="${booking.IdBooking}">
+            <div class="card-content" id="card-content" onclick="getRoute(${booking.id}, '${booking.addrFrom}', '${booking.addrTo}')">
+                <div><span class="card-title">STT: </span>${booking.id}</div>
+                <input type="hidden" id="id-${booking.id}" value="${booking.id}">
 
-                <div><span class="card-title" type="hidden">Khách: </span>@booking.Customer</div>
-                <input type="hidden" id="name-${booking.IdBooking}" value='${booking.Customer}'>
+                <div><span class="card-title" type="hidden">Khách: </span>${booking.fullName}</div>
+                <input type="hidden" id="name-${booking.id}" value='${booking.fullname}'>
 
-                <div><span class="card-title">Địa điểm đi: </span>@booking.SrcAddress</div>
-                <input type="hidden" id="srcaddress-${booking.IdBooking}" value="${booking.SrcAddress}">
-                <input type="hidden" id="srclong-${booking.IdBooking}" value="${booking.SrcLong}">
-                <input type="hidden" id="srclat-${booking.IdBooking}" value="${booking.SrcLat}">
+                <div><span class="card-title">Địa điểm đi: </span>${booking.addrFrom}</div>
+                <input type="hidden" id="srcaddress-${booking.id}" value="${booking.addrFrom}">
+                <input type="hidden" id="srclong-${booking.id}" value="${booking.SrcLong}">
+                <input type="hidden" id="srclat-${booking.id}" value="${booking.SrcLat}">
 
-                <div><span class="card-title">Địa điểm đến: </span>@booking.DesAddress</div>
-                <input type="hidden" id="desaddress-${booking.IdBooking}" value="${booking.DesAddress}">
-                <input type="hidden" id="deslong-${booking.IdBooking}" value="${booking.DesLong}">
-                <input type="hidden" id="deslat-${booking.IdBooking}" value="${booking.DesLat}">
+                <div><span class="card-title">Địa điểm đến: </span>${booking.addrTo}</div>
+                <input type="hidden" id="desaddress-${booking.id}" value="${booking.addrTo}">
+                <input type="hidden" id="deslong-${booking.id}" value="${booking.DesLong}">
+                <input type="hidden" id="deslat-${booking.id}" value="${booking.DesLat}">
 
-                <input type=" " id="distance-${booking.IdBooking}" value="${booking.Distance}">
+                <input type="hidden" id="distance-${booking.id}" value="${booking.Distance}">
             </div>
             <div class="btn-area">
-                @if (booking.Distance == 0) {
-                    <span class="btn1 disable" id="detail-${booking.IdBooking}" onclick="showModalDialog('${booking.IdBooking}', '@booking.SrcAddress', '@booking.DesAddress')">Detail</span>
-                    <span class="btn2 disable" id="send-${booking.IdBooking}" onclick="sendBooking('${booking.IdBooking}')">Send</span>
-                    <span class="btn3" onclick="deleteBooking('${booking.IdBooking}')">Discard</span>
-                } else {
-                    <span class="btn1" id="detail-${booking.IdBooking}" onclick="showModalDialog('${booking.IdBooking}', '@booking.SrcAddress', '@booking.DesAddress')">Detail</span>
-                    <span class="btn2" id="send-${booking.IdBooking}" onclick="sendBooking('${booking.IdBooking}')">Send</span>
-                    <span class="btn3" onclick="deleteBooking('${booking.IdBooking}')">Discard</span>
-                }
-                
+                <span class="btn1 disable" id="detail-${booking.id}" onclick="showModalDialog(${booking.id}, '${booking.addrFrom}', '${booking.addrTo}')">Detail</span>
+                <span class="btn2 disable" id="send-${booking.id}" onclick="sendBooking(${booking.id})">Send</span>
+                <span class="btn3" onclick="deleteBooking(${booking.id})">Discard</span>
             </div>
-        </div>
     `;
     const card = document.createElement('div');
+    card.classList.add('unapproved-card');
+    card.id = `card-${booking.id}`;
     card.innerHTML = cardHTML;
-
-    return card.firstChild;// Make sure to return the card element
+    console.log("Thêm thẻ thành công")
+    return card// Make sure to return the card element
 }
 
 
@@ -306,9 +304,9 @@ window.onload = function() {
 
 function sendWithModal(){
     var modal = document.getElementById('myModal');
-    let idBooking = document.getElementById(`modal-bookingId`).textContent;
-    console.log("id", idBooking);
-    sendBooking(idBooking);
+    let id = document.getElementById(`modal-bookingId`).textContent;
+    console.log("id", id);
+    sendBooking(id);
 }
 
 
