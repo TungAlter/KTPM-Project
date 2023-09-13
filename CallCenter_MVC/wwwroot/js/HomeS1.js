@@ -297,6 +297,7 @@ async function validateAndSendData() {
 
         if (response.ok) {
             alert("successful");
+            window.location.reload();
             // Thực hiện các hành động khác nếu cần
         } else {
             alert("Please try again later.");
