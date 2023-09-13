@@ -43,17 +43,25 @@ class MainPageState extends State<MainPage> {
             style: TextStyle(fontSize: 28, fontWeight: FontWeight.normal),
           ),
           const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
                 children: [
+                  Icon(Icons.calendar_today),
+                  SizedBox(width: 8),
                   Text(
-                    'Rating: 4.5',
+                    'Date of birth: 2/1/2002',
                     style:
                         TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
                   ),
+                ],
+              ),
+              SizedBox(height: 8),
+              Row(
+                children: [
+                  Icon(Icons.person),
+                  SizedBox(width: 8),
                   Text(
                     'Giới tính: Nam',
                     style:
@@ -61,14 +69,61 @@ class MainPageState extends State<MainPage> {
                   ),
                 ],
               ),
-              ElevatedButton(
-                onPressed: () {
-                  // Xử lý khi nút được nhấn
-                  // Ví dụ: Chuyển sang trạng thái sẵn sàng
-                },
-                child: const Text('Sẵn sàng'),
+              SizedBox(height: 8),
+              Row(
+                children: [
+                  Icon(Icons.star),
+                  SizedBox(width: 8),
+                  Text(
+                    'Rating: 4.5',
+                    style:
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
+                  ),
+                ],
               ),
             ],
+          ),
+          const SizedBox(height: 16),
+          Container(
+            // Đặt Container trên nút "Sẵn sàng"
+            alignment: Alignment.center,
+            color: Colors.grey[200], // Màu nền của danh sách
+            padding: const EdgeInsets.all(16),
+            child: const Column(
+              children: [
+                Text(
+                  'Các chuyến xe gần đây:',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 8),
+                // Bổ sung các phần tử danh sách ở đây, ví dụ:
+                Text('9:00 - 13/9/2002 - 60.000 VNĐ'),
+                Text('8:00 - 13/9/2002 - 49.000 VNĐ'),
+                Text('7:00 - 13/9/2002 - 30.000 VNĐ'),
+                // Thêm các mục khác theo yêu cầu của bạn
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          Container(
+            alignment: Alignment.center,
+            color: Colors.blue,
+            padding: const EdgeInsets.all(16),
+            child: const Text(
+              'Doanh thu trong ngày hôm nay: 500.000 VNĐ',
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              // Xử lý khi nút được nhấn
+              // Ví dụ: Chuyển sang trạng thái sẵn sàng
+            },
+            child: const Text('Sẵn sàng'),
           ),
         ],
       );
