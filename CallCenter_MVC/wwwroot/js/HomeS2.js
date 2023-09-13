@@ -9,8 +9,14 @@ const headers = {
     'Content-Type': 'application/json'
 };
 
+function processAddress(address) {
+    address = address.replace(/Phường 0([1-9])/g, (match, p1) => `Phường ${p1}`);
+    return address;
+}
+
 // Xử lý lấy tọa độ qua địa chỉ
-function getCoordinates(address) {
+function getCoordinates(iaddress) {
+    var address = processAddress(iaddress);
     var nominatimUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
     return fetch(nominatimUrl)
         .then(response => response.json())
