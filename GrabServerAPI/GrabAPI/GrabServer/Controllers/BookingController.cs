@@ -166,7 +166,7 @@ namespace GrabServer.Controllers
             if (result == -1)
                 return BadRequest("Cannot Caculating total.");
 
-            return Ok(new ResponseMessageDetails<int>("Total:", result));
+            return Ok(new ResponseMessageDetails<int>("Caculate Success !", result));
             //return Ok(new ResponseMessageDetails<int>("Total:", 1));
         }
         [HttpDelete]

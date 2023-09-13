@@ -168,8 +168,8 @@ namespace GrabServerData.Repositories
             }
             var builder = new StringBuilder(@"EXEC dbo.USP_CaculatingTotal ");
             builder.Append($"@BookingId = \'{bookingId}\', ");
-            builder.Append($"@srcLong = \'{WeatherInfo}\', ");
-            builder.Append($"@srcLat = \'{Peak}\' ");
+            builder.Append($"@WeatherInfo = \'{WeatherInfo}\', ");
+            builder.Append($"@isPeak = \'{Peak}\' ");
             Console.WriteLine(builder.ToString());
             var result = await _dataContext.Database.ExecuteSqlInterpolatedAsync($"EXECUTE({builder.ToString()})");
             return result;

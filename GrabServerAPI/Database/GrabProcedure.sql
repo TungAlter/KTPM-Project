@@ -294,7 +294,7 @@ GO
 CREATE OR ALTER PROCEDURE USP_Get3RecentBooking -- // 
 AS
 BEGIN
-	SELECT TOP 3  c.FullName,c.Email,c.PhoneNumber,b.SrcAddress,b.DesAddress , b.DateBooking
+	SELECT TOP 3  b.IdBooking Id,c.FullName,c.Email,c.PhoneNumber,b.SrcAddress,b.DesAddress , b.DateBooking
 	FROM BOOKING b join CUSTOMER c on b.IdCustomer = c.AccountId
 	WHERE b.StatusBooking = 'COMPLETED'
 	ORDER BY DateBooking ASC;
@@ -305,7 +305,7 @@ GO
 CREATE OR ALTER PROCEDURE USP_GetNewBooking -- // 
 AS
 BEGIN
-	SELECT c.FullName,c.Email,c.PhoneNumber,b.SrcAddress,b.DesAddress , b.DateBooking
+	SELECT b.IdBooking Id,c.FullName,c.Email,c.PhoneNumber,b.SrcAddress,b.DesAddress , b.DateBooking
 	FROM BOOKING b join CUSTOMER c on b.IdCustomer = c.AccountId
 	WHERE b.StatusBooking = 'WAITING';
 END
@@ -314,7 +314,7 @@ GO
 CREATE OR ALTER PROCEDURE USP_GetReceivedBooking -- // 
 AS
 BEGIN
-	SELECT c.FullName CustomerName,c.PhoneNumber Phone,d.FullName DriverName,b.SrcAddress,b.DesAddress , b.SrcLong, b.SrcLat, b.DesLong, b.DesLat, b.Distance, b.Total
+	SELECT b.IdBooking Id, c.FullName CustomerName,c.PhoneNumber Phone,d.FullName DriverName,b.SrcAddress,b.DesAddress , b.SrcLong, b.SrcLat, b.DesLong, b.DesLat, b.Distance, b.Total
 	FROM BOOKING b join CUSTOMER c on b.IdCustomer = c.AccountId join DRIVER d on d.AccountId = b.IdDriver
 	WHERE b.StatusBooking = 'RECEIVED';
 END
@@ -348,6 +348,8 @@ BEGIN
 		END
         UPDATE BOOKING
         SET Total = @total WHERE IdBooking = @BookingId;
+		SELECT @total OUTPUT
+		RETURN @total;
     END TRY
 
     BEGIN CATCH
@@ -376,10 +378,6 @@ BEGIN
 		END
 		Declare @d FLOAT
 		select @d = Distance FROM BOOKING WHERE IdBooking=@BookingId
-		IF(@d != 0)
-		BEGIN
-			RETURN -1
-		END
         UPDATE BOOKING
         SET SrcLong=@srcLong, SrcLat=@srcLat, DesLong=@desLong, DesLat=@desLat,Distance=@Distance
 		WHERE IdBooking = @BookingId;
