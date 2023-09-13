@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'allPage/loginpage.dart';
-
+import 'pages/login_page.dart';
 void main() {
-  runApp(LoginApp());
+  runApp(const MainApp());
 }
 
-class LoginApp extends StatelessWidget {
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(), // Sử dụng LoginPage ở đây
+      home: LoginPage(),
     );
   }
 }
