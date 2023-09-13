@@ -2,7 +2,7 @@ var map = null;
 var route;
 var startMarker;  
 var endMarker;
-var apiUrl = "YOUR_API_HERE"
+var apiUrl = "YOUR_API_HERE";
 
 const headers = {
     'accept': 'text/plain',

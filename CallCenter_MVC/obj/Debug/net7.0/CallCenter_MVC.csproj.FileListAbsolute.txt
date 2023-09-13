@@ -1670,3 +1670,4 @@ E:\Git Code\KTPM-Project\CallCenter_MVC\obj\Debug\net7.0\refint\CallCenter_MVC.d
 E:\Git Code\KTPM-Project\CallCenter_MVC\obj\Debug\net7.0\CallCenter_MVC.pdb
 E:\Git Code\KTPM-Project\CallCenter_MVC\obj\Debug\net7.0\CallCenter_MVC.genruntimeconfig.cache
 E:\Git Code\KTPM-Project\CallCenter_MVC\obj\Debug\net7.0\ref\CallCenter_MVC.dll
+D:\LuuMinhPhat\Projects\SoftwareStructure_Project\KTPM-Project\CallCenter_MVC\bin\Debug\net7.0\RabbitMQ.Client.dll

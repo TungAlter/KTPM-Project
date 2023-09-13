@@ -85,7 +85,7 @@ namespace CallCenter_MVC.Controllers
                     var response = await httpClient.DeleteAsync(urlDelete);
                     if (response.StatusCode == HttpStatusCode.OK)
                     {
-                        return RedirectToAction("Index");
+                        return View("Index");
                     }
                     else
                     {
