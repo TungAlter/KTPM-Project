@@ -69,6 +69,9 @@ namespace CallCenter_MVC.RabbitMQ
             Console.WriteLine("--> RabbitMQ connection shutdown");
         }
 
-
+        void IMessageBus.GetNewBooking()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
