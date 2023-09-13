@@ -15,6 +15,7 @@ namespace GrabServerCore.RepoInterfaces
         Task<int> DeleteBookingAsync(int deleteBooking);
         Task<int> UpdateAsync(Booking deleteBooking);
         Task<int> FindDriverAsync(double Longi, double Lat);
+        Task<Driver> GetDriverInformationAsync(int id);
         //Task<int> UpdatePositionAccountAsync(string username, double Long, double Lat);
     }
 }

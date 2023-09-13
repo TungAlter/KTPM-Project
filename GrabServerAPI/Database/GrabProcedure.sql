@@ -228,7 +228,24 @@ AS
 		RETURN 1; -- (thành công)
 END
 GO
--- CRUD BOOKING
+-- ===================== DRIVER ===========================
+select* from DRIVER
+EXEC dbo.USP_GetDriverById @id = '2'
+CREATE OR ALTER PROCEDURE USP_GetDriverById
+	@id INTEGER
+AS
+BEGIN
+	IF NOT EXISTS(SELECT * FROM DRIVER d WHERE d.AccountId = @id)
+	BEGIN
+		RAISERROR(N'Thêm đơn đặt xe thất bại', 11, 1);
+	END
+	ELSE
+	BEGIN
+		SELECT d.AccountId Id,d.FullName,d.DateBirth, d.Email,d.PhoneNumber,d.Gender,d.Rating FROM DRIVER d WHERE d.AccountId = @id;
+	END
+END
+GO
+-- ===================== BOOKING ===========================
 --CREATE
 
 CREATE OR ALTER PROCEDURE USP_AddBooking
@@ -486,3 +503,5 @@ BEGIN
 	RETURN 0;
 END;
 GO
+
+

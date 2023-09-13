@@ -1,6 +1,7 @@
 ﻿using GrabServer.Services.BookingService;
 using GrabServerCore.Models;
 using Microsoft.Identity.Client;
+using System.Runtime.InteropServices;
 
 namespace GrabServer.Services.DriverService
 {
@@ -22,6 +23,13 @@ namespace GrabServer.Services.DriverService
         public async Task<int> FindDriverBooking(double Longi, double Lati)
         {
             var result = await _unitOfWork.DriverRepo.FindDriverAsync(Longi, Lati);
+            await _unitOfWork.SaveChangesAsync();
+            return result;
+        }
+
+        public async Task<Driver> GetDriverInfo(int id)
+        {
+            var result = await _unitOfWork.DriverRepo.GetDriverInformationAsync(id);
             await _unitOfWork.SaveChangesAsync();
             return result;
         }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using GrabServerCore.DTOs.Booking;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 namespace GrabServerData.Repositories
 {
@@ -76,6 +77,16 @@ namespace GrabServerData.Repositories
         //    var result = await _dataContext.Drivers.ExecuteSqlInterpolatedAsync($"EXECUTE({builder.ToString()})");
         //    return result;
         //}
+        public async Task<Driver> GetDriverInformationAsync(int id)
+        {
+            var builder = new StringBuilder(@"dbo.USP_GetDriverById ");
+            builder.Append($"@id = \'{id}\'");
+
+            Console.WriteLine(builder.ToString());
+            var result = await _dataContext.Drivers.FromSqlInterpolated($"EXECUTE({builder.ToString()})").ToListAsync();
+
+            return result.FirstOrDefault();
+        }
     }
 
 
