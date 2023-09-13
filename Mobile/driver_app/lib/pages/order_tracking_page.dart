@@ -29,9 +29,11 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
     );
 
     if (result.points.isNotEmpty) {
-      result.points.forEach((PointLatLng point) => polylineCoordinates.add(
-            LatLng(point.latitude, point.longitude),
-          ),);
+      for (var point in result.points) {
+        polylineCoordinates.add(
+          LatLng(point.latitude, point.longitude),
+        );
+      }
 
       setState(() {});
     }
@@ -59,6 +61,7 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
           Polyline(
             polylineId: const PolylineId("route"),
             points: polylineCoordinates,
+            color: Colors.blue,
           )
         },
         markers: {
