@@ -3,6 +3,7 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:driver_app/constant.dart';
+import 'package:location/location.dart';
 
 class OrderTrackingPage extends StatefulWidget {
   const OrderTrackingPage({Key? key}) : super(key: key);
@@ -18,6 +19,17 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
   static const LatLng destination = LatLng(37.33429383, -122.06600055);
 
   List<LatLng> polylineCoordinates = [];
+  LocationData? currentLocation;
+
+  void getCurrentLocation() {
+    Location location = Location();
+
+    location.getLocation().then(
+      (location) {
+        currentLocation = location;
+      },
+    );
+  }
 
   void getPoLyPoint() async {
     PolylinePoints polylinePoint = PolylinePoints();
@@ -41,6 +53,7 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
 
   @override
   void initState() {
+    getCurrentLocation();
     getPoLyPoint();
     super.initState();
   }
@@ -54,27 +67,46 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
       ),
-      body: GoogleMap(
-        initialCameraPosition:
-            const CameraPosition(target: sourceLocation, zoom: 13.5),
-        polylines: {
-          Polyline(
-            polylineId: const PolylineId("route"),
-            points: polylineCoordinates,
-            color: Colors.blue,
-          )
-        },
-        markers: {
-          const Marker(
-            markerId: MarkerId("source"),
-            position: sourceLocation,
-          ),
-          const Marker(
-            markerId: MarkerId("destination"),
-            position: destination,
-          ),
-        },
-      ),
+      body: currentLocation == null
+          ? const Center(child: Text("Loading"))
+          : GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: currentLocation != null
+                    ? LatLng(
+                        currentLocation!.latitude!, currentLocation!.longitude!)
+                    : const LatLng(0.0,
+                        0.0), // Vị trí mặc định nếu currentLocation là null
+                zoom: 13.5,
+              ),
+              myLocationButtonEnabled:
+                  true, // Cho phép hiển thị nút "Vị trí hiện tại"
+              myLocationEnabled:
+                  true, // Cho phép sử dụng dịch vụ vị trí để hiển thị vị trí hiện tại
+              polylines: {
+                Polyline(
+                  polylineId: const PolylineId("route"),
+                  points: polylineCoordinates,
+                  color: Colors.blue,
+                )
+              },
+              markers: {
+                Marker(
+                  markerId: const MarkerId("currentLocation"),
+                  position: LatLng(
+                    currentLocation != null ? currentLocation!.latitude! : 0.0,
+                    currentLocation != null ? currentLocation!.longitude! : 0.0,
+                  ),
+                ),
+                const Marker(
+                  markerId: MarkerId("source"),
+                  position: sourceLocation,
+                ),
+                const Marker(
+                  markerId: MarkerId("destination"),
+                  position: destination,
+                ),
+              },
+            ),
     );
   }
 }
