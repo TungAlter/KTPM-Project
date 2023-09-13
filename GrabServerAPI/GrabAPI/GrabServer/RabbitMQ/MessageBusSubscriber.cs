@@ -3,7 +3,6 @@ using RabbitMQ.Client;
 using GrabServer.EventProcess;
 using System.Text;
 
-
 namespace GrabServer.RabbitMQ
 {
     public class MessageBusSubscriber : BackgroundService
