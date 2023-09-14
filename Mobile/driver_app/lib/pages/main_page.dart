@@ -31,6 +31,51 @@ class MainPageState extends State<MainPage> {
         ]);
   }
 
+  Future<void> _showConfirmationDialog(BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Xác nhận Order'),
+          content: const Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                  'Số điện thoại của khách: 0878289687'), // Thay phoneNumber bằng số điện thoại của khách từ API
+              Text(
+                  'Địa điểm đón: 135 Trần Hưng Đạo'), // Thay sourceLocation bằng địa điểm đi từ API
+              Text(
+                  'Địa điểm đến: 227 Nguyễn Văn Cừ'), // Thay destination bằng địa điểm đến từ API
+              Text(
+                  'Tổng tiền: 57.000 VNĐ'), // Thay totalAmount bằng tổng tiền từ API
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Đóng hộp thoại
+              },
+              child: const Text('Từ chối'),
+            ),
+            TextButton(
+              onPressed: () {
+                // Xử lý khi người dùng xác nhận
+                Navigator.of(context).pop(); // Đóng hộp thoại
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const OrderTrackingPage(),
+                  ),
+                );
+              },
+              child: const Text('Xác nhận'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Widget buildContent() => Column(
         children: [
           const SizedBox(height: 4),
@@ -123,12 +168,7 @@ class MainPageState extends State<MainPage> {
             onPressed: () {
               // Xử lý khi nút được nhấn
               // Ví dụ: Chuyển sang trạng thái sẵn sàng
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const OrderTrackingPage(), // Thay thế OrderTrackingPage bằng tên thực tế của màn hình bạn muốn chuyển đến
-                ),
-              );
+              _showConfirmationDialog(context); // Hiển thị hộp thoại xác nhận
             },
             child: const Text('Sẵn sàng'),
           ),
