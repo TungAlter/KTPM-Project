@@ -60,8 +60,22 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
     super.initState();
   }
 
+  void completeOrder() {
+    // Hiển thị SnackBar để thông báo đơn hàng đã hoàn thành
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Order completed'),
+        backgroundColor: Colors.green, // Màu nền của SnackBar
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    String estimatedArrivalTime = "15 minutes"; // Thời gian tới nơi
+    String destinationAddress = "123 ABC Street"; // Địa chỉ đến
+    String pickupAddress = "456 XYZ Street"; // Địa chỉ đi
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -71,44 +85,83 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
       ),
       body: currentLocation == null
           ? const Center(child: Text("Loading"))
-          : GoogleMap(
-              initialCameraPosition: CameraPosition(
-                target: currentLocation != null
-                    ? LatLng(
-                        currentLocation!.latitude!, currentLocation!.longitude!)
-                    : const LatLng(0.0,
-                        0.0), // Vị trí mặc định nếu currentLocation là null
-                zoom: 13.5,
-              ),
-              myLocationButtonEnabled:
-                  true, // Cho phép hiển thị nút "Vị trí hiện tại"
-              myLocationEnabled:
-                  true, // Cho phép sử dụng dịch vụ vị trí để hiển thị vị trí hiện tại
-              polylines: {
-                Polyline(
-                  polylineId: const PolylineId("route"),
-                  points: polylineCoordinates,
-                  color: Colors.blue,
-                )
-              },
-              markers: {
-                Marker(
-                  markerId: const MarkerId("currentLocation"),
-                  position: LatLng(
-                    currentLocation != null ? currentLocation!.latitude! : 0.0,
-                    currentLocation != null ? currentLocation!.longitude! : 0.0,
+          : Column(
+              children: [
+                Expanded(
+                  child: GoogleMap(
+                    initialCameraPosition: CameraPosition(
+                      target: currentLocation != null
+                          ? LatLng(
+                              currentLocation!.latitude!,
+                              currentLocation!.longitude!,
+                            )
+                          : const LatLng(0.0, 0.0),
+                      zoom: 13.5,
+                    ),
+                    myLocationButtonEnabled: true,
+                    myLocationEnabled: true,
+                    polylines: {
+                      Polyline(
+                        polylineId: const PolylineId("route"),
+                        points: polylineCoordinates,
+                        color: Colors.blue,
+                      ),
+                    },
+                    markers: {
+                      Marker(
+                        markerId: const MarkerId("currentLocation"),
+                        position: LatLng(
+                          currentLocation != null
+                              ? currentLocation!.latitude!
+                              : 0.0,
+                          currentLocation != null
+                              ? currentLocation!.longitude!
+                              : 0.0,
+                        ),
+                      ),
+                      const Marker(
+                        markerId: MarkerId("source"),
+                        position: sourceLocation,
+                      ),
+                      const Marker(
+                        markerId: MarkerId("destination"),
+                        position: destination,
+                      ),
+                    },
                   ),
-                  //Colors.green,
                 ),
-                const Marker(
-                  markerId: MarkerId("source"),
-                  position: sourceLocation,
+                Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Estimated Arrival Time: $estimatedArrivalTime",
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        "Pickup Address: $pickupAddress",
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        "Destination Address: $destinationAddress",
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                      const SizedBox(height: 16),
+                      ElevatedButton(
+                        onPressed: completeOrder,
+                        child: const Text("Complete Order"),
+                      ),
+                    ],
+                  ),
                 ),
-                const Marker(
-                  markerId: MarkerId("destination"),
-                  position: destination,
-                ),
-              },
+              ],
             ),
     );
   }

@@ -229,8 +229,8 @@ AS
 END
 GO
 -- ===================== DRIVER ===========================
-select* from DRIVER
-EXEC dbo.USP_GetDriverById @id = '2'
+--select* from DRIVER
+--EXEC dbo.USP_GetDriverById @id = '2'
 CREATE OR ALTER PROCEDURE USP_GetDriverById
 	@id INTEGER
 AS

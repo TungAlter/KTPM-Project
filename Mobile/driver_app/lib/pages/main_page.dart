@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:driver_app/pages/order_tracking_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -122,6 +123,12 @@ class MainPageState extends State<MainPage> {
             onPressed: () {
               // Xử lý khi nút được nhấn
               // Ví dụ: Chuyển sang trạng thái sẵn sàng
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) =>
+                      const OrderTrackingPage(), // Thay thế OrderTrackingPage bằng tên thực tế của màn hình bạn muốn chuyển đến
+                ),
+              );
             },
             child: const Text('Sẵn sàng'),
           ),
