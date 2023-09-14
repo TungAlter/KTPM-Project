@@ -2,21 +2,77 @@ import 'package:flutter/material.dart';
 import 'package:driver_app/components/my_button.dart';
 import 'package:driver_app/components/my_textfield.dart';
 import 'package:driver_app/components/square_tile.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  //LoginPage({super.key});
 
   // text editing controllers
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
   // sign user in method
-  void signUserIn() {}
+  Future<void> signUserIn() async {
+    final url = Uri.parse(
+        'https://ee44-2001-ee0-4f88-4b70-a09e-8d9-ffef-80e5.ngrok-free.app/api/Auth/login');
+
+    try {
+      final response = await http.post(
+        url,
+        body: jsonEncode({
+          'username': usernameController.text,
+          'password': passwordController.text,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = json.decode(response.body);
+        final tokenAuth = responseData['data'];
+
+        // Lưu token vào bộ nhớ cục bộ hoặc thực hiện hành động khác cần thiết
+        // Ví dụ: Navigator.pushReplacement để chuyển đến màn hình sau khi đăng nhập thành công
+
+        // In ra token (chỉ để kiểm tra)
+        print('Token: $tokenAuth');
+      } else {
+        // Xử lý lỗi đăng nhập không thành công
+        final responseData = json.decode(response.body);
+        final message = responseData['message'];
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(message),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } catch (error) {
+      print('Error: $error');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('An error occurred while signing in.'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
+      resizeToAvoidBottomInset: true, // Đặt giá trị này thành true
       body: SafeArea(
         child: Center(
           child: Column(
@@ -139,13 +195,18 @@ class LoginPage extends StatelessWidget {
                     style: TextStyle(color: Colors.grey[700]),
                   ),
                   const SizedBox(width: 4),
-                  const Text(
-                    'Register now',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
+                  TextButton(
+                    onPressed: () {
+                      // Xử lý khi nút được nhấn
+                    },
+                    child: const Text(
+                      'Register now',
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
+                  )
                 ],
               )
             ],
