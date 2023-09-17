@@ -19,6 +19,6 @@ namespace CallCenter_MVC.DTOs
         public double desLong { get; set; }
         public double desLat { get; set; }
         public double Distance { get; set; }
-        public int Total { get; set; }
+        public int Total { get; set; } = 0;
     }
 }

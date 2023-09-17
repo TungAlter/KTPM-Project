@@ -55,7 +55,6 @@ namespace CallCenter_MVC.Controllers
                         listBooking.Add(item);
                     }
                     return View("Index", listBooking);
-
                 }
                 else
                 {

@@ -1,6 +1,6 @@
 var map = null;
 var route;
-var startMarker;  
+var startMarker;
 var endMarker;
 var apiUrl = "YOUR_API_HERE";
 
@@ -17,6 +17,7 @@ function processAddress(address) {
 // Xử lý lấy tọa độ qua địa chỉ
 function getCoordinates(iaddress) {
     var address = processAddress(iaddress);
+    console.log("Address:", address);
     var nominatimUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
     return fetch(nominatimUrl)
         .then(response => response.json())
@@ -41,12 +42,12 @@ function getCoordinates(iaddress) {
 
 // Xử lý lấy đường đi
 function getRoute(bookingId, startAddress, endAddress) {
-    if (startMarker || endMarker || route){
+    if (startMarker || endMarker || route) {
         map.removeLayer(startMarker);
         map.removeLayer(endMarker);
         map.removeLayer(route);
     }
-    
+
     Promise.all([getCoordinates(startAddress), getCoordinates(endAddress)])
         .then(coords => {
             var startCoords = coords[0];
@@ -73,25 +74,25 @@ function getRoute(bookingId, startAddress, endAddress) {
                         var routeLatLngs = routeCoordinates.map(coord => [coord[1], coord[0]]);
                         route = L.polyline(routeLatLngs, { color: 'blue' }).addTo(map);
                         map.fitBounds(route.getBounds());
-                        
+
                         console.log("Khoảng cách tuyến đường:", routeDistance, "mét");
-                        
+
                         document.getElementById(`srclong-${bookingId}`).value = startCoords.lon;
                         document.getElementById(`srclat-${bookingId}`).value = startCoords.lat;
                         document.getElementById(`deslong-${bookingId}`).value = endCoords.lon;
                         document.getElementById(`deslat-${bookingId}`).value = endCoords.lat;
                         document.getElementById(`distance-${bookingId}`).value = routeDistance;
-                        
+
                         enableBTNs(bookingId);
                         showModalDialog(bookingId, startAddress, endAddress)
                         return allInfo = {
                             startAddress: startAddress,
                             endAddress: endAddress,
                             startCoords: startCoords,
-                            endCoords: endCoords,   
+                            endCoords: endCoords,
                             routeDistance: distance
                         };
-                        
+
                     })
                     .catch(error => {
                         console.log("Lỗi khi lấy tuyến đường:", error);
@@ -104,7 +105,7 @@ function getRoute(bookingId, startAddress, endAddress) {
 }
 
 // Xử lý hiện/ẩn Modal Dialog
-function showModalDialog(bookingId, startaddress, endaddress){
+function showModalDialog(bookingId, startaddress, endaddress) {
 
     var detailBtn = document.getElementById(`detail-${bookingId}`)
     if (detailBtn.classList.contains('disable')) {
@@ -120,7 +121,7 @@ function showModalDialog(bookingId, startaddress, endaddress){
         var endLat = document.getElementById(`deslat-${bookingId}`).value;
         var endLon = document.getElementById(`deslong-${bookingId}`).value;
         var routeDistance = document.getElementById(`distance-${bookingId}`).value;
-    
+
         document.getElementById('modal-bookingId').textContent = idBooking;
         document.getElementById('modal-customerName').textContent = Customer;
         document.getElementById('modal-startAddress').textContent = startAddress;
@@ -130,9 +131,9 @@ function showModalDialog(bookingId, startaddress, endaddress){
         document.getElementById('modal-endLat').textContent = endLat;
         document.getElementById('modal-endLon').textContent = endLon;
         document.getElementById('modal-routeDistance').textContent = routeDistance;
-        
+
         var modal = document.getElementById('myModal');
-        modal.style.display = 'block';        
+        modal.style.display = 'block';
     }
 }
 function closeModal() {
@@ -141,13 +142,35 @@ function closeModal() {
 }
 
 // Xử lý enable button
-function enableBTNs (bookingId) {
+function enableBTNs(bookingId) {
     var detailButton = document.getElementById(`detail-${bookingId}`);
     var sendButton = document.getElementById(`send-${bookingId}`);
     detailButton.classList.remove("disable");
     sendButton.classList.remove("disable");
 }
 
+const total = 0;
+async function calculateTotal(bookingId) {
+    var urlCalculteTotal = `http://localhost:5236/api/Booking/CaculateTotal?IdBooking=${bookingId}`;
+    try {
+        const response = await fetch(urlCalculteTotal, {
+            method: "PUT",
+            headers: {
+                'accept': 'text/plain',
+            },
+        });
+        console.log(response);
+        const result = await response.text();
+        if (response.ok) {
+            // Cập nhật thành công
+            alert("Tính toán thành công!! " + result);
+        } else {
+            alert("Tính toán thất bại!!");
+        }
+    } catch (error) {
+        console.error("An error occurred:", error);
+    }
+}
 
 // Xử lý gửi dữ liệu cập nhật
 const updateBooking = {
@@ -159,8 +182,11 @@ const updateBooking = {
     DesAddress: null,
     DesLon: -1,
     DesLat: -1,
-    Distance: 0
+    Distance: 0,
+    Note: "",
+    Total: 0
 };
+
 async function sendBooking(bookingId) {
     var sendBtn = document.getElementById(`send-${bookingId}`)
     if (sendBtn.classList.contains("disable")) {
@@ -173,12 +199,15 @@ async function sendBooking(bookingId) {
         var endLat = document.getElementById(`deslat-${bookingId}`).value;
         var endLon = document.getElementById(`deslong-${bookingId}`).value;
         var routeDistance = document.getElementById(`distance-${bookingId}`).value;
+
         updateBooking.Id = bookingId;
         updateBooking.FullName = name;
         updateBooking.SrcLon = startLon;
         updateBooking.SrcLat = startLat;
         updateBooking.DesLon = endLon;
         updateBooking.DesLat = endLat;
+        updateBooking.Total = 0;
+        updateBooking.Note = "";
         var urlUpdateBooking = `http://localhost:5236/api/Booking/location?id=${bookingId}&srcLong=${startLon}&srcLat=${startLat}&desLong=${endLon}&desLat=${endLat}&Distance=${routeDistance}`;
         console.log(urlUpdateBooking);
         try {
@@ -189,43 +218,48 @@ async function sendBooking(bookingId) {
                 },
                 body: JSON.stringify(updateBooking),
             });
-            console.log(response);
-            console.log("Thành công");
+
+            if (response.ok) {
+                // Cập nhật thành công
+                alert("Cập nhật thành công!");
+            } else {
+                alert("Đã tồn tại");
+            }
         } catch (error) {
             console.error("An error occurred:", error);
         }
-
     }
 }
 
 // Xử lý xóa
-function deleteBooking(bookingId) {
+async function deleteBooking(bookingId) {
     if (confirm('Bạn có chắc chắn muốn xóa bản ghi này không?')) {
-        // Sử dụng AJAX hoặc Fetch để gửi yêu cầu Xóa đến Action Delete trong Controller
-        console.log(bookingId);
-        fetch(`/HomeS2/Delete/${bookingId}`, {
-            method: 'DELETE',
-            headers: {
-                'accept': 'text/plain',
-            },
-        })
-        .then(response => {
-            if (response.status === 200) {
+        try {
+            console.log(bookingId);
+            const response = await fetch(`/HomeS2/Delete/${bookingId}`, {
+                method: 'DELETE',
+                headers: {
+                    'accept': 'text/plain',
+                },
+            });
+            var cardElement = document.getElementById('card-' + bookingId);
+            cardElement.remove();
+            if (response.ok) {
                 // Xóa thành công, sau đó chuyển hướng lại trang Index
                 window.location.href = '/HomeS2/Index';
             } else {
                 // Xóa không thành công, xử lý lỗi tại đây (nếu cần)
+                console.error("Lỗi khi xóa:", response.statusText);
             }
-        })
-        .catch(error => {
+        } catch (error) {
             console.error("Lỗi khi xóa:", error);
-            // Xử lý lỗi tại đây (nếu cần)
-        });
+            // Xử lý lỗi kết nối hoặc lỗi khác (nếu cần)
+        }
     }
 }
 
 function longPolling() {
-    setTimeout(function() {
+    setTimeout(function () {
         fetch('http://localhost:5236/api/Booking/new') // Replace with the correct URL for your Long-Polling action
             .then(response => {
                 if (response.status === 200) {
@@ -233,7 +267,7 @@ function longPolling() {
                     console.log("New data received");
                     console.log(response);
                     // Perform any necessary actions to update the UI or fetch data.
-                    response.json().then(function(newData) {
+                    response.json().then(function (newData) {
                         console.log("New data received", newData);
                         //window.location.href = '/HomeS2/Index';
                         // Xử lý dữ liệu JSON và cập nhật giao diện
@@ -258,7 +292,7 @@ function longPolling() {
                 // Handle errors, and then retry Long-Polling.
                 longPolling();
             });
-    }, 10000); 
+    }, 5000);
 }
 
 function createBookingCard(booking) {
@@ -299,7 +333,7 @@ function createBookingCard(booking) {
 
 
 // Xử lý hiện map sử dụng LeafL et
-window.onload = function() {    
+window.onload = function () {
     map = L.map('map').setView([10.7743, 106.6669], 10);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -308,7 +342,7 @@ window.onload = function() {
     longPolling();
 }
 
-function sendWithModal(){
+function sendWithModal() {
     var modal = document.getElementById('myModal');
     let id = document.getElementById(`modal-bookingId`).textContent;
     console.log("id", id);

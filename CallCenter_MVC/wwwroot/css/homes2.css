@@ -29,6 +29,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
 }
 
 .list-col::-webkit-scrollbar {
@@ -154,9 +155,17 @@
     background-color: #008997;
 }
 .modal-content {
-    display: block;
+    display: flex;
     height: 80%;
+    font-size: 14px;
+    background-color: white;
 }
+
+.modal-content p {
+    margin: 5px 2px;
+    padding: 0;
+}
+
 .modal-footer {
     height: 8%;
     background-color: #26bdce;
